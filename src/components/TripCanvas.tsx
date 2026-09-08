@@ -4,6 +4,7 @@ import {
   ReactFlow,
   ReactFlowProvider,
   useEdgesState,
+  useNodesInitialized,
   useNodesState,
   useReactFlow,
   type NodeMouseHandler,
@@ -24,6 +25,7 @@ function Canvas() {
   const expenses = useTripStore((s) => s.expenses)
   const select = useTripStore((s) => s.select)
   const { fitView } = useReactFlow()
+  const nodesInitialized = useNodesInitialized()
 
   // Phase 4 replaces this with a lens lookup; until then every lens renders categories.
   const graph = useMemo(
@@ -44,6 +46,12 @@ function Canvas() {
     setNodes(graph.nodes)
     setEdges(graph.edges)
   }, [graph, setNodes, setEdges])
+
+  useEffect(() => {
+    if (nodesInitialized) {
+      fitView({ padding: 0.15 })
+    }
+  }, [nodesInitialized, fitView])
 
   useEffect(() => {
     let t: ReturnType<typeof setTimeout>
