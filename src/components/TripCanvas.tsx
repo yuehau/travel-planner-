@@ -79,6 +79,7 @@ function Canvas() {
       onPaneClick={() => select(null)}
       fitView
       fitViewOptions={{ padding: 0.15 }}
+      minZoom={0.2}
       nodesDraggable={false}
       nodesConnectable={false}
       proOptions={{ hideAttribution: true }}
