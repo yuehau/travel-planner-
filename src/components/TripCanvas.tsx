@@ -40,11 +40,16 @@ function Canvas() {
   }, [graph, setNodes, setEdges])
 
   useEffect(() => {
+    let t: ReturnType<typeof setTimeout>
     const refit = () => {
-      window.setTimeout(() => fitView({ padding: 0.15 }), 120)
+      clearTimeout(t)
+      t = setTimeout(() => fitView({ padding: 0.15 }), 120)
     }
     window.addEventListener('resize', refit)
-    return () => window.removeEventListener('resize', refit)
+    return () => {
+      clearTimeout(t)
+      window.removeEventListener('resize', refit)
+    }
   }, [fitView])
 
   const onNodeClick: NodeMouseHandler = (_, node) => select(node.id)
