@@ -1,8 +1,10 @@
 import { beforeEach, describe, expect, it } from 'vitest'
+import { seed } from '../../store/seed'
 import { useTripStore } from '../../store/tripStore'
 
 describe('trip store', () => {
   beforeEach(() => {
+    localStorage.clear()
     useTripStore.getState().reset()
   })
 
@@ -48,5 +50,31 @@ describe('trip store', () => {
   it('writes to localStorage under the travel-planner key', () => {
     useTripStore.getState().updateStop('s3', { name: 'Persisted' })
     expect(localStorage.getItem('travel-planner')).toContain('Persisted')
+  })
+
+  it('keeps transient UI state out of what it writes', () => {
+    useTripStore.getState().select('s3')
+    const written = localStorage.getItem('travel-planner')!
+    expect(written).toContain('Chulia Street night market')
+    expect(written).not.toContain('selectedNodeId')
+    expect(written).not.toContain('lens')
+  })
+
+  it('drops a stale selectedNodeId and lens when rehydrating an old payload', async () => {
+    localStorage.setItem(
+      'travel-planner',
+      JSON.stringify({
+        state: { ...seed, selectedNodeId: 's3', lens: 'people' },
+        version: 0,
+      }),
+    )
+    expect(localStorage.getItem('travel-planner')).toContain('"selectedNodeId":"s3"')
+
+    await useTripStore.persist.rehydrate()
+
+    expect(useTripStore.getState().selectedNodeId).toBeNull()
+    expect(useTripStore.getState().lens).toBe('categories')
+    // The trip data in the payload still wins — only the transient fields are pinned.
+    expect(useTripStore.getState().stops).toHaveLength(11)
   })
 })

@@ -58,8 +58,13 @@ export function NodeDrawer() {
       //
       // The enter animation is unaffected -- the panel still slides in over
       // 200ms; only the exit is immediate.
+      //
+      // This one prop covers the overlay too: DrawerRoot puts transitionProps
+      // on the ModalBase context and useModalTransition merges the context
+      // values under the overlay's own, so the overlay inherits exitDuration: 0
+      // and takes the same synchronous unmount branch. It needs no override of
+      // its own, and giving it one would flatten its 200ms fade-in.
       transitionProps={{ duration: 200, exitDuration: 0 }}
-      overlayProps={{ transitionProps: { duration: 0 } }}
       title={stop?.name ?? booking?.title ?? member?.name ?? (expense ? 'Expense' : '')}>
       {stop && <StopBody stop={stop} currency={trip.currency} />}
       {booking && <BookingBody booking={booking} currency={trip.currency} />}

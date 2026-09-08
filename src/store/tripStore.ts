@@ -32,24 +32,34 @@ export const useTripStore = create<TripStore>()(
     }),
     {
       name: 'travel-planner',
+      // An allowlist of trip data. Anything added to the store later has to be
+      // added here by hand or it silently stops persisting.
+      //
       // selectedNodeId is transient UI state, not trip data. Persisting it made
       // a reload restore whatever node was last clicked, so the app booted with
-      // a drawer covering the map. lens stays persisted on purpose.
+      // a drawer covering the map.
+      //
+      // lens is excluded for the same class of reason: until Phase 4 ships the
+      // itinerary and people builders the canvas can only render categories, so
+      // a persisted lens could boot the app labelled "People" over a categories
+      // map. Add it back when every lens has a builder.
       partialize: (state) => ({
         trip: state.trip,
         members: state.members,
         stops: state.stops,
         bookings: state.bookings,
         expenses: state.expenses,
-        lens: state.lens,
       }),
-      // partialize only governs what gets written. Entries written before it
-      // existed still carry a selectedNodeId, and zustand's default merge lets
-      // the persisted value win over the initial state, so one stale reload
-      // would still open a drawer. Pin the transient field on the way in.
+      // partialize only governs what gets written. Entries written before a
+      // field left the allowlist still carry it, and zustand's default merge
+      // lets the persisted value win over the initial state, so one stale
+      // reload would still open a drawer or select an unrenderable lens. Pin
+      // both transient fields on the way in. The lens pin comes out in Phase 4
+      // together with the disabled flags in Header.tsx.
       merge: (persisted, current) => ({
         ...current,
         ...(persisted as Partial<TripStore>),
+        lens: 'categories' as LensId,
         selectedNodeId: null,
       }),
     },

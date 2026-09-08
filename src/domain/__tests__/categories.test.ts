@@ -17,10 +17,16 @@ describe('categories lens', () => {
     )
   })
 
-  it('includes a node for every stop, booking and member', () => {
+  it('includes a node for every stop, booking, expense and member', () => {
     for (const stop of seed.stops) expect(ids.has(stop.id)).toBe(true)
     for (const booking of seed.bookings) expect(ids.has(booking.id)).toBe(true)
+    for (const expense of seed.expenses) expect(ids.has(expense.id)).toBe(true)
     for (const member of seed.members) expect(ids.has(member.id)).toBe(true)
+  })
+
+  it('builds one node per leaf plus four categories and the trip', () => {
+    // 11 stops + 3 bookings + 3 expenses + 4 members + 4 categories + 1 trip
+    expect(graph.nodes).toHaveLength(26)
   })
 
   it('connects every category to the trip node', () => {

@@ -36,6 +36,10 @@ function Canvas() {
   const [nodes, setNodes, onNodesChange] = useNodesState(graph.nodes)
   const [edges, setEdges, onEdgesChange] = useEdgesState(graph.edges)
 
+  // Skips the first run of the sync effect, whose graph is already the initial
+  // state of useNodesState/useEdgesState. This is no longer what makes fitView
+  // work -- the useNodesInitialized effect below does that -- it just avoids a
+  // redundant setNodes/setEdges pass on mount.
   const mounted = useRef(false)
 
   useEffect(() => {

@@ -22,10 +22,13 @@ export function Header() {
           size="xs"
           value={lens}
           onChange={(value) => setLens(value as LensId)}
+          // All three lenses stay visible because they communicate the product
+          // direction, but only categories has a graph builder. Phase 4 adds
+          // itinerary.ts and people.ts and drops these disabled flags.
           data={[
             { label: 'Categories', value: 'categories' },
-            { label: 'Itinerary', value: 'itinerary' },
-            { label: 'People', value: 'people' },
+            { label: 'Itinerary', value: 'itinerary', disabled: true },
+            { label: 'People', value: 'people', disabled: true },
           ]}
         />
         <Button size="xs" variant="default" onClick={reset}>Reset trip</Button>
