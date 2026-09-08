@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import {
   Background,
   ReactFlow,
@@ -34,7 +34,13 @@ function Canvas() {
   const [nodes, setNodes, onNodesChange] = useNodesState(graph.nodes)
   const [edges, setEdges, onEdgesChange] = useEdgesState(graph.edges)
 
+  const mounted = useRef(false)
+
   useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true
+      return
+    }
     setNodes(graph.nodes)
     setEdges(graph.edges)
   }, [graph, setNodes, setEdges])
