@@ -6,7 +6,7 @@
 
 **Architecture:** The mindmap is the application shell — one screen, always. Pure domain logic lives in `src/domain/` with no React. Each lens is a pure function from state to React Flow nodes/edges in `src/graph/`. Zustand holds state and persists it to localStorage.
 
-**Tech Stack:** Vite 8, React 19, TypeScript, `@xyflow/react` v12, Tailwind CSS v4, Mantine 8, Zustand, Vitest.
+**Tech Stack:** Vite 8, React 19, TypeScript, `@xyflow/react` v12, Tailwind CSS v4, Mantine 9 (unpinned install resolved to 9.x; the binding requirement is the `styles.layer.css` build, which 9.x provides), Zustand, Vitest.
 
 **Spec:** `docs/superpowers/specs/2026-09-08-mindmap-travel-planner-design.md`
 
