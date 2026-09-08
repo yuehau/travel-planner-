@@ -138,7 +138,7 @@
 .node--stop {
   position: relative;
   width: 248px;
-  padding: 5px;
+  padding: 4px 4px 4px 20px;
   cursor: pointer;
 }
 

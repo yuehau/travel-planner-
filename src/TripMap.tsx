@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import {
   ReactFlow,
   ReactFlowProvider,
@@ -63,7 +63,7 @@ function fillFor(memberIds: string[]) {
   if (colors.length === 1) return colors[0]
   const step = 100 / colors.length
   const stops = colors.map((c, i) => `${c} ${i * step}%, ${c} ${(i + 1) * step}%`)
-  return `linear-gradient(135deg, ${stops.join(', ')})`
+  return `linear-gradient(180deg, ${stops.join(', ')})`
 }
 
 function endTime(start: string, durationMin: number) {
@@ -268,7 +268,13 @@ function Flow() {
 
   const isOpen = selected !== null
 
+  const mounted = useRef(false)
+
   useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true
+      return
+    }
     const graph = buildGraph(delayed ? DELAYED : BASE)
     setNodes(graph.nodes)
     setEdges(graph.edges)
@@ -279,6 +285,19 @@ function Flow() {
     const t = setTimeout(() => fitView({ padding: 0.15, duration: 400 }), 60)
     return () => clearTimeout(t)
   }, [isOpen, delayed, fitView])
+
+  useEffect(() => {
+    let t: ReturnType<typeof setTimeout>
+    const refit = () => {
+      clearTimeout(t)
+      t = setTimeout(() => fitView({ padding: 0.15 }), 120)
+    }
+    window.addEventListener('resize', refit)
+    return () => {
+      clearTimeout(t)
+      window.removeEventListener('resize', refit)
+    }
+  }, [fitView])
 
   const onNodeClick = useCallback<NodeMouseHandler>((_, node) => {
     if (node.type !== 'stop') return
