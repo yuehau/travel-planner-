@@ -39,6 +39,27 @@ export function NodeDrawer() {
 
   return (
     <Drawer opened={open} onClose={() => select(null)} position="right" size={380} padding="lg"
+      // The drawer must unmount synchronously when `opened` goes false.
+      //
+      // Mantine 9's `Transition` only advances an exiting element to the
+      // "exited" status that unmounts it from inside two nested
+      // requestAnimationFrame callbacks (see useTransition.handleStateChange).
+      // Whenever those frames are starved -- a hidden, occluded or
+      // background-throttled tab -- the exit never begins at all, so the
+      // fixed-position overlay stays mounted at opacity 1 with
+      // pointer-events: auto and swallows every click on the canvas long
+      // after `selectedNodeId` is null.
+      //
+      // A zero exitDuration takes Transition's synchronous branch instead: the
+      // element becomes a pure function of `opened`, with no rAF and no
+      // timers, so nothing can outlive the closed state. This also closes the
+      // ~200ms window during a normal fade-out where the overlay is already
+      // invisible but still intercepts the next click.
+      //
+      // The enter animation is unaffected -- the panel still slides in over
+      // 200ms; only the exit is immediate.
+      transitionProps={{ duration: 200, exitDuration: 0 }}
+      overlayProps={{ transitionProps: { duration: 0 } }}
       title={stop?.name ?? booking?.title ?? member?.name ?? (expense ? 'Expense' : '')}>
       {stop && <StopBody stop={stop} currency={trip.currency} />}
       {booking && <BookingBody booking={booking} currency={trip.currency} />}
