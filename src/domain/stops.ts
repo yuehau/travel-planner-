@@ -37,3 +37,64 @@ export function validateStop(draft: StopDraft, maxDay: number): Record<string, s
 
   return errors
 }
+
+/** Rewrites `order` for one day so it runs 1..n in the day's current sequence. */
+function renumberDay(stops: Stop[], day: number): Stop[] {
+  const ordered = stops
+    .filter((s) => s.day === day)
+    .sort((a, b) => a.order - b.order)
+  const orders = new Map(ordered.map((s, i) => [s.id, i + 1]))
+  return stops.map((s) => (orders.has(s.id) ? { ...s, order: orders.get(s.id)! } : s))
+}
+
+export function insertStop(stops: Stop[], draft: StopDraft): Stop[] {
+  const sameDay = stops.filter((s) => s.day === draft.day)
+  const stop: Stop = { ...draft, id: nextStopId(stops), order: sameDay.length + 1 }
+  return renumberDay([...stops, stop], draft.day)
+}
+
+export function removeStop(stops: Stop[], id: string): Stop[] {
+  const target = stops.find((s) => s.id === id)
+  if (!target) return stops
+  return renumberDay(
+    stops.filter((s) => s.id !== id),
+    target.day,
+  )
+}
+
+export function moveStop(stops: Stop[], id: string, direction: 'up' | 'down'): Stop[] {
+  const target = stops.find((s) => s.id === id)
+  if (!target) return stops
+
+  const sameDay = stops
+    .filter((s) => s.day === target.day)
+    .sort((a, b) => a.order - b.order)
+  const from = sameDay.findIndex((s) => s.id === id)
+  const to = direction === 'up' ? from - 1 : from + 1
+  if (to < 0 || to >= sameDay.length) return stops
+
+  const swapped = [...sameDay]
+  swapped[from] = sameDay[to]
+  swapped[to] = sameDay[from]
+
+  const orders = new Map(swapped.map((s, i) => [s.id, i + 1]))
+  return stops.map((s) => (orders.has(s.id) ? { ...s, order: orders.get(s.id)! } : s))
+}
+
+export function editStop(stops: Stop[], id: string, draft: StopDraft): Stop[] {
+  const target = stops.find((s) => s.id === id)
+  if (!target) return stops
+
+  // Same day: a straight patch keeps the stop in its current slot.
+  if (draft.day === target.day) {
+    return stops.map((s) => (s.id === id ? { ...s, ...draft } : s))
+  }
+
+  // Different day: leaving `order` alone would duplicate an order in the new
+  // day and leave a gap in the old one. Close the old day's sequence, then
+  // append to the end of the new one.
+  const withoutIt = renumberDay(stops.filter((s) => s.id !== id), target.day)
+  const newDay = withoutIt.filter((s) => s.day === draft.day)
+  const moved: Stop = { ...target, ...draft, id, order: newDay.length + 1 }
+  return renumberDay([...withoutIt, moved], draft.day)
+}
