@@ -52,3 +52,29 @@ describe('categories lens', () => {
     expect(ids.size).toBe(graph.nodes.length)
   })
 })
+
+describe('categories lens with an empty group', () => {
+  const emptied = { ...seed, expenses: [] }
+  const g = buildCategoriesGraph(emptied)
+  const categoryY = (id: string) => g.nodes.find((n) => n.id === id)!.position.y
+
+  it('still renders all four category nodes', () => {
+    for (const id of ['cat-itinerary', 'cat-bookings', 'cat-budget', 'cat-people']) {
+      expect(g.nodes.some((n) => n.id === id)).toBe(true)
+    }
+  })
+
+  it('does not drop the empty category onto the centreline', () => {
+    expect(categoryY('cat-budget')).not.toBe(0)
+  })
+
+  it('keeps every category node at a distinct y', () => {
+    const ys = ['cat-itinerary', 'cat-bookings', 'cat-budget', 'cat-people'].map(categoryY)
+    expect(new Set(ys).size).toBe(4)
+  })
+
+  it('keeps the empty category in sequence between its neighbours', () => {
+    expect(categoryY('cat-budget')).toBeGreaterThan(categoryY('cat-bookings'))
+    expect(categoryY('cat-budget')).toBeLessThan(categoryY('cat-people'))
+  })
+})

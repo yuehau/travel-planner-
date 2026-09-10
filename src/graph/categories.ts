@@ -72,9 +72,13 @@ export function buildCategoriesGraph(state: TripState): Graph {
       })
       cursor += 1
     }
+    // An empty group has no leaves to centre between. Fall back to where its
+    // first leaf would have sat, so the category node stays in sequence with
+    // its neighbours instead of landing on the map's centreline — where it
+    // would overlap whichever group happens to straddle y=0.
     const centre = group.leaves.length
       ? (leafY[first] + leafY[cursor - 1]) / 2
-      : 0
+      : (leafY[first] ?? leafY[leafY.length - 1] ?? 0)
     categoryY.push(centre)
     nodes.push({
       id: `cat-${group.id}`,
