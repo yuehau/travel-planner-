@@ -76,7 +76,9 @@ export function StopForm({
           max={days}
           value={draft.day}
           error={errors.day}
-          onChange={(v) => set('day', typeof v === 'number' ? v : 1)}
+          // Fall back to NaN, not a valid day like 1 — a valid fallback would pass
+          // validateStop silently and let a cleared field submit as day 1 unnoticed.
+          onChange={(v) => set('day', typeof v === 'number' ? v : NaN)}
         />
         <TextInput
           label="Start"
@@ -92,14 +94,14 @@ export function StopForm({
           min={1}
           value={draft.durationMin}
           error={errors.durationMin}
-          onChange={(v) => set('durationMin', typeof v === 'number' ? v : 0)}
+          onChange={(v) => set('durationMin', typeof v === 'number' ? v : NaN)}
         />
         <NumberInput
           label={`Cost (${currency})`}
           min={0}
           value={draft.costPerPerson}
           error={errors.costPerPerson}
-          onChange={(v) => set('costPerPerson', typeof v === 'number' ? v : 0)}
+          onChange={(v) => set('costPerPerson', typeof v === 'number' ? v : NaN)}
         />
       </Group>
       <Select
