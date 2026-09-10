@@ -1,6 +1,13 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import type { LensId, Stop, TripState } from '../domain/types'
+import {
+  editStop as editStopIn,
+  insertStop,
+  moveStop as moveStopIn,
+  removeStop,
+  type StopDraft,
+} from '../domain/stops'
 import { seed } from './seed'
 
 interface TripStore extends TripState {
@@ -9,6 +16,10 @@ interface TripStore extends TripState {
   setLens: (lens: LensId) => void
   select: (id: string | null) => void
   updateStop: (id: string, patch: Partial<Stop>) => void
+  addStop: (draft: StopDraft) => void
+  deleteStop: (id: string) => void
+  moveStop: (id: string, direction: 'up' | 'down') => void
+  editStop: (id: string, draft: StopDraft) => void
   reset: () => void
 }
 
@@ -28,6 +39,22 @@ export const useTripStore = create<TripStore>()(
         set((state) => ({
           stops: state.stops.map((s) => (s.id === id ? { ...s, ...patch } : s)),
         })),
+      addStop: (draft) =>
+        set((state) => {
+          const stops = insertStop(state.stops, draft)
+          const added = stops.find((s) => !state.stops.some((old) => old.id === s.id))
+          return { stops, selectedNodeId: added ? added.id : state.selectedNodeId }
+        }),
+      deleteStop: (id) =>
+        set((state) => ({
+          stops: removeStop(state.stops, id),
+          // A drawer showing a stop that no longer exists would render blank.
+          selectedNodeId: state.selectedNodeId === id ? null : state.selectedNodeId,
+        })),
+      moveStop: (id, direction) =>
+        set((state) => ({ stops: moveStopIn(state.stops, id, direction) })),
+      editStop: (id, draft) =>
+        set((state) => ({ stops: editStopIn(state.stops, id, draft) })),
       reset: () => set(initial()),
     }),
     {
