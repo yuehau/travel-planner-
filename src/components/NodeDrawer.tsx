@@ -1,6 +1,9 @@
-import { Badge, Drawer, Group, Stack, Text } from '@mantine/core'
+import { useState } from 'react'
+import { Badge, Button, Divider, Drawer, Group, Stack, Text } from '@mantine/core'
 import type { Booking, Expense, Member, Stop } from '../domain/types'
 import { useTripStore } from '../store/tripStore'
+import { StopForm } from './StopForm'
+import type { StopDraft } from '../domain/stops'
 
 function endTime(start: string, durationMin: number) {
   const [h, m] = start.split(':').map(Number)
@@ -75,10 +78,33 @@ export function NodeDrawer() {
 }
 
 function StopBody({ stop, currency }: { stop: Stop; currency: string }) {
+  const [editing, setEditing] = useState(false)
+  const editStop = useTripStore((s) => s.editStop)
+  const deleteStop = useTripStore((s) => s.deleteStop)
+  const moveStop = useTripStore((s) => s.moveStop)
+
+  if (editing) {
+    return (
+      <StopForm
+        // Remounts the form when a different stop is opened, so the fields
+        // never show the previous stop's values.
+        key={stop.id}
+        initial={stop}
+        submitLabel="Save"
+        onCancel={() => setEditing(false)}
+        onSubmit={(draft: StopDraft) => {
+          editStop(stop.id, draft)
+          setEditing(false)
+        }}
+      />
+    )
+  }
+
   return (
     <Stack gap="md">
       <Text size="sm" c="dimmed">
-        Day {stop.day} · {stop.start}–{endTime(stop.start, stop.durationMin)} · {stop.durationMin} min · {currency} {stop.costPerPerson} per person
+        Day {stop.day} · {stop.start}–{endTime(stop.start, stop.durationMin)} ·{' '}
+        {stop.durationMin} min · {currency} {stop.costPerPerson} per person
       </Text>
       <div>
         <Text size="xs" fw={600} c="dimmed" tt="uppercase" mb={6}>Planned for</Text>
@@ -89,6 +115,23 @@ function StopBody({ stop, currency }: { stop: Stop; currency: string }) {
         <MemberBadges ids={stop.conflicts} />
         {stop.conflicts.length > 0 && <Text size="sm" mt="sm">{stop.reason}</Text>}
       </div>
+
+      <Divider my="xs" />
+
+      <Group gap="xs">
+        <Button size="xs" variant="default" onClick={() => moveStop(stop.id, 'up')}>
+          Move up
+        </Button>
+        <Button size="xs" variant="default" onClick={() => moveStop(stop.id, 'down')}>
+          Move down
+        </Button>
+      </Group>
+      <Group gap="xs">
+        <Button size="xs" onClick={() => setEditing(true)}>Edit</Button>
+        <Button size="xs" color="red" variant="light" onClick={() => deleteStop(stop.id)}>
+          Delete
+        </Button>
+      </Group>
     </Stack>
   )
 }
