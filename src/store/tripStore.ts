@@ -15,7 +15,13 @@ interface TripStore extends TripState {
   selectedNodeId: string | null
   setLens: (lens: LensId) => void
   select: (id: string | null) => void
-  updateStop: (id: string, patch: Partial<Stop>) => void
+  // A blind field patch. `day` and `order` are excluded from the patch type
+  // rather than merely discouraged: they are the two fields the day-contiguity
+  // invariant is made of, and a patch that could set either would let a caller
+  // duplicate an order in one day and gap another. Excluding them is what makes
+  // the invariant unbreakable through this path. Anything that changes `day`
+  // goes through `editStop`, which renumbers both days.
+  updateStop: (id: string, patch: Omit<Partial<Stop>, 'day' | 'order'>) => void
   addStop: (draft: StopDraft) => void
   deleteStop: (id: string) => void
   moveStop: (id: string, direction: 'up' | 'down') => void

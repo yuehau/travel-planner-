@@ -1,5 +1,14 @@
 import { describe, expect, it } from 'vitest'
-import { DEFAULT_COORDS, nextStopId, validateStop, type StopDraft } from '../stops'
+import {
+  DEFAULT_COORDS,
+  editStop,
+  insertStop,
+  moveStop,
+  nextStopId,
+  removeStop,
+  validateStop,
+  type StopDraft,
+} from '../stops'
 import { seed } from '../../store/seed'
 
 const valid: StopDraft = {
@@ -91,8 +100,6 @@ describe('validateStop', () => {
     expect(Object.keys(errors).sort()).toEqual(['name', 'serves', 'start'])
   })
 })
-
-import { insertStop, moveStop, removeStop, editStop } from '../stops'
 
 const ordersFor = (stops: typeof seed.stops, day: number) =>
   stops.filter((s) => s.day === day).sort((a, b) => a.order - b.order).map((s) => s.order)
@@ -210,7 +217,87 @@ describe('editStop', () => {
     expect(ordersFor(next, 3)).toEqual([1, 2, 3, 4])
   })
 
+  it('ignores a stale order riding along on the draft', () => {
+    // StopForm spreads a whole Stop into its draft, so `id` and `order` reach
+    // us at runtime even though StopDraft omits them. The store's order wins.
+    const draft = { ...asDraft('s2'), id: 'sX', order: 99 } as StopDraft
+    const next = editStop(seed.stops, 's2', draft)
+    const edited = next.find((s) => s.id === 's2')!
+    expect(edited.order).toBe(2)
+    expect(ordersFor(next, 1)).toEqual([1, 2, 3, 4])
+    expect(next.some((s) => s.id === 'sX')).toBe(false)
+  })
+
+  it('lands at order 1 in a day that currently has no stops', () => {
+    const noDay3 = seed.stops.filter((s) => s.day !== 3)
+    const next = editStop(noDay3, 's2', { ...asDraft('s2'), day: 3 })
+    const moved = next.find((s) => s.id === 's2')!
+    expect(moved.day).toBe(3)
+    expect(moved.order).toBe(1)
+    expect(ordersFor(next, 3)).toEqual([1])
+  })
+
   it('is a no-op for an unknown id', () => {
     expect(editStop(seed.stops, 'nope', asDraft('s2'))).toEqual(seed.stops)
+  })
+})
+
+describe('a sequence of operations', () => {
+  // Worked out by hand from the seed, not read off the implementation:
+  //
+  //   seed  day 1: Chew Jetty, Armenian, Chulia, Gurney
+  //         day 2: Line Clear, Kek Lok Si, Penang Hill, China House
+  //         day 3: Batu Ferringhi, Spice Garden, Kimberley
+  //
+  //   1. insert "Botanic Gardens" into day 1 -> appended 5th
+  //   2. move it up                          -> swaps with Gurney, now 4th
+  //   3. remove s6 (Kek Lok Si), day 2's 2nd -> day 2 closes to three
+  //   4. edit s2 (Armenian) to day 3         -> day 1 closes to four,
+  //                                             Armenian appended 4th on day 3
+  //   5. insert "Tanjung Bungah night market" into day 3 -> appended 5th
+  const composed = [
+    (stops: typeof seed.stops) => insertStop(stops, { ...valid, day: 1, name: 'Botanic Gardens' }),
+    (stops: typeof seed.stops) =>
+      moveStop(stops, stops.find((s) => s.name === 'Botanic Gardens')!.id, 'up'),
+    (stops: typeof seed.stops) => removeStop(stops, 's6'),
+    (stops: typeof seed.stops) => {
+      const { id: _id, order: _order, ...rest } = stops.find((s) => s.id === 's2')!
+      return editStop(stops, 's2', { ...rest, day: 3 })
+    },
+    (stops: typeof seed.stops) =>
+      insertStop(stops, { ...valid, day: 3, name: 'Tanjung Bungah night market' }),
+  ].reduce((stops, step) => step(stops), seed.stops)
+
+  it('leaves every day contiguous from 1', () => {
+    expect(ordersFor(composed, 1)).toEqual([1, 2, 3, 4])
+    expect(ordersFor(composed, 2)).toEqual([1, 2, 3])
+    expect(ordersFor(composed, 3)).toEqual([1, 2, 3, 4, 5])
+  })
+
+  it('keeps every stop id unique', () => {
+    const ids = composed.map((s) => s.id)
+    expect(new Set(ids).size).toBe(ids.length)
+    expect(composed).toHaveLength(12)
+  })
+
+  it('puts the stops in the sequence the operations describe', () => {
+    expect(namesFor(composed, 1)).toEqual([
+      'Chew Jetty',
+      'Chulia Street night market',
+      'Botanic Gardens',
+      'Gurney Drive hawker centre',
+    ])
+    expect(namesFor(composed, 2)).toEqual([
+      'Line Clear Nasi Kandar',
+      'Penang Hill funicular',
+      'China House',
+    ])
+    expect(namesFor(composed, 3)).toEqual([
+      'Batu Ferringhi beach',
+      'Tropical Spice Garden',
+      'Kimberley Street food street',
+      'Armenian Street murals',
+      'Tanjung Bungah night market',
+    ])
   })
 })

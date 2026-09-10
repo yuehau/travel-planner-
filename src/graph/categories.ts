@@ -15,12 +15,18 @@ export function buildCategoriesGraph(state: TripState): Graph {
     {
       id: 'itinerary',
       label: 'Itinerary',
-      leaves: state.stops.map((stop) => ({
-        id: stop.id,
-        type: 'stop',
-        position: { x: 0, y: 0 },
-        data: { stop },
-      })),
+      // Presentation ordering belongs to the presenter. The store's array order
+      // is incidental -- moveStop rewrites `order` without moving array slots,
+      // and insert/cross-day-edit append -- so sorting here is what makes a
+      // reorder visible and puts a new or moved stop in its day's sequence.
+      leaves: [...state.stops]
+        .sort((a, b) => a.day - b.day || a.order - b.order)
+        .map((stop) => ({
+          id: stop.id,
+          type: 'stop',
+          position: { x: 0, y: 0 },
+          data: { stop },
+        })),
     },
     {
       id: 'bookings',

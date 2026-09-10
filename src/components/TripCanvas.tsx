@@ -47,7 +47,14 @@ function Canvas() {
       mounted.current = true
       return
     }
-    setNodes(graph.nodes)
+    // React Flow keeps `selected` in its own node state, but these nodes are
+    // freshly built and carry no selection. Phase 2 mutates trip data while a
+    // node is open -- edit, delete, move up -- so without re-stamping it, the
+    // ring vanishes on every mutation while the drawer stays open. Read the
+    // selection non-reactively so this component still subscribes to trip data
+    // slices only, as the comment above says.
+    const sel = useTripStore.getState().selectedNodeId
+    setNodes(graph.nodes.map((n) => ({ ...n, selected: n.id === sel })))
     setEdges(graph.edges)
   }, [graph, setNodes, setEdges])
 

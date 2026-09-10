@@ -38,13 +38,22 @@ export function validateStop(draft: StopDraft, maxDay: number): Record<string, s
   return errors
 }
 
+/**
+ * Numbers `sequence` 1..n and writes those orders back onto the matching stops
+ * in `stops`, leaving everything else alone. The single place `order` values
+ * are assigned, so contiguity has one implementation to be right in.
+ */
+function assignOrders(stops: Stop[], sequence: Stop[]): Stop[] {
+  const orders = new Map(sequence.map((s, i) => [s.id, i + 1]))
+  return stops.map((s) => (orders.has(s.id) ? { ...s, order: orders.get(s.id)! } : s))
+}
+
 /** Rewrites `order` for one day so it runs 1..n in the day's current sequence. */
 function renumberDay(stops: Stop[], day: number): Stop[] {
   const ordered = stops
     .filter((s) => s.day === day)
     .sort((a, b) => a.order - b.order)
-  const orders = new Map(ordered.map((s, i) => [s.id, i + 1]))
-  return stops.map((s) => (orders.has(s.id) ? { ...s, order: orders.get(s.id)! } : s))
+  return assignOrders(stops, ordered)
 }
 
 export function insertStop(stops: Stop[], draft: StopDraft): Stop[] {
@@ -77,17 +86,21 @@ export function moveStop(stops: Stop[], id: string, direction: 'up' | 'down'): S
   swapped[from] = sameDay[to]
   swapped[to] = sameDay[from]
 
-  const orders = new Map(swapped.map((s, i) => [s.id, i + 1]))
-  return stops.map((s) => (orders.has(s.id) ? { ...s, order: orders.get(s.id)! } : s))
+  return assignOrders(stops, swapped)
 }
 
 export function editStop(stops: Stop[], id: string, draft: StopDraft): Stop[] {
   const target = stops.find((s) => s.id === id)
   if (!target) return stops
 
-  // Same day: a straight patch keeps the stop in its current slot.
+  // Same day: a straight patch keeps the stop in its current slot. `id` and
+  // `order` are re-pinned afterwards because callers hand us objects built by
+  // spreading a whole Stop -- TypeScript's excess-property check does not fire
+  // on a variable, so a stale `order` rides along at runtime and would
+  // otherwise overwrite the store's. This function owns the invariant, so it
+  // enforces it rather than trusting its callers.
   if (draft.day === target.day) {
-    return stops.map((s) => (s.id === id ? { ...s, ...draft } : s))
+    return stops.map((s) => (s.id === id ? { ...s, ...draft, id: s.id, order: s.order } : s))
   }
 
   // Different day: leaving `order` alone would duplicate an order in the new
