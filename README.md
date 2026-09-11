@@ -39,6 +39,28 @@ That sentence is the product.
 | [04 · Competitive Analysis](docs/04-competitive-analysis.md) | TREK teardown and our differentiation |
 | [05 · User Flows](docs/05-user-flows.md) | Onboarding, dependency graph, the disruption flow |
 | [06 · Mentor Log](docs/06-mentor-log.md) | Mentor feedback and what it changed |
+| [07 · Demo Script](docs/07-demo-script.md) | The three-minute run, and the questions to expect |
+
+---
+
+## Running it
+
+```bash
+cd app
+npm install
+npm run dev      # http://localhost:5173
+```
+
+Present the built app, not the dev server:
+
+```bash
+npm run build && npm run preview
+```
+
+The demo needs no API key and no network. Leave `VITE_REPAIR_ENDPOINT` unset and the
+offline repair engine runs — it produces the same three options and cannot be killed by
+venue wifi. To use the live model, deploy the edge function in `supabase/functions/repair`
+and point `VITE_REPAIR_ENDPOINT` at it. See `.env.example`.
 
 ---
 
