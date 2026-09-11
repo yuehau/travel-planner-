@@ -1,2 +1,25 @@
-./DS_Store
+# OS
+.DS_Store
+Thumbs.db
 
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+.vite/
+
+# Env — never commit keys
+.env
+.env.*
+!.env.example
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+npm-debug.log*
