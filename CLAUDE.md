@@ -6,14 +6,24 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A **mindmap travel planner** for a hackathon (Lifestyle Track, "Planning an Escape"). The mindmap *is* the application, not a diagram of it: every part of a trip — a stop, a booking, a budget line, a traveller — is a node you open for its full detail. One screen, always; overlays for the heavy views.
 
-It is pitched as a 40-second screen recording, so there is one test for every tradeoff: **will this appear in those 40 seconds?** If not, don't build it. Chase *looks real on camera* over completeness — but the logic underneath has to be genuinely correct, because the differentiator is that the app really computes who each decision serves and who paid for it.
+### How this is actually judged
 
-The recording is these four shots, back to back:
+Read `all file/Prototype Judging Rubrics (1).pdf` and `all file/Submission Template.pdf` before optimising anything. The short version, because it is counter-intuitive:
+
+- **Working code earns no marks directly at the prototype stage.** The template says outright that the prototype is the UI design and the demo is walking through screens. Building is a separate three-week phase afterwards.
+- Roughly **40% of the grade lives in `README.md`** — Ideation 25% (mindmaps, iteration history, mentor feedback, breadth of alternatives) and Feasibility 15% (stack rationale, build plan, time awareness).
+- Impact is 20%, Creativity 15%, Presentation 15% (the video), Design 10% (the UI itself).
+- The video is **3–5 minutes, aim 4:30, marks lost over 5:00** — not a wordless 40-second reel. It covers solution and novelty, the demo, stack and build plan, then impact.
+- **Stipulation 6: the app must be deployable**, not local-only.
+
+So the tradeoff test is: *does this strengthen the README, the video, or the UI a judge will look at?* Shipping another phase of backend-free features usually loses to writing up the one already built.
+
+The demo path through the app is:
 
 1. Open the screen → the trip laid out as a mindmap
 2. Node colours make it obvious at a glance **who each stop was planned for**
 3. Click a stop that has a conflict → a panel explains **whose preference got sacrificed, and why**
-4. Press "Flight delayed 3 hours" → the day re-plans, and the app says what got dropped and who paid for it
+4. Press "Flight delayed 3 hours" → the day re-plans, and the app says what got dropped and who paid for it — **Phase 7, not built yet**
 
 ## Where the truth lives
 
