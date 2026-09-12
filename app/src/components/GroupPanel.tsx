@@ -28,10 +28,35 @@ function InterestBars({ member }: { member: Member }) {
 
 export function GroupPanel({ trip }: { trip: Trip }) {
   const total = trip.items.reduce((s, i) => s + i.cost, 0)
-  const share = Math.round(total / trip.members.length)
-  const tightest = [...trip.members].sort(
-    (a, b) => a.preferences.budgetCeiling - b.preferences.budgetCeiling,
-  )[0]
+  const share = trip.members.length ? Math.round(total / trip.members.length) : 0
+  const tightest = trip.members.length
+    ? [...trip.members].sort(
+        (a, b) => a.preferences.budgetCeiling - b.preferences.budgetCeiling,
+      )[0]
+    : undefined
+
+  const withMustDos = trip.members.filter((m) => m.preferences.nonNegotiables.length > 0)
+  const paceCounts = trip.members.reduce<Record<string, string[]>>((acc, m) => {
+    ;(acc[m.preferences.pace] ??= []).push(m.name)
+    return acc
+  }, {})
+  const paces = Object.entries(paceCounts)
+
+  if (trip.members.length === 0) {
+    return (
+      <Card className="p-4">
+        <SectionTitle>The group</SectionTitle>
+        <p className="text-sm leading-relaxed text-ink-700">
+          Nobody added yet. Until someone tells the app what they care about and what they
+          can afford, a repair can only be ranked by price — which is a calculator, not a
+          decision.
+        </p>
+        <p className="mt-2 text-xs text-ink-500">
+          Use <span className="font-medium">Add people</span> above.
+        </p>
+      </Card>
+    )
+  }
 
   return (
     <div className="space-y-4">
@@ -89,21 +114,27 @@ export function GroupPanel({ trip }: { trip: Trip }) {
       <Card className="border-brand-100 bg-brand-100/30 p-4">
         <SectionTitle>What we optimised for</SectionTitle>
         <ul className="space-y-1.5 text-sm text-ink-700">
-          <li>
-            <span className="font-medium">Binding constraint:</span> {tightest.name}’s RM
-            {tightest.preferences.budgetCeiling} ceiling. Everything else fits around it.
-          </li>
+          {tightest && (
+            <li>
+              <span className="font-medium">Binding constraint:</span> {tightest.name}’s RM
+              {tightest.preferences.budgetCeiling} ceiling. Everything else fits around it.
+            </li>
+          )}
           <li>
             <span className="font-medium">Protected:</span>{' '}
-            {trip.members
-              .filter((m) => m.preferences.nonNegotiables.length)
-              .map((m) => `${m.name}’s must-do`)
-              .join(', ')}
+            {withMustDos.length
+              ? withMustDos.map((m) => `${m.name}’s must-do`).join(', ')
+              : 'nothing flagged as a must-do yet'}
           </li>
-          <li>
-            <span className="font-medium">Could not fit:</span> Mei wanted a packed pace;
-            Sarah and Danish both asked for slow. We went with two full days and one light one.
-          </li>
+          {paces.length > 1 && (
+            <li>
+              <span className="font-medium">Could not fit:</span>{' '}
+              {paces
+                .map(([pace, names]) => `${names.join(' and ')} wanted ${pace}`)
+                .join('; ')}
+              . We split the difference.
+            </li>
+          )}
         </ul>
         <p className="mt-3 border-t border-brand-100 pt-2.5 text-[11px] leading-relaxed text-ink-500">
           Naming the tradeoff is the point. A group can argue with a stated compromise.

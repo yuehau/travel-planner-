@@ -1,301 +1,162 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import type { Cascade, Impairment, RepairAction, RepairResult, TripItem } from './types'
-import { SEED_TRIP } from './data/seed'
-import {
-  BREAK_PROBABILITY, fetchForecast, impairmentsFromForecast, rainRiskFor, simulatedMonsoon,
-  type Forecast,
-} from './data/weather'
-import { computeCascade } from './engine/cascade'
-import { repair } from './engine/claude'
-import type { RepairConstraints } from './engine/repair'
-import { Timeline } from './components/Timeline'
-import { GroupPanel } from './components/GroupPanel'
-import { OptionCard } from './components/OptionCard'
-import { WeatherStrip } from './components/WeatherStrip'
-import { Badge, Button, Card, Money, SectionTitle } from './components/ui'
+import { useCallback, useEffect, useState } from 'react'
+import type { Member, Trip, TripItem } from './types'
+import { getRepo, type NewTrip, type TripRepo, type TripSummary } from './data/repo'
+import { TripsList } from './screens/TripsList'
+import { TripDetail } from './screens/TripDetail'
+import { GroupEditor } from './screens/GroupEditor'
+import { ItemEditor } from './screens/ItemEditor'
+import { Card } from './components/ui'
 
-type Stage = 'plan' | 'analysing' | 'options' | 'applied' | 'clear'
+type View =
+  | { name: 'trips' }
+  | { name: 'trip'; id: string }
+  | { name: 'group'; id: string }
+  | { name: 'plan'; id: string }
 
 export function App() {
-  const trip = SEED_TRIP
-  const [stage, setStage] = useState<Stage>('plan')
-  const [forecast, setForecast] = useState<Forecast>()
-  const [loadingForecast, setLoadingForecast] = useState(true)
-  const [cascade, setCascade] = useState<Cascade>()
-  const [result, setResult] = useState<RepairResult>()
-  const [selected, setSelected] = useState<string>()
-  const [applied, setApplied] = useState<RepairAction[]>()
+  const [repo, setRepo] = useState<TripRepo>()
+  const [view, setView] = useState<View>({ name: 'trips' })
+  const [summaries, setSummaries] = useState<TripSummary[]>([])
+  const [trip, setTrip] = useState<Trip>()
+  const [fatal, setFatal] = useState<string>()
 
-  const baseline = useMemo(() => trip.items.reduce((s, i) => s + i.cost, 0), [trip])
-  const appliedOption = result?.options.find((o) => o.id === selected)
-
-  // Live forecast on load. Falls back to nothing rather than blocking the page.
   useEffect(() => {
-    let cancelled = false
-    fetchForecast(trip).then((f) => {
-      if (cancelled) return
-      if (f) setForecast(f)
-      setLoadingForecast(false)
-    })
-    return () => { cancelled = true }
-  }, [trip])
+    getRepo()
+      .then(setRepo)
+      .catch((err) => setFatal(err instanceof Error ? err.message : String(err)))
+  }, [])
 
-  /**
-   * Stops the repair engine rebooking an outdoor item into weather just as bad.
-   * Without this, "move it later today" is a free slot and useless advice.
-   */
-  const constraintsFor = useCallback(
-    (active: Forecast): RepairConstraints => ({
-      slotViable: (item: TripItem, day: number, start: number) => {
-        if (!item.outdoor) return true
-        const risk = rainRiskFor(active, trip, item, day, start)
-        return !risk || risk.probability < BREAK_PROBABILITY
-      },
-    }),
-    [trip],
-  )
+  const refreshList = useCallback(async (r: TripRepo) => {
+    setSummaries(await r.listTrips())
+  }, [])
 
-  async function runCheck(active: Forecast) {
-    setForecast(active)
-    const impairments: Impairment[] = impairmentsFromForecast(trip, active)
+  useEffect(() => {
+    if (repo) void refreshList(repo)
+  }, [repo, refreshList])
 
-    if (impairments.length === 0) {
-      setStage('clear')
-      return
-    }
+  // Load the open trip whenever the view or the underlying data changes.
+  const loadTrip = useCallback(async (id: string) => {
+    if (!repo) return
+    setTrip((await repo.getTrip(id)) ?? undefined)
+  }, [repo])
 
-    const next = computeCascade(trip, impairments)
-    setCascade(next)
-    setStage('analysing')
-    const repaired = await repair(trip, next, constraintsFor(active))
-    setResult(repaired)
-    setSelected(repaired.options[0]?.id)
-    setStage('options')
+  useEffect(() => {
+    if (view.name === 'trips') { setTrip(undefined); return }
+    void loadTrip(view.id)
+  }, [view, loadTrip])
+
+  if (fatal) {
+    return (
+      <div className="mx-auto max-w-lg px-4 py-16">
+        <Card className="border-break-100 bg-break-100/40 p-5">
+          <h1 className="text-sm font-semibold text-break-600">Could not start</h1>
+          <p className="mt-1 text-sm text-ink-700">{fatal}</p>
+        </Card>
+      </div>
+    )
   }
 
-  function reset() {
-    setStage('plan'); setCascade(undefined); setResult(undefined)
-    setSelected(undefined); setApplied(undefined)
+  if (!repo) {
+    return (
+      <div className="mx-auto max-w-lg px-4 py-16">
+        <Card className="p-5 text-sm text-ink-500">Loading your trips…</Card>
+      </div>
+    )
+  }
+
+  async function createTrip(input: NewTrip) {
+    const created = await repo!.createTrip(input)
+    await refreshList(repo!)
+    // Straight into the plan: must-dos reference items, so the itinerary has to
+    // exist before preferences mean anything.
+    setView({ name: 'plan', id: created.id })
+  }
+
+  async function deleteTrip(id: string) {
+    await repo!.deleteTrip(id)
+    await refreshList(repo!)
+    setView({ name: 'trips' })
+  }
+
+  async function saveMember(member: Member) {
+    if (view.name !== 'group') return
+    await repo!.upsertMember(view.id, member)
+    await repo!.setPreferences(view.id, member.id, member.preferences)
+    await loadTrip(view.id)
+    await refreshList(repo!)
+  }
+
+  async function removeMember(memberId: string) {
+    if (view.name !== 'group') return
+    await repo!.removeMember(view.id, memberId)
+    await loadTrip(view.id)
+    await refreshList(repo!)
+  }
+
+  async function saveItem(item: TripItem) {
+    if (view.name !== 'plan') return
+    await repo!.upsertItem(view.id, item)
+    await loadTrip(view.id)
+    await refreshList(repo!)
+  }
+
+  async function deleteItem(itemId: string) {
+    if (view.name !== 'plan') return
+    await repo!.deleteItem(view.id, itemId)
+    await loadTrip(view.id)
+    await refreshList(repo!)
+  }
+
+  if (view.name === 'trips') {
+    return (
+      <TripsList
+        trips={summaries}
+        storageMode={repo.mode}
+        storageNote={repo.note}
+        onOpen={(id) => setView({ name: 'trip', id })}
+        onDelete={deleteTrip}
+        onCreate={createTrip}
+      />
+    )
+  }
+
+  if (!trip) {
+    return (
+      <div className="mx-auto max-w-lg px-4 py-16">
+        <Card className="p-5 text-sm text-ink-500">Loading trip…</Card>
+      </div>
+    )
+  }
+
+  if (view.name === 'group') {
+    return (
+      <GroupEditor
+        trip={trip}
+        onSave={saveMember}
+        onRemove={removeMember}
+        onDone={() => setView({ name: 'trip', id: trip.id })}
+      />
+    )
+  }
+
+  if (view.name === 'plan') {
+    return (
+      <ItemEditor
+        trip={trip}
+        onSave={saveItem}
+        onDelete={deleteItem}
+        onDone={() => setView({ name: 'trip', id: trip.id })}
+      />
+    )
   }
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-6 md:py-10">
-      {/* ---------- header ---------- */}
-      <header className="mb-6 flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <div className="flex items-center gap-2">
-            <span className="text-xl" aria-hidden>🧭</span>
-            <span className="text-lg font-semibold tracking-tight text-ink-900">Detour</span>
-            <Badge tone="neutral">Malaysia</Badge>
-          </div>
-          <h1 className="mt-1.5 text-2xl font-semibold tracking-tight text-ink-900">
-            {trip.destination}
-          </h1>
-          <p className="text-sm text-ink-500">
-            {trip.startDate} · {trip.nights === 1 ? 'weekend' : `${trip.nights} nights`} ·{' '}
-            {trip.members.length} friends driving up from KL · planned spend{' '}
-            <Money value={baseline} /> of <Money value={trip.budget} />
-          </p>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-2">
-          {stage !== 'plan' && <Button variant="ghost" onClick={reset}>Reset</Button>}
-          {(stage === 'plan' || stage === 'clear') && (
-            <>
-              <Button
-                variant="ghost"
-                disabled={!forecast || loadingForecast}
-                onClick={() => forecast && runCheck(forecast)}
-              >
-                Check live forecast
-              </Button>
-              <Button variant="danger" onClick={() => runCheck(simulatedMonsoon(trip))}>
-                Simulate monsoon
-              </Button>
-            </>
-          )}
-        </div>
-      </header>
-
-      {/* ---------- forecast ---------- */}
-      <div className="mb-6">
-        {loadingForecast && (
-          <Card className="p-4 text-sm text-ink-500">Fetching the forecast for {trip.destination}…</Card>
-        )}
-        {!loadingForecast && !forecast && (
-          <Card className="border-warn-100 bg-warn-100/40 p-4">
-            <p className="text-sm text-ink-700">
-              <span className="font-medium">Live forecast unavailable.</span> The app is
-              offline or the weather service did not respond. Everything still works —
-              use <span className="font-medium">Simulate monsoon</span> to see the repair flow.
-            </p>
-          </Card>
-        )}
-        {forecast && <WeatherStrip trip={trip} forecast={forecast} />}
-      </div>
-
-      {/* ---------- clear weather ---------- */}
-      {stage === 'clear' && (
-        <Card className="rise mb-6 border-safe-100 bg-safe-100/40 p-4">
-          <h2 className="text-sm font-semibold text-safe-600">✓ Nothing to fix</h2>
-          <p className="mt-1 text-sm text-ink-700">
-            No outdoor plan crosses the {BREAK_PROBABILITY}% rain threshold. That is the
-            normal state, and it is the right answer — the app should stay quiet when your
-            plan is fine. Use <span className="font-medium">Simulate monsoon</span> to see
-            what happens when it is not.
-          </p>
-        </Card>
-      )}
-
-      {/* ---------- disruption banner ---------- */}
-      {cascade && (
-        <Card className="rise mb-6 border-break-100 bg-break-100/50 p-4">
-          <div className="flex flex-wrap items-start justify-between gap-4">
-            <div>
-              <div className="flex items-center gap-2">
-                <span aria-hidden>🌧️</span>
-                <h2 className="text-sm font-semibold text-break-600">
-                  Rain is going to take out your Saturday
-                </h2>
-              </div>
-              <p className="mt-1 text-sm text-ink-700">
-                {cascade.impairments.length} outdoor{' '}
-                {cascade.impairments.length === 1 ? 'plan' : 'plans'} are not viable in this
-                forecast — and you can see it days ahead, not at the trailhead.
-              </p>
-            </div>
-
-            <div className="flex flex-wrap gap-4 text-sm">
-              <Stat label="Broken" value={String(cascade.brokenIds.length)} tone="break" />
-              <Stat label="Still on" value={String(cascade.safeIds.length)} tone="ink" />
-              <Stat label="At risk" value={`RM${cascade.atRisk}`} tone="break" />
-            </div>
-          </div>
-
-          <div className="mt-3 border-t border-break-100 pt-3">
-            <p className="text-[11px] font-semibold uppercase tracking-wide text-ink-500">
-              What the forecast rules out
-            </p>
-            <ul className="mt-1.5 space-y-0.5">
-              {cascade.outcomes
-                .filter((o) => o.status !== 'safe')
-                .map((o) => {
-                  const item = trip.items.find((i) => i.id === o.itemId)!
-                  return (
-                    <li key={o.itemId} className="text-xs text-ink-700">
-                      <span aria-hidden>{item.icon}</span>{' '}
-                      <span className="font-medium">{item.title}</span>
-                      <span className="text-ink-500"> — {o.reason}</span>
-                    </li>
-                  )
-                })}
-            </ul>
-          </div>
-        </Card>
-      )}
-
-      {/* ---------- recovery options ---------- */}
-      {stage === 'analysing' && (
-        <Card className="mb-6 p-8 text-center">
-          <p className="text-sm text-ink-500">Working out what can be saved…</p>
-        </Card>
-      )}
-
-      {stage === 'options' && result && (
-        <section className="rise mb-8">
-          <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
-            <SectionTitle hint="Three different values, not three points on one axis. Pick what matters this weekend.">
-              Recovery options
-            </SectionTitle>
-            <Badge tone={result.source === 'claude' ? 'brand' : 'neutral'}>
-              {result.source === 'claude' ? 'Claude · live' : 'Offline engine'}
-            </Badge>
-          </div>
-
-          <div className="grid gap-4 md:grid-cols-3">
-            {result.options.map((option) => (
-              <OptionCard
-                key={option.id}
-                trip={trip}
-                option={option}
-                selected={selected === option.id}
-                onSelect={() => setSelected(option.id)}
-                onApply={() => { setSelected(option.id); setApplied(option.actions); setStage('applied') }}
-              />
-            ))}
-          </div>
-
-          <p className="mt-3 text-xs leading-relaxed text-ink-500">
-            Nothing here is rescheduled into more rain — the engine checks the forecast for
-            each candidate slot, not just whether the calendar is free. Where an outdoor
-            plan has nowhere dry to go, it is dropped rather than quietly moved into the
-            same storm.
-          </p>
-        </section>
-      )}
-
-      {/* ---------- applied ---------- */}
-      {stage === 'applied' && appliedOption && (
-        <Card className="rise mb-6 border-safe-100 bg-safe-100/40 p-4">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <div>
-              <h2 className="text-sm font-semibold text-safe-600">
-                ✓ “{appliedOption.name}” applied
-              </h2>
-              <p className="mt-0.5 text-sm text-ink-700">
-                Itinerary rewritten · budget updated · all {trip.members.length} friends notified.
-              </p>
-            </div>
-            <div className="text-right text-sm">
-              <p className="text-ink-500">New total</p>
-              <p className="font-semibold tabular-nums text-ink-900">
-                <Money value={baseline + appliedOption.costDelta} />{' '}
-                <span className={appliedOption.costDelta > 0 ? 'text-break-600' : 'text-safe-600'}>
-                  (<Money value={appliedOption.costDelta} signed />)
-                </span>
-              </p>
-            </div>
-          </div>
-          <Button variant="ghost" className="mt-3" onClick={() => setStage('options')}>
-            ← Back to options
-          </Button>
-        </Card>
-      )}
-
-      {/* ---------- main body ---------- */}
-      <div className="grid items-start gap-6 lg:grid-cols-[1fr_340px]">
-        <Card className="p-4 md:p-5">
-          <SectionTitle
-            hint={
-              stage === 'plan'
-                ? 'Outdoor plans carry their rain risk. Every arrow is a real dependency.'
-                : undefined
-            }
-          >
-            Itinerary
-          </SectionTitle>
-          <Timeline trip={trip} cascade={cascade} applied={applied} forecast={forecast} />
-        </Card>
-
-        <GroupPanel trip={trip} />
-      </div>
-
-      <footer className="mt-10 border-t border-ink-100 pt-4 text-xs leading-relaxed text-ink-300">
-        Prototype · seeded trip · no live booking integrations. Forecast from Open-Meteo
-        (no API key). Repair strategies come from Claude when an endpoint is configured,
-        otherwise from the offline engine. All monetary figures are computed locally from
-        the trip’s own rows — the model is never asked for a number.
-      </footer>
-    </div>
-  )
-}
-
-function Stat({ label, value, tone }: { label: string; value: string; tone: 'break' | 'warn' | 'ink' }) {
-  const color = { break: 'text-break-600', warn: 'text-warn-600', ink: 'text-ink-700' }[tone]
-  return (
-    <div>
-      <p className="text-[11px] uppercase tracking-wide text-ink-500">{label}</p>
-      <p className={`text-lg font-semibold tabular-nums ${color}`}>{value}</p>
-    </div>
+    <TripDetail
+      trip={trip}
+      onBack={() => setView({ name: 'trips' })}
+      onEditGroup={() => setView({ name: 'group', id: trip.id })}
+      onEditPlan={() => setView({ name: 'plan', id: trip.id })}
+      storageNote={repo.note}
+    />
   )
 }
