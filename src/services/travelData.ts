@@ -2,8 +2,12 @@ import { getSupabaseClient } from '../lib/supabase';
 import type {
   BudgetItem,
   ItineraryItem,
+  ItineraryNode,
+  ItineraryNodeStatus,
+  ItineraryNodeType,
   PackingItem,
   Place,
+  ReplanEvent,
   Trip,
   TripCollection,
   TripCollectionStatus,
@@ -69,6 +73,45 @@ export type TripTodoCreateInput = {
   is_completed?: boolean;
 };
 
+export type ItineraryNodeCreateInput = {
+  day_number: number;
+  title: string;
+  parent_node_id?: string | null;
+  place_id?: string | null;
+  sequence_index?: number;
+  node_type?: ItineraryNodeType;
+  start_time?: string;
+  end_time?: string;
+  estimated_cost?: number;
+  currency?: string;
+  notes?: string;
+  ai_generated?: boolean;
+};
+
+export type ItineraryNodeUpdateInput = Partial<{
+  title: string;
+  day_number: number;
+  sequence_index: number;
+  parent_node_id: string | null;
+  place_id: string | null;
+  node_type: ItineraryNodeType;
+  status: ItineraryNodeStatus;
+  start_time: string | null;
+  end_time: string | null;
+  estimated_cost: number;
+  currency: string;
+  notes: string | null;
+  ai_generated: boolean;
+}>;
+
+export type ReplanEventCreateInput = {
+  broken_node_id?: string | null;
+  reason: string;
+  ai_request?: Record<string, unknown> | null;
+  ai_response?: Record<string, unknown> | null;
+  applied?: boolean;
+};
+
 export type TripMemberCreateInput = {
   invited_email: string;
   role?: 'member';
@@ -90,6 +133,11 @@ export type TravelDataClient = {
   getTrip: (tripId: string) => Promise<Trip | null>;
   listItineraryItems: (tripId: string) => Promise<ItineraryItem[]>;
   createItineraryItem: (tripId: string, input: ItineraryCreateInput) => Promise<ItineraryItem>;
+  listItineraryNodes: (tripId: string) => Promise<ItineraryNode[]>;
+  createItineraryNode: (tripId: string, input: ItineraryNodeCreateInput) => Promise<ItineraryNode>;
+  updateItineraryNode: (id: string, input: ItineraryNodeUpdateInput) => Promise<ItineraryNode>;
+  markNodeBroken: (id: string, reason: string) => Promise<ItineraryNode>;
+  createReplanEvent: (tripId: string, input: ReplanEventCreateInput) => Promise<ReplanEvent>;
   listPlaces: (tripId: string) => Promise<Place[]>;
   createPlace: (tripId: string, input: PlaceCreateInput) => Promise<Place>;
   listBudgetItems: (tripId: string) => Promise<BudgetItem[]>;
@@ -291,6 +339,86 @@ export const createSupabaseTravelDataClient = (userId: string): TravelDataClient
         .single();
 
       return handleSingle(data, error, 'Could not create itinerary item.');
+    },
+    async listItineraryNodes(tripId) {
+      await requireTrip(tripId);
+
+      const { data, error } = await supabase
+        .from('itinerary_nodes')
+        .select('*')
+        .eq('trip_id', tripId)
+        .order('day_number', { ascending: true })
+        .order('sequence_index', { ascending: true });
+
+      if (error) throw new TravelDataError(error.message, 'data_error');
+      return data ?? [];
+    },
+    async createItineraryNode(tripId, input) {
+      await requireTrip(tripId);
+
+      const { data, error } = await supabase
+        .from('itinerary_nodes')
+        .insert({
+          trip_id: tripId,
+          parent_node_id: normalizeOptional(input.parent_node_id ?? undefined),
+          place_id: normalizeOptional(input.place_id ?? undefined),
+          day_number: input.day_number,
+          sequence_index: input.sequence_index ?? 0,
+          title: requireText(input.title, 'Title'),
+          node_type: input.node_type ?? 'activity',
+          start_time: normalizeOptional(input.start_time),
+          end_time: normalizeOptional(input.end_time),
+          estimated_cost: input.estimated_cost ?? 0,
+          currency: input.currency ?? 'USD',
+          notes: normalizeOptional(input.notes),
+          ai_generated: input.ai_generated ?? false,
+        })
+        .select('*')
+        .single();
+
+      return handleSingle(data, error, 'Could not create itinerary node.');
+    },
+    async updateItineraryNode(id, input) {
+      const { data, error } = await supabase
+        .from('itinerary_nodes')
+        .update({ ...input, updated_at: new Date().toISOString() })
+        .eq('id', id)
+        .select('*')
+        .single();
+
+      return handleSingle(data, error, 'Could not update itinerary node.');
+    },
+    async markNodeBroken(id, reason) {
+      const { data, error } = await supabase
+        .from('itinerary_nodes')
+        .update({
+          status: 'broken',
+          break_reason: requireText(reason, 'Break reason'),
+          updated_at: new Date().toISOString(),
+        })
+        .eq('id', id)
+        .select('*')
+        .single();
+
+      return handleSingle(data, error, 'Could not mark node as broken.');
+    },
+    async createReplanEvent(tripId, input) {
+      await requireTrip(tripId);
+
+      const { data, error } = await supabase
+        .from('replan_events')
+        .insert({
+          trip_id: tripId,
+          broken_node_id: normalizeOptional(input.broken_node_id ?? undefined),
+          reason: requireText(input.reason, 'Reason'),
+          ai_request: input.ai_request ?? null,
+          ai_response: input.ai_response ?? null,
+          applied: input.applied ?? false,
+        })
+        .select('*')
+        .single();
+
+      return handleSingle(data, error, 'Could not record replan event.');
     },
     async listPlaces(tripId) {
       await requireTrip(tripId);
@@ -586,6 +714,7 @@ const demoTrips: Trip[] = [
     start_date: '2026-10-12',
     end_date: '2026-10-20',
     description: 'A deep dive into the contrast of futuristic neon and ancient traditions.',
+    budget_cap: 3000,
     created_at: '2026-01-01T00:00:00Z',
   },
   {
@@ -596,6 +725,7 @@ const demoTrips: Trip[] = [
     start_date: '2026-05-01',
     end_date: '2026-05-10',
     description: 'Museums, slow mornings, and long walks along the Seine.',
+    budget_cap: null,
     created_at: '2026-01-02T00:00:00Z',
   },
 ];
@@ -626,6 +756,49 @@ const demoItineraryItems: ItineraryItem[] = [
     notes: 'Book tickets in advance.',
     sort_order: 2,
     created_at: '2026-01-01T00:00:00Z',
+  },
+];
+
+const demoItineraryNodes: ItineraryNode[] = [
+  {
+    id: 'demo-node-1',
+    trip_id: 'demo-tokyo',
+    parent_node_id: null,
+    place_id: 'demo-place-1',
+    day_number: 1,
+    sequence_index: 1,
+    title: 'Breakfast at Tsukiji Outer Market',
+    node_type: 'meal',
+    status: 'planned',
+    start_time: '09:00',
+    end_time: '10:00',
+    estimated_cost: 20,
+    currency: 'USD',
+    notes: 'Try the fresh tuna sushi.',
+    break_reason: null,
+    ai_generated: false,
+    created_at: '2026-01-01T00:00:00Z',
+    updated_at: '2026-01-01T00:00:00Z',
+  },
+  {
+    id: 'demo-node-2',
+    trip_id: 'demo-tokyo',
+    parent_node_id: 'demo-node-1',
+    place_id: 'demo-place-2',
+    day_number: 1,
+    sequence_index: 2,
+    title: 'teamLab Borderless',
+    node_type: 'activity',
+    status: 'planned',
+    start_time: '11:00',
+    end_time: '14:00',
+    estimated_cost: 35,
+    currency: 'USD',
+    notes: 'Book tickets in advance.',
+    break_reason: null,
+    ai_generated: false,
+    created_at: '2026-01-01T00:01:00Z',
+    updated_at: '2026-01-01T00:01:00Z',
   },
 ];
 
@@ -731,6 +904,21 @@ export const createDemoTravelDataClient = (): TravelDataClient => ({
     return demoItineraryItems.filter((item) => item.trip_id === tripId);
   },
   async createItineraryItem() {
+    return requireWritableDemo();
+  },
+  async listItineraryNodes(tripId) {
+    return demoItineraryNodes.filter((node) => node.trip_id === tripId);
+  },
+  async createItineraryNode() {
+    return requireWritableDemo();
+  },
+  async updateItineraryNode() {
+    return requireWritableDemo();
+  },
+  async markNodeBroken() {
+    return requireWritableDemo();
+  },
+  async createReplanEvent() {
     return requireWritableDemo();
   },
   async listPlaces(tripId) {

@@ -13,6 +13,7 @@ export type Trip = {
   start_date: string;
   end_date: string;
   description: string | null;
+  budget_cap: number | null;
   created_at: string;
 };
 
@@ -37,6 +38,41 @@ export type ItineraryItem = {
   end_time: string | null;
   notes: string | null;
   sort_order: number;
+  created_at: string;
+};
+
+export type ItineraryNodeType = 'activity' | 'transport' | 'lodging' | 'meal' | 'other';
+export type ItineraryNodeStatus = 'planned' | 'broken' | 'replanned' | 'cancelled';
+
+export type ItineraryNode = {
+  id: string;
+  trip_id: string;
+  parent_node_id: string | null;
+  place_id: string | null;
+  day_number: number;
+  sequence_index: number;
+  title: string;
+  node_type: ItineraryNodeType;
+  status: ItineraryNodeStatus;
+  start_time: string | null;
+  end_time: string | null;
+  estimated_cost: number;
+  currency: string;
+  notes: string | null;
+  break_reason: string | null;
+  ai_generated: boolean;
+  created_at: string;
+  updated_at: string;
+};
+
+export type ReplanEvent = {
+  id: string;
+  trip_id: string;
+  broken_node_id: string | null;
+  reason: string;
+  ai_request: Record<string, unknown> | null;
+  ai_response: Record<string, unknown> | null;
+  applied: boolean;
   created_at: string;
 };
 
@@ -149,6 +185,7 @@ export type Database = {
           start_date: string;
           end_date: string;
           description?: string | null;
+          budget_cap?: number | null;
           created_at?: string;
         };
         Update: Partial<Omit<Trip, 'created_at'>>;
@@ -170,6 +207,46 @@ export type Database = {
           created_at?: string;
         };
         Update: Partial<Omit<ItineraryItem, 'created_at'>>;
+        Relationships: [];
+      };
+      itinerary_nodes: {
+        Row: ItineraryNode;
+        Insert: {
+          id?: string;
+          trip_id: string;
+          parent_node_id?: string | null;
+          place_id?: string | null;
+          day_number: number;
+          sequence_index?: number;
+          title: string;
+          node_type?: ItineraryNodeType;
+          status?: ItineraryNodeStatus;
+          start_time?: string | null;
+          end_time?: string | null;
+          estimated_cost?: number;
+          currency?: string;
+          notes?: string | null;
+          break_reason?: string | null;
+          ai_generated?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: Partial<Omit<ItineraryNode, 'created_at'>>;
+        Relationships: [];
+      };
+      replan_events: {
+        Row: ReplanEvent;
+        Insert: {
+          id?: string;
+          trip_id: string;
+          broken_node_id?: string | null;
+          reason: string;
+          ai_request?: Record<string, unknown> | null;
+          ai_response?: Record<string, unknown> | null;
+          applied?: boolean;
+          created_at?: string;
+        };
+        Update: Partial<Omit<ReplanEvent, 'created_at'>>;
         Relationships: [];
       };
       places: {

@@ -1,0 +1,4 @@
+project_id = "sevubkrirbaitcikpcjk"
+
+[functions.replan-node]
+verify_jwt = true

@@ -4,6 +4,7 @@ import ArrowLeft from 'lucide-react/dist/esm/icons/arrow-left.mjs';
 import Calendar from 'lucide-react/dist/esm/icons/calendar.mjs';
 import ThemeToggle from '../components/ThemeToggle';
 import ItineraryView from '../components/Planner/ItineraryView';
+import MindMapView from '../components/Planner/MindMapView';
 import PlacesView from '../components/Planner/PlacesView';
 import BudgetView from '../components/Planner/BudgetView';
 import ChecklistView from '../components/Planner/ChecklistView';
@@ -145,6 +146,7 @@ const TripDetail: React.FC = () => {
       {/* Tab Content */}
       <main className="pb-24">
         {activeTab === 'itinerary' && <ItineraryView tripId={tripId} travelData={travelData} />}
+        {activeTab === 'mindmap' && <MindMapView tripId={tripId} travelData={travelData} />}
         {activeTab === 'places' && <PlacesView tripId={tripId} travelData={travelData} />}
         {activeTab === 'budget' && <BudgetView tripId={tripId} travelData={travelData} />}
         {activeTab === 'checklist' && <ChecklistView tripId={tripId} travelData={travelData} />}

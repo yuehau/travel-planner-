@@ -280,6 +280,60 @@ create trigger on_auth_user_created
   after insert on auth.users
   for each row execute procedure public.handle_new_user();
 
+-- Node-graph itinerary for the "something broke" re-planning prototype.
+-- Additive: does not replace itinerary_items, which stays the flat list used
+-- by the existing Itinerary tab.
+create table if not exists public.itinerary_nodes (
+  id uuid primary key default gen_random_uuid(),
+  trip_id uuid not null references public.trips(id) on delete cascade,
+  parent_node_id uuid references public.itinerary_nodes(id) on delete set null,
+  place_id uuid references public.places(id) on delete set null,
+  day_number int not null,
+  sequence_index int not null default 0,
+  title text not null,
+  node_type text not null default 'activity' check (node_type in ('activity', 'transport', 'lodging', 'meal', 'other')),
+  status text not null default 'planned' check (status in ('planned', 'broken', 'replanned', 'cancelled')),
+  start_time time,
+  end_time time,
+  estimated_cost numeric not null default 0 check (estimated_cost >= 0),
+  currency text not null default 'USD',
+  notes text,
+  break_reason text,
+  ai_generated boolean not null default false,
+  created_at timestamptz not null default timezone('utc'::text, now()),
+  updated_at timestamptz not null default timezone('utc'::text, now())
+);
+
+create table if not exists public.replan_events (
+  id uuid primary key default gen_random_uuid(),
+  trip_id uuid not null references public.trips(id) on delete cascade,
+  broken_node_id uuid references public.itinerary_nodes(id) on delete set null,
+  reason text not null,
+  ai_request jsonb,
+  ai_response jsonb,
+  applied boolean not null default false,
+  created_at timestamptz not null default timezone('utc'::text, now())
+);
+
+alter table public.trips add column if not exists budget_cap numeric;
+
+alter table public.itinerary_nodes enable row level security;
+alter table public.replan_events enable row level security;
+
+drop policy if exists "Users can view nodes of their own trips." on public.itinerary_nodes;
+drop policy if exists "Users can insert nodes into their own trips." on public.itinerary_nodes;
+drop policy if exists "Users can update nodes of their own trips." on public.itinerary_nodes;
+drop policy if exists "Users can delete nodes of their own trips." on public.itinerary_nodes;
+create policy "Users can view nodes of their own trips." on public.itinerary_nodes for select to authenticated using (public.user_owns_trip(trip_id));
+create policy "Users can insert nodes into their own trips." on public.itinerary_nodes for insert to authenticated with check (public.user_owns_trip(trip_id));
+create policy "Users can update nodes of their own trips." on public.itinerary_nodes for update to authenticated using (public.user_owns_trip(trip_id)) with check (public.user_owns_trip(trip_id));
+create policy "Users can delete nodes of their own trips." on public.itinerary_nodes for delete to authenticated using (public.user_owns_trip(trip_id));
+
+drop policy if exists "Users can view replan events of their own trips." on public.replan_events;
+drop policy if exists "Users can insert replan events into their own trips." on public.replan_events;
+create policy "Users can view replan events of their own trips." on public.replan_events for select to authenticated using (public.user_owns_trip(trip_id));
+create policy "Users can insert replan events into their own trips." on public.replan_events for insert to authenticated with check (public.user_owns_trip(trip_id));
+
 create index if not exists trips_user_id_start_date_idx on public.trips (user_id, start_date);
 create index if not exists places_trip_id_created_at_idx on public.places (trip_id, created_at);
 create index if not exists itinerary_items_trip_id_day_sort_idx on public.itinerary_items (trip_id, day_number, sort_order);
@@ -289,3 +343,6 @@ create index if not exists trip_infos_trip_id_category_created_at_idx on public.
 create index if not exists trip_todos_trip_id_due_date_idx on public.trip_todos (trip_id, is_completed, due_date);
 create index if not exists trip_members_trip_id_email_idx on public.trip_members (trip_id, invited_email);
 create index if not exists trip_collections_user_id_status_created_idx on public.trip_collections (user_id, status, created_at desc);
+create index if not exists itinerary_nodes_trip_id_day_seq_idx on public.itinerary_nodes (trip_id, day_number, sequence_index);
+create index if not exists itinerary_nodes_parent_idx on public.itinerary_nodes (parent_node_id);
+create index if not exists replan_events_trip_id_created_idx on public.replan_events (trip_id, created_at desc);

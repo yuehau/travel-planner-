@@ -5,6 +5,7 @@ describe('trip detail tabs', () => {
   it('exposes planning tools without a booking workflow', () => {
     expect(tripTabs.map((tab) => tab.label)).toEqual([
       'Itinerary',
+      'Mind Map',
       'Places',
       'Budget',
       'Packing',
