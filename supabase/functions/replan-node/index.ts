@@ -4,10 +4,12 @@ import { corsHeaders } from '../_shared/cors.ts';
 
 // SUPABASE_URL / SUPABASE_ANON_KEY are auto-injected into every Edge Function.
 // ANTHROPIC_API_KEY is the one secret that must be set manually:
-//   npx supabase secrets set ANTHROPIC_API_KEY=sk-ant-... --project-ref sevubkrirbaitcikpcjk
+//   npx supabase secrets set ANTHROPIC_API_KEY=sk-ant-... --project-ref <your-project-ref>
+// Left unset, the function runs in mock mode (see buildMockProposal below) so the
+// break/apply flow can be tested end-to-end before an Anthropic key is added.
 const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!;
 const SUPABASE_ANON_KEY = Deno.env.get('SUPABASE_ANON_KEY')!;
-const ANTHROPIC_API_KEY = Deno.env.get('ANTHROPIC_API_KEY')!;
+const ANTHROPIC_API_KEY = Deno.env.get('ANTHROPIC_API_KEY');
 
 // Stand-in for step 3's not-yet-built group preference merge.
 const DEMO_TRIP_PREFERENCES = 'Budget-conscious, prefers walking over taxis, vegetarian-friendly food.';
@@ -65,6 +67,52 @@ const jsonResponse = (body: unknown, status: number) =>
     headers: { ...corsHeaders, 'Content-Type': 'application/json' },
   });
 
+// Used when ANTHROPIC_API_KEY isn't set, so the break/apply UI flow is testable for free.
+// Cancels the broken node and re-parents its direct children onto its own parent, keeping
+// the rest of the day intact - a plausible, schema-valid stand-in for a real Claude proposal.
+// deno-lint-ignore no-explicit-any
+const buildMockProposal = (nodes: any[], brokenNode: any, reason: string) => {
+  const directChildren = nodes.filter((node) => node.parent_node_id === brokenNode.id);
+
+  const updatedNodes = [
+    {
+      node_id: brokenNode.id,
+      action: 'cancel',
+      title: brokenNode.title,
+      day_number: brokenNode.day_number,
+      sequence_index: brokenNode.sequence_index,
+      start_time: brokenNode.start_time,
+      end_time: brokenNode.end_time,
+      estimated_cost: 0,
+      notes: `[MOCK] Cancelled: ${reason}`,
+      parent_node_id: brokenNode.parent_node_id,
+    },
+    ...directChildren.map((child) => ({
+      node_id: child.id,
+      action: 'modify',
+      title: child.title,
+      day_number: child.day_number,
+      sequence_index: child.sequence_index,
+      start_time: child.start_time,
+      end_time: child.end_time,
+      estimated_cost: Number(child.estimated_cost) || 0,
+      notes: child.notes,
+      parent_node_id: brokenNode.parent_node_id,
+    })),
+  ];
+
+  const totalEstimatedCost = updatedNodes
+    .filter((node) => node.action !== 'cancel')
+    .reduce((total, node) => total + node.estimated_cost, 0);
+
+  return {
+    summary: `[MOCK RESPONSE - no ANTHROPIC_API_KEY set] Cancelled "${brokenNode.title}" (${reason}) and reattached ${directChildren.length} downstream node(s) to keep the rest of the day intact.`,
+    updated_nodes: updatedNodes,
+    total_estimated_cost: totalEstimatedCost,
+    within_budget: true,
+  };
+};
+
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders });
@@ -106,6 +154,10 @@ Deno.serve(async (req) => {
     const brokenNode = (nodes ?? []).find((node) => node.id === brokenNodeId);
     if (!brokenNode) {
       return jsonResponse({ error: 'The broken node was not found on this trip.' }, 404);
+    }
+
+    if (!ANTHROPIC_API_KEY) {
+      return jsonResponse(buildMockProposal(nodes ?? [], brokenNode, reason), 200);
     }
 
     const spentSoFar = (budgetItems ?? []).reduce((total, item) => total + Number(item.amount), 0);

@@ -72,7 +72,7 @@
 - Use only the publishable/anon key in frontend code. Never place a service-role or secret key in Vite client env vars.
 - Google OAuth also requires enabling the Google provider in the Supabase dashboard with a Google OAuth Client ID and Client Secret.
 - Supabase redirect URLs must include local and production app URLs used by `signInWithOAuth`.
-- **Edge Function secret**: `ANTHROPIC_API_KEY` is set only via `npx supabase secrets set ANTHROPIC_API_KEY=sk-ant-... --project-ref sevubkrirbaitcikpcjk` and read inside `supabase/functions/replan-node/index.ts` from `Deno.env`. It is never present in any `.env` file, Vite env var, or committed doc.
+- **Edge Function secret**: `ANTHROPIC_API_KEY` is set only via `npx supabase secrets set ANTHROPIC_API_KEY=sk-ant-... --project-ref <your-project-ref>` and read inside `supabase/functions/replan-node/index.ts` from `Deno.env`. It is never present in any `.env` file, Vite env var, or committed doc. **Optional for testing**: if this secret is unset, the function runs in mock mode and returns a canned-but-schema-valid proposal built from the trip's real nodes instead of calling Anthropic — lets the break/apply UI flow be tested for free before adding a paid key.
 
 ## Database Architecture
 - `profiles`: User profile extensions.
@@ -131,7 +131,7 @@ Last updated: 2026-09-12.
 - Add a fuller footer to the landing page.
 - Add a custom circular loading transition for buttons/links that navigate to another page.
 - Keep the existing saved collections feature, then polish the collection creation/editing flow if more control is needed.
-- Re-planning prototype: append `supabase-schema.sql`'s new SQL to the remote project (SQL editor or `supabase db push`), seed a demo trip's `itinerary_nodes` by hand, run `npx supabase init` + `npx supabase functions new replan-node`-equivalent scaffolding is already committed under `supabase/` — still need someone with Supabase CLI access to `supabase secrets set ANTHROPIC_API_KEY=...` and `supabase functions deploy replan-node --project-ref sevubkrirbaitcikpcjk` before the Mind Map tab's break flow works end-to-end against the real API.
+- Re-planning prototype: append `supabase-schema.sql`'s new SQL to the remote project (SQL editor or `supabase db push`), seed a demo trip's `itinerary_nodes` by hand, and `supabase functions deploy replan-node --project-ref <your-project-ref>` (scaffolding already committed under `supabase/`). The Anthropic key is optional to start — deploy without setting `ANTHROPIC_API_KEY` to exercise the full break/apply flow in mock mode, then `supabase secrets set ANTHROPIC_API_KEY=...` later to switch to real Claude output with no code changes.
 
 ### Notes for Next Session
 - Do not put secret keys in frontend `.env` files or committed documentation.
