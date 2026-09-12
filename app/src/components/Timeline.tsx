@@ -1,5 +1,6 @@
 import type { Cascade, RepairAction, Trip, TripItem } from '../types'
 import { fmt } from '../engine/cascade'
+import { BREAK_PROBABILITY, WARN_PROBABILITY, rainRiskFor, type Forecast } from '../data/weather'
 import { Badge } from './ui'
 
 interface Props {
@@ -7,6 +8,8 @@ interface Props {
   cascade?: Cascade
   /** Applied repair actions — renders the plan in its post-repair state. */
   applied?: RepairAction[]
+  /** When present, outdoor items carry their rain risk for their actual hours. */
+  forecast?: Forecast
 }
 
 interface Row {
@@ -56,7 +59,7 @@ const STATUS_META = {
   dropped: { tone: 'neutral', label: 'Cancelled' },
 } as const
 
-export function Timeline({ trip, cascade, applied }: Props) {
+export function Timeline({ trip, cascade, applied, forecast }: Props) {
   const rows = buildRows(trip, cascade, applied)
   const days = [...new Set(rows.map((r) => r.day))].sort((a, b) => a - b)
 
@@ -104,6 +107,15 @@ export function Timeline({ trip, cascade, applied }: Props) {
                       {row.item.prepaid && row.item.refundRate === 0 && row.item.cost > 0 && !dropped && (
                         <Badge tone="neutral">Non-refundable</Badge>
                       )}
+                      {forecast && row.item.outdoor && !dropped && (() => {
+                        const risk = rainRiskFor(forecast, trip, row.item, row.day, row.start)
+                        if (!risk || risk.probability < WARN_PROBABILITY) return null
+                        return (
+                          <Badge tone={risk.probability >= BREAK_PROBABILITY ? 'broken' : 'shifted'}>
+                            🌧️ {risk.probability}%
+                          </Badge>
+                        )
+                      })()}
                     </div>
 
                     <p className={`mt-0.5 text-xs ${dropped ? 'text-ink-300' : 'text-ink-500'}`}>

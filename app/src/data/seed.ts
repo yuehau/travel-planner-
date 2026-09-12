@@ -1,4 +1,5 @@
 import type { Trip } from '../types'
+import { findDestination } from './destinations'
 
 /** Minutes from midnight, from a "HH:MM" string. */
 export const t = (hhmm: string): number => {
@@ -15,17 +16,50 @@ export const hhmm = (mins: number): string => {
 }
 
 /**
- * Four friends, three nights in Penang.
+ * The next Saturday, as an ISO date.
  *
- * The Day 1 chain is the point: flight -> transfer -> check-in -> cooking class
- * -> dinner. Each edge is a real dependency, so a delay at the top has
- * consequences the app can compute rather than guess.
+ * The demo trip has to sit inside the weather forecast window or there is
+ * nothing to forecast, so the date is computed rather than hard-coded. It also
+ * means the demo never goes stale.
+ */
+export function nextSaturday(from = new Date()): string {
+  const d = new Date(from)
+  const daysUntilSaturday = (6 - d.getDay() + 7) % 7 || 7
+  d.setDate(d.getDate() + daysUntilSaturday)
+  return d.toISOString().slice(0, 10)
+}
+
+/** Add whole days to an ISO date string. */
+export function addDays(iso: string, days: number): string {
+  const d = new Date(`${iso}T00:00:00`)
+  d.setDate(d.getDate() + days)
+  return d.toISOString().slice(0, 10)
+}
+
+/** Day 1 is the trip's start date, so day N is startDate + (N-1). */
+export const dateForDay = (trip: Pick<Trip, 'startDate'>, day: number): string =>
+  addDays(trip.startDate, day - 1)
+
+const CAMERONS = findDestination('cameron-highlands')!
+
+/**
+ * Four friends from KL, a weekend in Cameron Highlands.
+ *
+ * This is what a local trip actually looks like: you drive, you do not fly;
+ * the spend is a few hundred ringgit, not a few thousand; and almost everything
+ * worth going for happens outdoors in a place where it rains most afternoons.
+ *
+ * Costs here are illustrative, for the demo. In the real app every figure is
+ * entered by the people on the trip — the app never invents a price.
  */
 export const SEED_TRIP: Trip = {
-  id: 'trip-penang',
-  destination: 'Penang, Malaysia',
-  nights: 3,
-  budget: 2400,
+  id: 'trip-camerons',
+  destination: `${CAMERONS.name}, ${CAMERONS.state}`,
+  startDate: nextSaturday(),
+  lat: CAMERONS.lat,
+  lon: CAMERONS.lon,
+  nights: 2,
+  budget: 2000,
 
   members: [
     {
@@ -33,11 +67,11 @@ export const SEED_TRIP: Trip = {
       name: 'Ali',
       tone: '#0f766e',
       preferences: {
-        interests: { food: 5, culture: 4, nature: 2, nightlife: 2, rest: 2 },
-        budgetCeiling: 620,
+        interests: { food: 5, culture: 3, nature: 3, nightlife: 3, rest: 2 },
+        budgetCeiling: 600,
         pace: 'balanced',
-        nonNegotiables: ['cooking-class'],
-        note: 'Booked this trip around the cooking class. Please protect it.',
+        nonNegotiables: ['night-market'],
+        note: 'I am only here for the night market. Everything else is negotiable.',
       },
     },
     {
@@ -45,11 +79,11 @@ export const SEED_TRIP: Trip = {
       name: 'Sarah',
       tone: '#b45309',
       preferences: {
-        interests: { food: 3, culture: 5, nature: 3, nightlife: 1, rest: 4 },
-        budgetCeiling: 430,
+        interests: { food: 3, culture: 4, nature: 3, nightlife: 1, rest: 5 },
+        budgetCeiling: 420,
         pace: 'slow',
         nonNegotiables: [],
-        note: 'Tight budget this month. I would rather skip things than overspend.',
+        note: 'Payday is next week. Please keep my share under RM420.',
       },
     },
     {
@@ -57,10 +91,11 @@ export const SEED_TRIP: Trip = {
       name: 'Mei',
       tone: '#7c3aed',
       preferences: {
-        interests: { food: 4, culture: 2, nature: 5, nightlife: 5, rest: 1 },
-        budgetCeiling: 900,
+        interests: { food: 3, culture: 2, nature: 5, nightlife: 3, rest: 1 },
+        budgetCeiling: 850,
         pace: 'packed',
-        nonNegotiables: ['penang-hill'],
+        nonNegotiables: ['mossy-forest'],
+        note: 'Booked the guided trek months ago. This is the whole reason I came.',
       },
     },
     {
@@ -69,163 +104,168 @@ export const SEED_TRIP: Trip = {
       tone: '#0369a1',
       preferences: {
         interests: { food: 4, culture: 3, nature: 3, nightlife: 2, rest: 5 },
-        budgetCeiling: 640,
+        budgetCeiling: 620,
         pace: 'slow',
         nonNegotiables: [],
-        note: 'Shellfish allergy — anywhere we eat needs an option for me.',
+        note: 'Driving up, so I would rather not be out late on Saturday.',
       },
     },
   ],
 
   items: [
-    // ---- Day 1 · the chain that breaks ----
+    // ---- Day 1 · Saturday ----
     {
-      id: 'flight-in',
-      title: 'Flight AK6023 arrives',
-      detail: 'Kuala Lumpur → Penang',
-      icon: '✈️',
+      id: 'drive-up',
+      title: 'Drive up from KL',
+      detail: `${CAMERONS.driveHoursFromKL}h via Simpang Pulai · petrol and tolls split`,
+      icon: '🚗',
       day: 1,
-      start: t('14:00'),
-      durationMin: 0,
-      cost: 0,
-      prepaid: true,
+      start: t('06:30'),
+      durationMin: 210,
+      cost: 180,
+      prepaid: false,
       refundRate: 0,
       dependsOn: [],
       flexibility: 'locked',
       interest: 'rest',
+      outdoor: false,
     },
     {
-      id: 'transfer',
-      title: 'Airport transfer',
-      detail: 'Pre-booked van, 4 seats',
-      icon: '🚕',
+      id: 'brunch',
+      title: 'Brunch in Tanah Rata',
+      detail: 'Whatever is open when we get in',
+      icon: '☕',
       day: 1,
-      start: t('14:30'),
-      durationMin: 45,
+      start: t('10:30'),
+      durationMin: 60,
       cost: 80,
       prepaid: false,
       refundRate: 1,
-      dependsOn: ['flight-in'],
-      flexibility: 'movable',
-      interest: 'rest',
+      dependsOn: ['drive-up'],
+      flexibility: 'droppable',
+      interest: 'food',
+      outdoor: false,
+      sensibleHours: { earliest: t('08:00'), latest: t('11:30') },
     },
     {
       id: 'checkin',
-      title: 'Hotel check-in',
-      detail: 'Desk open until 22:00',
-      icon: '🏨',
+      title: 'Guesthouse check-in',
+      detail: 'Reception open until 21:00 · 2 nights, 2 rooms',
+      icon: '🏡',
       day: 1,
-      start: t('15:00'),
+      start: t('12:00'),
       durationMin: 30,
-      cost: 780,
+      cost: 540,
       prepaid: true,
       refundRate: 0,
-      dependsOn: ['transfer'],
+      dependsOn: ['drive-up'],
       flexibility: 'movable',
       interest: 'rest',
-      windowEnd: t('22:00'),
+      outdoor: false,
+      windowEnd: t('21:00'),
     },
     {
-      id: 'cooking-class',
-      title: 'Nyonya cooking class',
-      detail: 'Prepaid, non-refundable · Ali’s must-do',
-      icon: '🍜',
+      id: 'mossy-forest',
+      title: 'Mossy Forest guided trek',
+      detail: 'Prepaid, non-refundable · Mei’s must-do',
+      icon: '🌲',
       day: 1,
-      start: t('16:00'),
+      start: t('14:00'),
       durationMin: 150,
-      cost: 260,
+      cost: 320,
       prepaid: true,
       refundRate: 0,
       dependsOn: ['checkin'],
       flexibility: 'movable',
-      interest: 'food',
+      interest: 'nature',
+      outdoor: true,
+      sensibleHours: { earliest: t('07:00'), latest: t('15:00') },
     },
     {
-      id: 'dinner',
-      title: 'Dinner at Kebaya',
-      detail: 'Table for 4 · free cancellation',
-      icon: '🍽️',
+      id: 'tea-plantation',
+      title: 'BOH tea plantation',
+      detail: 'Hillside café and the terraces walk',
+      icon: '🍃',
+      day: 1,
+      start: t('17:00'),
+      durationMin: 120,
+      cost: 60,
+      prepaid: false,
+      refundRate: 1,
+      dependsOn: ['checkin'],
+      flexibility: 'movable',
+      interest: 'nature',
+      outdoor: true,
+      sensibleHours: { earliest: t('09:00'), latest: t('16:30') },
+    },
+    {
+      id: 'night-market',
+      title: 'Brinchang night market',
+      detail: 'Open-air stalls · Ali’s must-do',
+      icon: '🏮',
       day: 1,
       start: t('19:30'),
       durationMin: 90,
-      cost: 180,
-      prepaid: false,
-      refundRate: 1,
-      dependsOn: ['checkin'],
-      flexibility: 'droppable',
-      interest: 'food',
-    },
-
-    // ---- Day 2 ----
-    {
-      id: 'heritage-walk',
-      title: 'George Town heritage walk',
-      detail: 'Guided, 3 hours',
-      icon: '🏛️',
-      day: 2,
-      start: t('10:00'),
-      durationMin: 180,
       cost: 120,
       prepaid: false,
       refundRate: 1,
-      dependsOn: [],
+      dependsOn: ['checkin'],
       flexibility: 'movable',
-      interest: 'culture',
-    },
-    {
-      id: 'penang-hill',
-      title: 'Penang Hill funicular',
-      detail: 'Sunset slot · Mei’s must-do',
-      icon: '⛰️',
-      day: 2,
-      start: t('16:00'),
-      durationMin: 210,
-      cost: 160,
-      prepaid: false,
-      refundRate: 1,
-      dependsOn: [],
-      flexibility: 'movable',
-      interest: 'nature',
+      interest: 'food',
+      outdoor: true,
+      sensibleHours: { earliest: t('18:00'), latest: t('21:00') },
     },
 
-    // ---- Day 3 ----
+    // ---- Day 2 · Sunday · deliberately light, so a repair has somewhere to go ----
     {
-      id: 'street-food',
-      title: 'Gurney Drive food crawl',
-      detail: 'Self-guided',
-      icon: '🥘',
-      day: 3,
-      start: t('11:00'),
-      durationMin: 180,
-      cost: 140,
+      id: 'strawberry-farm',
+      title: 'Strawberry farm',
+      detail: 'Pick your own, then the scones',
+      icon: '🍓',
+      day: 2,
+      start: t('10:00'),
+      durationMin: 75,
+      cost: 90,
       prepaid: false,
       refundRate: 1,
       dependsOn: [],
       flexibility: 'droppable',
-      interest: 'food',
+      interest: 'nature',
+      outdoor: true,
+      sensibleHours: { earliest: t('08:30'), latest: t('16:00') },
     },
     {
-      id: 'flight-out',
-      title: 'Flight AK6030 departs',
-      detail: 'Penang → Kuala Lumpur',
-      icon: '🛫',
+      id: 'lunch',
+      title: 'Steamboat lunch',
+      detail: 'Indoors, and very much the point',
+      icon: '🍲',
+      day: 2,
+      start: t('12:30'),
+      durationMin: 60,
+      cost: 100,
+      prepaid: false,
+      refundRate: 1,
+      dependsOn: [],
+      flexibility: 'movable',
+      interest: 'food',
+      outdoor: false,
+      sensibleHours: { earliest: t('11:30'), latest: t('14:30') },
+    },
+    {
+      id: 'drive-home',
+      title: 'Drive back to KL',
+      detail: 'Monday morning, before the jam',
+      icon: '🛣️',
       day: 3,
-      start: t('18:00'),
-      durationMin: 0,
-      cost: 0,
-      prepaid: true,
+      start: t('11:00'),
+      durationMin: 210,
+      cost: 180,
+      prepaid: false,
       refundRate: 0,
       dependsOn: [],
       flexibility: 'locked',
       interest: 'rest',
+      outdoor: false,
     },
   ],
-}
-
-/** The disruption the demo injects: the inbound flight slips to 19:30. */
-export const DISRUPTION = {
-  itemId: 'flight-in',
-  label: 'Flight AK6023 delayed',
-  detail: 'Now arriving 19:30 instead of 14:00',
-  delayMin: 330,
 }

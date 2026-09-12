@@ -1,4 +1,4 @@
-import type { Cascade, ItemOutcome, ItemStatus, Trip, TripItem } from '../types'
+import type { Cascade, Impairment, ItemOutcome, ItemStatus, Trip, TripItem } from '../types'
 
 /** Minutes of slack assumed between one commitment ending and the next starting. */
 export const BUFFER_MIN = 15
@@ -30,30 +30,65 @@ function topoOrder(items: TripItem[]): TripItem[] {
 }
 
 /**
- * Walk the dependency graph from a delayed item and work out what else breaks.
+ * Walk the dependency graph and work out what a set of impairments costs you.
  *
- * An item survives being late only if it has a window (a check-in desk open
- * until 22:00). A fixed booking does not slide just because you are late —
- * it breaks, and something has to be done about it. That distinction is the
- * whole reason this is a graph and not a list.
+ * Two kinds of breakage, and they behave differently:
+ *
+ * **A delay** pushes an item later and everything downstream with it. An item
+ * survives being late only if it has a window (a hotel desk open until 22:00);
+ * a fixed booking does not slide just because you are late — it breaks.
+ *
+ * **An unavailable item** is taken out entirely: a rained-off trek, a closed
+ * attraction, a cancelled ferry. It breaks itself and releases its slot, but it
+ * does NOT automatically break whatever followed it. If the forest trek is
+ * rained off, dinner afterwards is not broken by that — it is simply free to
+ * happen earlier. Where one item genuinely cannot proceed without another, the
+ * cause is a delay in the chain, which the first rule already handles.
+ *
+ * That distinction is a modelling choice, and it is the right one for local
+ * travel: bad weather takes out several independent outdoor plans at once
+ * rather than toppling a single chain.
  */
-export function computeCascade(trip: Trip, triggerItemId: string, delayMin: number): Cascade {
+export function computeCascade(trip: Trip, impairments: Impairment[]): Cascade {
   const ordered = topoOrder(trip.items)
+  const byImpairment = new Map(impairments.map((i) => [i.itemId, i]))
+  /** Items removed from the plan — they no longer gate anything. */
+  const removed = new Set(
+    impairments.filter((i) => i.kind === 'unavailable').map((i) => i.itemId),
+  )
+
   const effectiveEnd = new Map<string, number>()
   const outcomes: ItemOutcome[] = []
 
   for (const item of ordered) {
+    const impairment = byImpairment.get(item.id)
+
+    if (impairment?.kind === 'unavailable') {
+      // Broken, and it frees its slot for whatever could use it.
+      effectiveEnd.set(item.id, item.start)
+      outcomes.push({
+        itemId: item.id,
+        status: 'broken',
+        earliestStart: item.start,
+        delayMin: 0,
+        reason: impairment.reason,
+      })
+      continue
+    }
+
     let earliestStart: number
     let status: ItemStatus
     let reason: string
 
-    if (item.id === triggerItemId) {
-      earliestStart = item.start + delayMin
+    if (impairment?.kind === 'delay') {
+      earliestStart = item.start + impairment.minutes
       status = 'shifted'
-      reason = `Delayed by ${formatMins(delayMin)}`
+      reason = impairment.reason
     } else {
-      const gated = item.dependsOn.map((d) => (effectiveEnd.get(d) ?? 0) + BUFFER_MIN)
-      earliestStart = Math.max(item.start, ...(gated.length ? gated : [item.start]))
+      const gates = item.dependsOn
+        .filter((d) => !removed.has(d))
+        .map((d) => (effectiveEnd.get(d) ?? 0) + BUFFER_MIN)
+      earliestStart = Math.max(item.start, ...(gates.length ? gates : [item.start]))
 
       if (earliestStart <= item.start) {
         status = 'safe'
@@ -80,23 +115,21 @@ export function computeCascade(trip: Trip, triggerItemId: string, delayMin: numb
     })
   }
 
-  const pick = (s: ItemStatus) => outcomes.filter((o) => o.status === s).map((o) => o.itemId)
+  const pick = (st: ItemStatus) => outcomes.filter((o) => o.status === st).map((o) => o.itemId)
   const brokenIds = pick('broken')
   const byId = new Map(trip.items.map((i) => [i.id, i]))
 
   // Money already committed to things that are now broken and cannot be refunded.
   const atRisk = brokenIds.reduce((sum, id) => {
     const item = byId.get(id)
-    if (!item) return sum
-    return sum + item.cost * (1 - item.refundRate)
+    return item ? sum + item.cost * (1 - item.refundRate) : sum
   }, 0)
 
   return {
-    triggerItemId,
-    delayMin,
+    impairments,
     outcomes,
     brokenIds,
-    shiftedIds: pick('shifted').filter((id) => id !== triggerItemId),
+    shiftedIds: pick('shifted'),
     safeIds: pick('safe'),
     atRisk,
   }

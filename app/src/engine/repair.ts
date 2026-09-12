@@ -3,8 +3,11 @@ import type {
 } from '../types'
 import { BUFFER_MIN, fmt } from './cascade'
 
-/** Nothing new starts after this. */
-const DAY_END = 23 * 60 + 30
+/**
+ * Backstop for when an item declares no sensible hours of its own. Nobody on a
+ * trip with a 06:30 start wants a new activity beginning at 23:00.
+ */
+const DAY_END = 21 * 60 + 30
 /** Rebooking surcharge, as a fraction of the item's cost. */
 const MOVE_FEE_RATE = 0.25
 
@@ -34,7 +37,37 @@ function isEssential(trip: Trip, cascade: Cascade, id: string): boolean {
 
 interface Slot { day: number; start: number; end: number }
 
-/** Slots taken by everything still standing, at its post-delay time. */
+/**
+ * Extra rules a replacement slot has to satisfy.
+ *
+ * `slotViable` is what stops the engine rebooking a rained-off trek into the
+ * same storm — without it, "move it later today" is technically a free slot and
+ * completely useless advice.
+ */
+export interface RepairConstraints {
+  slotViable?: (item: TripItem, day: number, start: number) => boolean
+}
+
+/** Granularity we consider when hunting for a replacement slot. */
+const SLOT_STEP_MIN = 30
+
+/**
+ * The last minute of a day that is still usable.
+ *
+ * A locked item with nothing scheduled after it is a departure — once you have
+ * driven back to KL the day is over, and "we found you a free slot at 19:15"
+ * is worse than useless. A locked item with things after it (the drive up on
+ * the first morning) is an arrival, and does not end anything.
+ */
+function usableEndOfDay(trip: Trip, day: number): number {
+  const onDay = trip.items.filter((i) => i.day === day)
+  const departure = onDay.find(
+    (i) => i.flexibility === 'locked' && !onDay.some((o) => o.id !== i.id && o.start > i.start),
+  )
+  return departure ? Math.min(DAY_END, departure.start) : DAY_END
+}
+
+/** Slots taken by everything still standing, at its post-impairment time. */
 function survivingSlots(trip: Trip, cascade: Cascade): Slot[] {
   const keep = new Set([...cascade.safeIds, ...cascade.shiftedIds])
   return trip.items
@@ -45,35 +78,54 @@ function survivingSlots(trip: Trip, cascade: Cascade): Slot[] {
     })
 }
 
-/**
- * Earliest start on `day` that fits `durationMin` without colliding with `taken`.
- * Bookings that are themselves being re-planned are simply not in `taken`, so a
- * replacement is never pushed past the slot it is replacing.
- */
-export function findSlot(
-  day: number, durationMin: number, notBefore: number, taken: Slot[],
-): number | null {
-  const onDay = taken.filter((s) => s.day === day).sort((a, b) => a.start - b.start)
-  let cursor = Math.max(notBefore, 8 * 60)
-  for (const slot of onDay) {
-    if (cursor + durationMin + BUFFER_MIN <= slot.start) return cursor
-    cursor = Math.max(cursor, slot.end + BUFFER_MIN)
-  }
-  return cursor + durationMin <= DAY_END ? cursor : null
+function collides(day: number, start: number, durationMin: number, taken: Slot[]): boolean {
+  const end = start + durationMin
+  return taken.some(
+    (s) => s.day === day && start < s.end + BUFFER_MIN && s.start < end + BUFFER_MIN,
+  )
 }
 
-/** Where a broken item can go: later today if it fits, otherwise the next free day. */
+/**
+ * Earliest viable start on `day`, or null.
+ *
+ * Walks candidate starts rather than only the gaps between bookings, because a
+ * slot can be free and still unusable — a downpour is not on the calendar.
+ */
+export function findSlot(
+  trip: Trip,
+  item: TripItem,
+  day: number,
+  notBefore: number,
+  taken: Slot[],
+  constraints: RepairConstraints = {},
+): number | null {
+  const sensible = item.sensibleHours
+  const earliest = Math.max(notBefore, sensible?.earliest ?? 8 * 60)
+  const latest = Math.min(
+    usableEndOfDay(trip, day) - item.durationMin,
+    sensible?.latest ?? DAY_END - item.durationMin,
+  )
+
+  for (let start = earliest; start <= latest; start += SLOT_STEP_MIN) {
+    if (collides(day, start, item.durationMin, taken)) continue
+    if (constraints.slotViable && !constraints.slotViable(item, day, start)) continue
+    return start
+  }
+  return null
+}
+
+/** Where a broken item can go: later today if it fits, otherwise a later day. */
 function relocate(
-  trip: Trip, cascade: Cascade, item: TripItem, taken: Slot[],
+  trip: Trip, cascade: Cascade, item: TripItem, taken: Slot[], constraints: RepairConstraints,
 ): { day: number; start: number } | null {
   const earliest = cascade.outcomes.find((o) => o.itemId === item.id)?.earliestStart ?? item.start
 
-  const sameDay = findSlot(item.day, item.durationMin, earliest, taken)
+  const sameDay = findSlot(trip, item, item.day, earliest, taken, constraints)
   if (sameDay !== null) return { day: item.day, start: sameDay }
 
   const lastDay = Math.max(...trip.items.map((i) => i.day))
   for (let day = item.day + 1; day <= lastDay; day++) {
-    const slot = findSlot(day, item.durationMin, 8 * 60, taken)
+    const slot = findSlot(trip, item, day, 8 * 60, taken, constraints)
     if (slot !== null) return { day, start: slot }
   }
   return null
@@ -84,14 +136,18 @@ function relocate(
  * schedule that grows as we go so two moved bookings cannot land on each other.
  */
 export function planActions(
-  trip: Trip, cascade: Cascade, broken: TripItem[], wantsMove: (i: TripItem) => boolean,
+  trip: Trip,
+  cascade: Cascade,
+  broken: TripItem[],
+  wantsMove: (i: TripItem) => boolean,
+  constraints: RepairConstraints = {},
 ): RepairAction[] {
   const taken = survivingSlots(trip, cascade)
   const ordered = [...broken].sort((a, b) => a.day - b.day || a.start - b.start)
 
   return ordered.map((item) => {
     if (!wantsMove(item)) return { kind: 'drop' as const, itemId: item.id }
-    const slot = relocate(trip, cascade, item, taken)
+    const slot = relocate(trip, cascade, item, taken, constraints)
     if (!slot) return { kind: 'drop' as const, itemId: item.id }
     taken.push({ day: slot.day, start: slot.start, end: slot.start + item.durationMin })
     return { kind: 'move' as const, itemId: item.id, toDay: slot.day, toStart: slot.start }
@@ -164,7 +220,8 @@ export function buildOption(
   const money = costDelta === 0 ? 'no change to the total'
     : costDelta > 0 ? `costs RM${costDelta} more`
     : `saves RM${Math.abs(costDelta)}`
-  const cost_clause = `${parts.join(', ')} — ${money}`
+  const joined = parts.join(', ')
+  const cost_clause = `${joined.charAt(0).toUpperCase()}${joined.slice(1)} — ${money}`
   const sacrifice = sacrificedNames.length
     ? ` Sacrifices ${sacrificedNames.join(' and ')}.`
     : ' Everyone keeps what they flagged as a must-do.'
@@ -184,28 +241,32 @@ export function buildOption(
  * A group cannot choose between them without saying what it cares about — which
  * is exactly the conversation the product exists to make possible.
  */
-export function localRepair(trip: Trip, cascade: Cascade): RepairResult {
+export function localRepair(
+  trip: Trip, cascade: Cascade, constraints: RepairConstraints = {},
+): RepairResult {
   const byId = new Map(trip.items.map((i) => [i.id, i]))
   const broken = cascade.brokenIds.map((id) => byId.get(id)!).filter(Boolean)
 
   // 1 — Preserve: rebook everything that can be rebooked.
-  const preserve = planActions(trip, cascade, broken, () => true)
+  const preserve = planActions(trip, cascade, broken, () => true, constraints)
 
   // 2 — Economise: keep only what the surviving plan structurally depends on.
-  const economise = planActions(trip, cascade, broken, (i) => isEssential(trip, cascade, i.id))
+  const economise = planActions(
+    trip, cascade, broken, (i) => isEssential(trip, cascade, i.id), constraints,
+  )
 
   // 3 — Save the evening: keep essentials and the cheap social item, shed the costly one.
   const costliest = [...broken]
     .filter((i) => !isEssential(trip, cascade, i.id))
     .sort((a, b) => b.cost - a.cost)[0]
-  const recover = planActions(trip, cascade, broken, (i) => i.id !== costliest?.id)
+  const recover = planActions(trip, cascade, broken, (i) => i.id !== costliest?.id, constraints)
 
   return {
     source: 'local',
     options: [
       buildOption(trip, 'preserve', 'Preserve', 'Protect every must-do, whatever it costs', preserve),
       buildOption(trip, 'economise', 'Economise', 'Spend the least, accept the losses', economise),
-      buildOption(trip, 'recover', 'Save the evening', 'Keep the group together, shed the expensive booking', recover),
+      buildOption(trip, 'recover', 'Shelter', 'Keep what can be saved, shed the costliest casualty', recover),
     ],
   }
 }

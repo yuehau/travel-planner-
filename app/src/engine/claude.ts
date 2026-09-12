@@ -1,4 +1,5 @@
 import type { Cascade, RepairOption, RepairResult, Trip, TripItem } from '../types'
+import type { RepairConstraints } from './repair'
 import { buildOption, localRepair, planActions } from './repair'
 
 /** Where the edge function lives. Unset in dev — the app falls back to the local engine. */
@@ -24,8 +25,10 @@ interface ModelOption {
  * Any failure (no endpoint, no network, bad response) falls back to the offline
  * engine. A demo should not be at the mercy of venue wifi.
  */
-export async function repair(trip: Trip, cascade: Cascade): Promise<RepairResult> {
-  if (!ENDPOINT) return localRepair(trip, cascade)
+export async function repair(
+  trip: Trip, cascade: Cascade, constraints: RepairConstraints = {},
+): Promise<RepairResult> {
+  if (!ENDPOINT) return localRepair(trip, cascade, constraints)
 
   try {
     const res = await fetch(ENDPOINT, {
@@ -48,7 +51,7 @@ export async function repair(trip: Trip, cascade: Cascade): Promise<RepairResult
       const moves = new Set(
         opt.actions.filter((a) => a.kind === 'move').map((a) => a.itemId),
       )
-      const actions = planActions(trip, cascade, broken, (item) => moves.has(item.id))
+      const actions = planActions(trip, cascade, broken, (item) => moves.has(item.id), constraints)
       const priced = buildOption(trip, opt.id, opt.name, opt.strategy, actions)
       // Keep the model's sentence; keep our arithmetic.
       return { ...priced, rationale: opt.rationale || priced.rationale }
@@ -57,6 +60,6 @@ export async function repair(trip: Trip, cascade: Cascade): Promise<RepairResult
     return { options, source: 'claude' }
   } catch (err) {
     console.warn('[repair] falling back to the offline engine:', err)
-    return localRepair(trip, cascade)
+    return localRepair(trip, cascade, constraints)
   }
 }

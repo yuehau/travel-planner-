@@ -50,22 +50,49 @@ export interface TripItem {
   dependsOn: string[]
   flexibility: Flexibility
   interest: Interest
+  /** Weather-exposed. Outdoor items are the ones a wet forecast can kill. */
+  outdoor: boolean
   /**
    * Latest start still acceptable, in minutes from midnight.
    * Present for items with a window (a hotel check-in desk open until 22:00).
    */
   windowEnd?: number
+  /**
+   * The hours this item makes any sense at all, in minutes from midnight.
+   *
+   * Without this, a free dry slot is indistinguishable from a sensible one, and
+   * the repair engine will cheerfully offer you a night market at 08:00 or a
+   * forest trek at 22:00. Opening hours and daylight are real constraints.
+   */
+  sensibleHours?: { earliest: number; latest: number }
 }
 
 export interface Trip {
   id: string
   destination: string
+  /** ISO date (YYYY-MM-DD) of day 1, so day N maps to a real calendar date. */
+  startDate: string
+  /** Coordinates of the destination, used for the weather forecast. */
+  lat: number
+  lon: number
   nights: number
   /** Group budget in MYR. */
   budget: number
   members: Member[]
   items: TripItem[]
 }
+
+/**
+ * Something that has gone wrong with one item. The cascade engine propagates
+ * these through the dependency graph.
+ *
+ * `delay` pushes an item later and everything downstream with it.
+ * `unavailable` takes an item out entirely — a rained-off hike, a closed
+ * attraction, a cancelled ferry — and breaks whatever depended on it.
+ */
+export type Impairment =
+  | { kind: 'delay'; itemId: string; minutes: number; reason: string }
+  | { kind: 'unavailable'; itemId: string; reason: string }
 
 export type ItemStatus = 'safe' | 'shifted' | 'broken'
 
@@ -80,8 +107,7 @@ export interface ItemOutcome {
 }
 
 export interface Cascade {
-  triggerItemId: string
-  delayMin: number
+  impairments: Impairment[]
   outcomes: ItemOutcome[]
   brokenIds: string[]
   shiftedIds: string[]
