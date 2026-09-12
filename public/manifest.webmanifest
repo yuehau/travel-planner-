@@ -1,0 +1,17 @@
+{
+  "name": "TravelPlanner",
+  "short_name": "TravelPlanner",
+  "description": "A focused workspace for trips, places, reservations, budgets, packing, and tasks.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0a0a0a",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
