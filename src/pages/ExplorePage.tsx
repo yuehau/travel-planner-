@@ -16,9 +16,10 @@ import {
   type AttractionCategory,
   type MalaysiaStateId,
 } from '../data/attractions';
-import { buildRoute, formatHour, type RouteStop } from '../utils/routeBuilder';
+import { getPlansByState, tierLabels, type TripPlan } from '../data/plans';
+import { buildRoute, formatHour, totalCost as sumStopsCost, totalDays as countStopDays, type RouteStop } from '../utils/routeBuilder';
 
-type View = 'states' | 'attractions' | 'route';
+type View = 'states' | 'plans' | 'attractions' | 'route';
 
 const categoryLabels: Record<AttractionCategory, string> = {
   heritage: 'Heritage',
@@ -59,6 +60,14 @@ const ExplorePage: React.FC = () => {
     [selectedStateId],
   );
 
+  const statePlans = useMemo(() => (selectedStateId ? getPlansByState(selectedStateId) : []), [selectedStateId]);
+
+  const getPlanStats = (plan: TripPlan) => {
+    const planAttractions = stateAttractions.filter((attraction) => plan.attractionIds.includes(attraction.id));
+    const planRoute = buildRoute(planAttractions);
+    return { cost: sumStopsCost(planRoute), days: countStopDays(planRoute), count: planAttractions.length };
+  };
+
   const filteredAttractions = useMemo(() => {
     const list = categoryFilter === 'all' ? stateAttractions : stateAttractions.filter((attraction) => attraction.category === categoryFilter);
     return [...list].sort((a, b) => b.popularity - a.popularity);
@@ -91,7 +100,12 @@ const ExplorePage: React.FC = () => {
   const handleSelectState = (stateId: MalaysiaStateId) => {
     setSelectedStateId(stateId);
     setCategoryFilter('all');
-    setView('attractions');
+    setView('plans');
+  };
+
+  const handleSelectPlan = (plan: TripPlan) => {
+    setCart(new Set(plan.attractionIds));
+    setView('route');
   };
 
   const handleCreateTrip = async () => {
@@ -181,7 +195,7 @@ const ExplorePage: React.FC = () => {
           </>
         )}
 
-        {view === 'attractions' && selectedState && (
+        {view === 'plans' && selectedState && (
           <>
             <button
               type="button"
@@ -190,6 +204,67 @@ const ExplorePage: React.FC = () => {
             >
               <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
               All states
+            </button>
+
+            <div className="mb-8">
+              <h1 className="text-3xl font-bold tracking-tighter mb-1">
+                {selectedState.emoji} {selectedState.name} plans
+              </h1>
+              <p className="text-zinc-500 dark:text-zinc-400 font-light">Pick a ready-made plan, or build your own from scratch.</p>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-3 mb-8">
+              {statePlans.map((plan) => {
+                const stats = getPlanStats(plan);
+                return (
+                  <div
+                    key={plan.id}
+                    className="flex flex-col rounded-2xl border border-zinc-200 dark:border-zinc-800 p-6 hover:border-zinc-900 dark:hover:border-zinc-100 hover:shadow-lg transition-all"
+                  >
+                    <span className="inline-flex w-fit items-center rounded-full bg-zinc-100 dark:bg-zinc-800 px-3 py-1 text-xs font-medium text-zinc-600 dark:text-zinc-400 mb-3">
+                      {tierLabels[plan.tier]}
+                    </span>
+                    <h3 className="text-lg font-semibold mb-1">
+                      {plan.label} · {plan.name}
+                    </h3>
+                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-4 flex-1">{plan.description}</p>
+                    <div className="flex items-center justify-between text-sm mb-4">
+                      <span className="font-semibold">{stats.cost === 0 ? 'Free' : `RM${stats.cost}`}</span>
+                      <span className="text-zinc-500 dark:text-zinc-400">
+                        {stats.days} day{stats.days === 1 ? '' : 's'} · {stats.count} stops
+                      </span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => handleSelectPlan(plan)}
+                      className="w-full py-2.5 rounded-xl text-sm font-medium bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 hover:opacity-90 transition-opacity"
+                    >
+                      Use this plan
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setView('attractions')}
+              className="text-sm font-medium text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors underline underline-offset-4"
+            >
+              Or browse every attraction yourself
+            </button>
+          </>
+        )}
+
+        {view === 'attractions' && selectedState && (
+          <>
+            <button
+              type="button"
+              onClick={() => setView('plans')}
+              className="inline-flex items-center gap-2 text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors mb-6 group"
+            >
+              <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
+              Back to plans
             </button>
 
             <div className="mb-6">
