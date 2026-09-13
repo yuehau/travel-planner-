@@ -40,6 +40,11 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Design canvas generator output (rebuild with node design-canvas/build.mjs)
+design-canvas/artboards/
+design-canvas/preview/
+design-canvas/seed-args.txt
+
 # Misc
 .local/
 *.local
