@@ -1,4 +1,4 @@
-# TravelPlanner
+# Cuti²
 
 A streamlined, intuitive travel planning application designed to help users organize their trips without the clutter. Built with a focus on high-value functionality and a familiar user experience.
 

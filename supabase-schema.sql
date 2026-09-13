@@ -1,4 +1,4 @@
--- Travel Planner Supabase schema
+-- Cuti² Supabase schema
 -- Apply this to project sevubkrirbaitcikpcjk.
 
 create table if not exists public.profiles (

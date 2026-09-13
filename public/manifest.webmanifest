@@ -1,6 +1,6 @@
 {
-  "name": "TravelPlanner",
-  "short_name": "TravelPlanner",
+  "name": "Cuti²",
+  "short_name": "Cuti²",
   "description": "A focused workspace for trips, places, reservations, budgets, packing, and tasks.",
   "start_url": "/",
   "display": "standalone",

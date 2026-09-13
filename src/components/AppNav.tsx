@@ -31,7 +31,7 @@ const AppNav = () => {
       <div className="flex min-w-0 items-center gap-2">
         <Link to="/" className="group flex shrink-0 items-center gap-2 text-xl font-semibold tracking-tight">
           <BrandMark size="sm" interactive />
-          <span>TravelPlanner</span>
+          <span>Cuti²</span>
         </Link>
       </div>
 

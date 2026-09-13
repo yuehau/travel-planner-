@@ -1,4 +1,4 @@
-# Project Information: Travel Planner
+# Project Information: Cuti²
 
 ## Tech Stack
 - **Frontend Framework**: React 19 with TypeScript
@@ -99,7 +99,7 @@ Last updated: 2026-09-12.
 ### Completed in Code
 - Merged the important project instructions from `CLAUDE.md` into this file and removed `CLAUDE.md`.
 - Implemented class-based light/dark theme support with persisted preference.
-- Added shared minimalist black/white travel planner branding via `BrandMark`.
+- Added shared minimalist black/white Cuti² branding via `BrandMark`.
 - Replaced the browser/favicon icon with the minimalist black/white travel icon.
 - Expanded the landing page with more product explanation before sign-in.
 - Added Supabase client configuration through Vite environment variables.
@@ -116,7 +116,7 @@ Last updated: 2026-09-12.
 - `npm test` passed (22 tests, including new `replan.test.ts` coverage for the descendant-tree walk and proposal validation).
 - `npm run lint` passed.
 - `npm run build` passed.
-- Supabase database migrations were applied and verified for the core travel planner schema and `trip_collections`.
+- Supabase database migrations were applied and verified for the core Cuti² schema and `trip_collections`.
 - The re-planning prototype's SQL (`itinerary_nodes`, `replan_events`, `trips.budget_cap`) has **not** yet been applied to the remote project, and the `replan-node` Edge Function has **not** yet been deployed — both are still local-only until someone with Supabase CLI access runs the steps under Pending Implementation Items.
 
 ### Known Setup Issue

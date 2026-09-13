@@ -65,7 +65,7 @@ const LandingPage: React.FC = () => {
       <header className="mx-auto flex max-w-7xl items-center justify-between px-6 py-8">
         <div className="group flex cursor-pointer items-center gap-2 text-xl font-semibold">
           <BrandMark interactive />
-          <span className="text-zinc-900 dark:text-zinc-100">TravelPlanner</span>
+          <span className="text-zinc-900 dark:text-zinc-100">Cuti²</span>
         </div>
         <div className="flex items-center gap-4 sm:gap-6">
           <ThemeToggle />
@@ -95,7 +95,7 @@ const LandingPage: React.FC = () => {
             One calm place for every moving part of travel.
           </h1>
           <p className="mx-auto mb-10 max-w-3xl text-lg font-light leading-relaxed text-zinc-500 md:text-xl dark:text-zinc-400">
-            TravelPlanner helps you turn loose ideas, saved places, budgets, packing lists, and last-minute tasks into a clear trip workspace. Start with a simple dashboard, then open each trip to organize the details day by day.
+            Cuti² helps you turn loose ideas, saved places, budgets, packing lists, and last-minute tasks into a clear trip workspace. Start with a simple dashboard, then open each trip to organize the details day by day.
           </p>
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
@@ -197,7 +197,7 @@ const LandingPage: React.FC = () => {
       </main>
 
       <footer className="max-w-7xl mx-auto px-6 py-10 border-t border-zinc-100 dark:border-zinc-900 text-center text-zinc-400 dark:text-zinc-600 text-xs tracking-widest uppercase font-medium">
-        © {new Date().getFullYear()} TravelPlanner - Simple. Refined.
+        © {new Date().getFullYear()} Cuti² - Simple. Refined.
       </footer>
     </div>
   );

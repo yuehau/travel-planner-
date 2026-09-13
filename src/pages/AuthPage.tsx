@@ -44,7 +44,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ mode }) => {
       <section className="w-full max-w-sm">
         <Link to="/" className="group inline-flex items-center gap-2 text-xl font-semibold tracking-tight mb-10">
           <BrandMark interactive />
-          TravelPlanner
+          Cuti²
         </Link>
 
         <h1 className="text-3xl font-bold tracking-tighter mb-3">{title}</h1>
