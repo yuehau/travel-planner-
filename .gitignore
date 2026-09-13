@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 
 .superpowers/
+
+# Organiser-issued competition documents (rubrics, templates, problem statements)
+all file/
