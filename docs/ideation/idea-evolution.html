@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 44px 48px;
+    background: #FAF7F5;
+    font-family: "Segoe UI", system-ui, "DejaVu Sans", sans-serif;
+    color: #1C1917;
+    width: 1600px;
+  }
+  .head { margin-bottom: 28px; }
+  .kicker {
+    font-size: 12px; font-weight: 700; letter-spacing: .14em;
+    text-transform: uppercase; color: #A8A29E; margin-bottom: 8px;
+  }
+  h1 { font-size: 27px; margin: 0 0 6px; letter-spacing: -.02em; }
+  .sub { font-size: 14.5px; color: #78716C; margin: 0; max-width: 1150px; line-height: 1.5; }
+
+  .cols { display: flex; align-items: flex-start; gap: 0; }
+  .col { flex: 1; }
+  .col.filter { flex: 0 0 330px; }
+  .chev {
+    flex: 0 0 54px; align-self: center;
+    text-align: center; font-size: 34px; color: #D6CFC9; line-height: 1;
+    padding-bottom: 40px;
+  }
+
+  .colhead {
+    border-bottom: 2px solid #1C1917;
+    padding-bottom: 8px; margin-bottom: 14px;
+  }
+  .colhead .n {
+    font-size: 10.5px; font-weight: 700; letter-spacing: .13em;
+    text-transform: uppercase; color: #A8A29E;
+  }
+  .colhead .t { font-size: 17px; font-weight: 700; margin-top: 3px; }
+
+  .card {
+    background: #fff; border: 1px solid #E7E0DB; border-radius: 8px;
+    padding: 11px 14px; margin-bottom: 8px; font-size: 13.5px; line-height: 1.4;
+  }
+  .card .nm { font-weight: 600; }
+  .card .why { color: #8A817A; font-size: 12.5px; margin-top: 3px; }
+
+  .card.dropped { background: #F4F1EE; border-style: dashed; color: #A8A29E; }
+  .card.dropped .nm { text-decoration: line-through; font-weight: 500; }
+  .card.dropped .why { color: #A8A29E; }
+
+  .card.kept { border-left: 3px solid #2F7D72; }
+  .card.kept .nm { color: #1C1917; }
+  .card.revived { border-left: 3px solid #C9A227; background: #FDFBF3; }
+
+  .crit {
+    background: #1C1917; color: #fff; border-radius: 10px; padding: 18px 18px 14px;
+  }
+  .crit .ct {
+    font-size: 10.5px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: #A8A29E; margin-bottom: 11px;
+  }
+  .crit ol { margin: 0; padding-left: 19px; }
+  .crit li { font-size: 13.5px; line-height: 1.45; margin-bottom: 9px; }
+  .crit li:last-child { margin-bottom: 0; }
+  .crit li b { color: #F0A090; }
+
+  .note {
+    margin-top: 12px; font-size: 12.5px; color: #8A817A;
+    border-left: 3px solid #C9A227; padding-left: 11px; line-height: 1.45;
+  }
+
+  footer {
+    margin-top: 26px; padding-top: 14px; border-top: 1px solid #E7E0DB;
+    font-size: 12px; color: #A8A29E; line-height: 1.6;
+  }
+  .key { display: inline-block; margin-right: 20px; }
+  .sw { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 5px; vertical-align: middle; }
+</style>
+</head>
+<body>
+  <div class="head">
+    <div class="kicker">Ideation board 02 · idea evolution</div>
+    <h1>Everything we put on the table, and what survived</h1>
+    <p class="sub">Meeting 1 produced far more than we could build. Rather than vote on favourites, we filtered every idea through four questions — the most useful of which turned out to be “can we demo it with no money and no wifi?”. One idea we dropped early came back in a different shape.</p>
+  </div>
+
+  <div class="cols">
+    <div class="col">
+      <div class="colhead">
+        <div class="n">Step 1</div>
+        <div class="t">Diverged — everything on the table</div>
+      </div>
+      <div class="card"><div class="nm">Itinerary as an editable mind-map</div><div class="why">Meeting 1 §6</div></div>
+      <div class="card"><div class="nm">“Something broke” re-planning</div><div class="why">From the brief; absent from our own minutes</div></div>
+      <div class="card"><div class="nm">Group join by QR code</div><div class="why">Meeting 1 §7</div></div>
+      <div class="card"><div class="nm">Merged group preferences + cost splitting</div><div class="why">Meeting 1 §7</div></div>
+      <div class="card"><div class="nm">Estimate upfront, receipts at the end</div><div class="why">Meeting 1 §8</div></div>
+      <div class="card"><div class="nm">Spotify-style package picker</div><div class="why">Meeting 1 §4</div></div>
+      <div class="card"><div class="nm">Fine-tune our own model</div><div class="why">Meeting 1 §9, open question</div></div>
+      <div class="card"><div class="nm">RAG over a curated place database</div><div class="why">Meeting 1 §9, open question</div></div>
+      <div class="card"><div class="nm">Receipt OCR</div><div class="why">Automate the expense ledger</div></div>
+      <div class="card"><div class="nm">Live booking + real payments</div><div class="why">Suggested by the brief</div></div>
+      <div class="card"><div class="nm">Live traffic conditions</div><div class="why">Google Maps / TomTom</div></div>
+      <div class="card"><div class="nm">Native mobile app</div><div class="why">Better on the road than a website</div></div>
+      <div class="card"><div class="nm">Clone the Trek app’s look</div><div class="why">Strongest structural reference we found</div></div>
+    </div>
+
+    <div class="chev">›</div>
+
+    <div class="col filter">
+      <div class="colhead">
+        <div class="n">Step 2</div>
+        <div class="t">Filtered against</div>
+      </div>
+      <div class="crit">
+        <div class="ct">Four questions, in this order</div>
+        <ol>
+          <li>Does it address the <b>gap nobody covers</b>? Re-planning appears in the brief and in almost no shipping product.</li>
+          <li>Can four people <b>actually ship it</b> in the time, alongside coursework?</li>
+          <li>Does it need <b>money we don’t have</b> — a paid API, a subscription, a merchant account?</li>
+          <li>Will it <b>survive a live demo</b> with flaky wifi and no API keys?</li>
+        </ol>
+      </div>
+      <div class="note">Question 3 killed more ideas than anything else, and question 4 is why the AI call has a key-free mock mode.</div>
+    </div>
+
+    <div class="chev">›</div>
+
+    <div class="col">
+      <div class="colhead">
+        <div class="n">Step 3</div>
+        <div class="t">Converged — what we’re building</div>
+      </div>
+      <div class="card kept"><div class="nm">Itinerary as a node tree</div><div class="why">Kept, and promoted: it stopped being decoration and became the reason a re-plan is legible — you can see which stops moved.</div></div>
+      <div class="card kept"><div class="nm">“Something broke” re-planning</div><div class="why">Kept as the core. Drives the data model even though it ships last.</div></div>
+      <div class="card kept"><div class="nm">AI via structured tool calling</div><div class="why">Replaces both fine-tuning and RAG. JSON out, never parsed prose.</div></div>
+      <div class="card kept"><div class="nm">Open group trips with a headcount</div><div class="why">QR join reshaped into browse-and-join, so the group itself can be discovered.</div></div>
+      <div class="card kept"><div class="nm">Budget ceiling checked during planning</div><div class="why">The upfront half of the estimate idea, kept. The receipts half was cut.</div></div>
+      <div class="card revived"><div class="nm">Revived — browse, add to cart, auto-build a route</div><div class="why">The package picker, dropped as polish, came back when we realised a cart of places plus a distance sort <i>is</i> a day-by-day itinerary. Now our main entry point, with Plan A/B/C price tiers.</div></div>
+      <div class="card kept"><div class="nm">Free weather, honest static traffic tips</div><div class="why">Kept the keyless forecast; replaced live traffic with written local advice rather than faking it.</div></div>
+      <div class="card dropped"><div class="nm">Fine-tuning</div><div class="why">Rejected outright — no training data, slow, expensive, buys nothing here</div></div>
+      <div class="card dropped"><div class="nm">RAG</div><div class="why">Deferred — only pays off once we curate our own place database</div></div>
+      <div class="card dropped"><div class="nm">Receipt OCR · booking · payments</div><div class="why">Cut — polish, and payments need a merchant account</div></div>
+      <div class="card dropped"><div class="nm">Live traffic API</div><div class="why">Cut on cost (question 3)</div></div>
+      <div class="card dropped"><div class="nm">Native mobile</div><div class="why">Cut — installable web app instead</div></div>
+      <div class="card dropped"><div class="nm">Cloning Trek’s visual identity</div><div class="why">Rejected on principle — copy the structure, design our own UI</div></div>
+    </div>
+  </div>
+
+  <footer>
+    <span class="key"><span class="sw" style="background:#2F7D72"></span>Kept</span>
+    <span class="key"><span class="sw" style="background:#C9A227"></span>Dropped, then revived in another form</span>
+    <span class="key"><span class="sw" style="background:#D6CFC9"></span>Dropped</span>
+    <br>
+    Sources: CodeNection Lifestyle Track brief · Meeting Minutes 1 (4 Sept 2026) · Cuti² decision log.
+  </footer>
+</body>
+</html>
