@@ -30,3 +30,8 @@ tmp/pdfs/
 *.sw?
 
 CLAUDE.md
+
+# Design canvas generator output (rebuild with node design-canvas/build.mjs)
+design-canvas/artboards/
+design-canvas/preview/
+design-canvas/seed-args.txt

@@ -4,7 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const appRoot = path.join(here, '..', 'travel-planner--junxi');
+const appRoot = path.join(here, '..');
 const readJson = (file) => JSON.parse(readFileSync(path.join(appRoot, 'shared', file), 'utf8'));
 
 // ---------- Real app data ----------
@@ -19,7 +19,7 @@ export const usedImages = new Set();
 /** Registers an app image (web path like /places/x.svg) and returns the canvas file name. */
 export const img = (webPath) => {
   const rel = webPath.replace(/^\//, '');
-  usedImages.add(`travel-planner--junxi/public/${rel}`);
+  usedImages.add(`public/${rel}`);
   return path.basename(rel);
 };
 
