@@ -64,31 +64,31 @@ const SettingsView = ({ travelData }: SettingsViewProps) => {
   };
 
   if (isLoading) {
-    return <div className="py-12 text-center text-zinc-500 dark:text-zinc-400">Loading settings...</div>;
+    return <div className="py-12 text-center text-stone-500 dark:text-stone-400">Loading settings...</div>;
   }
 
   if (!settings) {
-    return <div className="py-12 text-center text-zinc-500 dark:text-zinc-400">Settings unavailable.</div>;
+    return <div className="py-12 text-center text-stone-500 dark:text-stone-400">Settings unavailable.</div>;
   }
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
       <div className="mb-8">
-        <h2 className="text-2xl font-bold tracking-tighter">Preferences</h2>
-        <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Defaults used across your planning workspace.</p>
+        <h2 className="text-2xl font-display font-bold tracking-tighter">Preferences</h2>
+        <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">Defaults used across your planning workspace.</p>
       </div>
 
       {error && <div className="mb-6 rounded-lg border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-700">{error}</div>}
       {savedMessage && <div className="mb-6 rounded-lg border border-green-300 bg-green-50 px-4 py-3 text-sm text-green-700">{savedMessage}</div>}
 
-      <form onSubmit={handleSubmit} className="grid gap-4 rounded-2xl border border-zinc-200 bg-zinc-50 p-5 dark:border-zinc-800 dark:bg-zinc-900">
+      <form onSubmit={handleSubmit} className="grid gap-4 rounded-2xl border border-stone-200 bg-stone-50 p-5 dark:border-stone-800 dark:bg-stone-900">
         <label className="grid gap-1 text-sm font-medium">
           Preferred currency
           <select
             value={settings.currency}
             disabled={isSaving || travelData.isReadOnly}
             onChange={(event) => setSettings((current) => current ? { ...current, currency: event.target.value } : current)}
-            className="rounded-xl border border-zinc-200 bg-white px-4 py-2 outline-none ring-zinc-900 focus:ring-2 dark:border-zinc-800 dark:bg-[#0a0a0a] dark:ring-zinc-100"
+            className="rounded-xl border border-stone-200 bg-white px-4 py-2 outline-none ring-stone-900 focus:ring-2 dark:border-stone-800 dark:bg-[#0a0a0a] dark:ring-stone-100"
           >
             <option value="MYR">MYR - Malaysian Ringgit</option>
             <option value="USD">USD - US Dollar</option>
@@ -108,7 +108,7 @@ const SettingsView = ({ travelData }: SettingsViewProps) => {
             value={settings.distance_unit}
             disabled={isSaving || travelData.isReadOnly}
             onChange={(event) => setSettings((current) => current ? { ...current, distance_unit: event.target.value as UserSettings['distance_unit'] } : current)}
-            className="rounded-xl border border-zinc-200 bg-white px-4 py-2 outline-none ring-zinc-900 focus:ring-2 dark:border-zinc-800 dark:bg-[#0a0a0a] dark:ring-zinc-100"
+            className="rounded-xl border border-stone-200 bg-white px-4 py-2 outline-none ring-stone-900 focus:ring-2 dark:border-stone-800 dark:bg-[#0a0a0a] dark:ring-stone-100"
           >
             <option value="km">Kilometers</option>
             <option value="mi">Miles</option>
@@ -121,7 +121,7 @@ const SettingsView = ({ travelData }: SettingsViewProps) => {
             value={settings.time_format}
             disabled={isSaving || travelData.isReadOnly}
             onChange={(event) => setSettings((current) => current ? { ...current, time_format: event.target.value as UserSettings['time_format'] } : current)}
-            className="rounded-xl border border-zinc-200 bg-white px-4 py-2 outline-none ring-zinc-900 focus:ring-2 dark:border-zinc-800 dark:bg-[#0a0a0a] dark:ring-zinc-100"
+            className="rounded-xl border border-stone-200 bg-white px-4 py-2 outline-none ring-stone-900 focus:ring-2 dark:border-stone-800 dark:bg-[#0a0a0a] dark:ring-stone-100"
           >
             <option value="12h">12-hour</option>
             <option value="24h">24-hour</option>
@@ -131,7 +131,7 @@ const SettingsView = ({ travelData }: SettingsViewProps) => {
         <button
           type="submit"
           disabled={isSaving || travelData.isReadOnly}
-          className="inline-flex w-fit items-center gap-2 rounded-full bg-zinc-900 px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-50 dark:bg-zinc-100 dark:text-zinc-900"
+          className="inline-flex w-fit items-center gap-2 rounded-full bg-coral-500 px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
         >
           <Save size={16} />
           Save Preferences

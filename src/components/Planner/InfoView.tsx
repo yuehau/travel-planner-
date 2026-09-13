@@ -92,12 +92,12 @@ const InfoView: React.FC<InfoViewProps> = ({ tripId, travelData, trip }) => {
       <WeatherAndTravelInfo tripId={tripId} travelData={travelData} trip={trip} />
 
       <div className="flex justify-between items-center mb-8">
-        <h2 className="text-2xl font-bold tracking-tighter">Trip Essentials</h2>
+        <h2 className="text-2xl font-display font-bold tracking-tighter">Trip Essentials</h2>
         <button
           type="submit"
           form="add-trip-info"
           disabled={isAdding || travelData.isReadOnly}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-medium hover:opacity-90 transition-opacity disabled:cursor-not-allowed disabled:opacity-50"
+          className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-coral-500 text-white text-sm font-medium hover:opacity-90 transition-opacity disabled:cursor-not-allowed disabled:opacity-50"
         >
           <Plus size={16} />
           Add Info
@@ -117,7 +117,7 @@ const InfoView: React.FC<InfoViewProps> = ({ tripId, travelData, trip }) => {
           value={formData.category}
           onChange={(event) => setFormData((current) => ({ ...current, category: event.target.value }))}
           placeholder="Category"
-          className="px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-transparent outline-none focus:ring-2 ring-zinc-900 dark:ring-zinc-100"
+          className="px-4 py-2 rounded-xl border border-stone-200 dark:border-stone-800 bg-transparent outline-none focus:ring-2 ring-stone-900 dark:ring-stone-100"
         />
         <input
           required
@@ -125,7 +125,7 @@ const InfoView: React.FC<InfoViewProps> = ({ tripId, travelData, trip }) => {
           value={formData.label}
           onChange={(event) => setFormData((current) => ({ ...current, label: event.target.value }))}
           placeholder={travelData.isReadOnly ? 'Demo mode is read-only' : 'Label'}
-          className="px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-transparent outline-none focus:ring-2 ring-zinc-900 dark:ring-zinc-100"
+          className="px-4 py-2 rounded-xl border border-stone-200 dark:border-stone-800 bg-transparent outline-none focus:ring-2 ring-stone-900 dark:ring-stone-100"
         />
         <input
           required
@@ -133,21 +133,21 @@ const InfoView: React.FC<InfoViewProps> = ({ tripId, travelData, trip }) => {
           value={formData.value}
           onChange={(event) => setFormData((current) => ({ ...current, value: event.target.value }))}
           placeholder="Value"
-          className="md:col-span-2 px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-transparent outline-none focus:ring-2 ring-zinc-900 dark:ring-zinc-100"
+          className="md:col-span-2 px-4 py-2 rounded-xl border border-stone-200 dark:border-stone-800 bg-transparent outline-none focus:ring-2 ring-stone-900 dark:ring-stone-100"
         />
         <input
           disabled={isAdding || travelData.isReadOnly}
           value={formData.url}
           onChange={(event) => setFormData((current) => ({ ...current, url: event.target.value }))}
           placeholder="Optional URL"
-          className="md:col-span-2 px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-transparent outline-none focus:ring-2 ring-zinc-900 dark:ring-zinc-100"
+          className="md:col-span-2 px-4 py-2 rounded-xl border border-stone-200 dark:border-stone-800 bg-transparent outline-none focus:ring-2 ring-stone-900 dark:ring-stone-100"
         />
       </form>
 
       {isLoading ? (
-        <div className="py-12 text-center text-zinc-500 dark:text-zinc-400">Loading essentials...</div>
+        <div className="py-12 text-center text-stone-500 dark:text-stone-400">Loading essentials...</div>
       ) : items.length === 0 ? (
-        <div className="py-12 text-center text-zinc-500 dark:text-zinc-400">No essentials saved yet.</div>
+        <div className="py-12 text-center text-stone-500 dark:text-stone-400">No essentials saved yet.</div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {categories.map((category) => {
@@ -155,15 +155,15 @@ const InfoView: React.FC<InfoViewProps> = ({ tripId, travelData, trip }) => {
             const categoryItems = items.filter((item) => item.category === category);
 
             return (
-              <section key={category} className="p-6 rounded-2xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-                <div className="flex items-center gap-2 text-zinc-400 dark:text-zinc-600 mb-4">
+              <section key={category} className="p-6 rounded-2xl bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-800">
+                <div className="flex items-center gap-2 text-stone-400 dark:text-stone-600 mb-4">
                   <Icon size={16} />
                   <span className="text-xs font-bold uppercase tracking-wider">{category}</span>
                 </div>
                 <div className="space-y-3">
                   {categoryItems.map((item) => (
-                    <div key={item.id} className="flex justify-between gap-4 py-2 border-b border-zinc-100 dark:border-zinc-800 last:border-b-0">
-                      <span className="text-sm text-zinc-500">{item.label}</span>
+                    <div key={item.id} className="flex justify-between gap-4 py-2 border-b border-stone-100 dark:border-stone-800 last:border-b-0">
+                      <span className="text-sm text-stone-500">{item.label}</span>
                       {item.url ? (
                         <a
                           href={item.url}

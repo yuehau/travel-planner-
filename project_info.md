@@ -97,6 +97,7 @@ All exposed public tables must have Row Level Security enabled. User-owned rows 
 Last updated: 2026-09-12.
 
 ### Completed in Code
+- Reskinned the app to a warm, tropical visual direction (approved via a design-canvas mockup): swapped the `zinc` neutral palette for Tailwind's warm `stone` scale app-wide, added a custom `coral` accent color (`src/index.css` `@theme`) now used for every primary CTA/floating action button, tier badges, and the Mind Map's "broken" node state; teal marks selected/in-cart items and "replanned" nodes; amber stays for ratings. Added the Fredoka display font (Google Fonts, `font-display` utility) to page/section headings and the brand wordmark. `BrandMark` is now a solid coral tile. Verified visually via a headless-browser screenshot pass (Landing, Dashboard, Explore).
 - Merged the important project instructions from `CLAUDE.md` into this file and removed `CLAUDE.md`.
 - Implemented class-based light/dark theme support with persisted preference.
 - Added shared minimalist black/white Cuti² branding via `BrandMark`.

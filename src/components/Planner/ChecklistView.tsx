@@ -90,12 +90,12 @@ const ChecklistView: React.FC<ChecklistViewProps> = ({ tripId, travelData }) => 
   return (
     <div className="max-w-3xl mx-auto py-8 px-4">
       <div className="flex justify-between items-center mb-8">
-        <h2 className="text-2xl font-bold tracking-tighter">Packing List</h2>
+        <h2 className="text-2xl font-display font-bold tracking-tighter">Packing List</h2>
         <button
           type="submit"
           form="add-packing-item"
           disabled={isAdding || travelData.isReadOnly}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-medium hover:opacity-90 transition-opacity disabled:cursor-not-allowed disabled:opacity-50"
+          className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-coral-500 text-white text-sm font-medium hover:opacity-90 transition-opacity disabled:cursor-not-allowed disabled:opacity-50"
         >
           <Plus size={16} />
           Add Item
@@ -115,7 +115,7 @@ const ChecklistView: React.FC<ChecklistViewProps> = ({ tripId, travelData }) => 
           value={formData.category}
           onChange={(event) => setFormData((current) => ({ ...current, category: event.target.value }))}
           placeholder="Category"
-          className="px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-transparent outline-none focus:ring-2 ring-zinc-900 dark:ring-zinc-100"
+          className="px-4 py-2 rounded-xl border border-stone-200 dark:border-stone-800 bg-transparent outline-none focus:ring-2 ring-stone-900 dark:ring-stone-100"
         />
         <input
           required
@@ -123,34 +123,34 @@ const ChecklistView: React.FC<ChecklistViewProps> = ({ tripId, travelData }) => 
           value={formData.item}
           onChange={(event) => setFormData((current) => ({ ...current, item: event.target.value }))}
           placeholder={travelData.isReadOnly ? 'Demo mode is read-only' : 'Item'}
-          className="px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-transparent outline-none focus:ring-2 ring-zinc-900 dark:ring-zinc-100"
+          className="px-4 py-2 rounded-xl border border-stone-200 dark:border-stone-800 bg-transparent outline-none focus:ring-2 ring-stone-900 dark:ring-stone-100"
         />
       </form>
 
       {isLoading ? (
-        <div className="py-12 text-center text-zinc-500 dark:text-zinc-400">Loading packing list...</div>
+        <div className="py-12 text-center text-stone-500 dark:text-stone-400">Loading packing list...</div>
       ) : items.length === 0 ? (
-        <div className="py-12 text-center text-zinc-500 dark:text-zinc-400">No packing items yet.</div>
+        <div className="py-12 text-center text-stone-500 dark:text-stone-400">No packing items yet.</div>
       ) : (
         <div className="space-y-10">
           {categories.map((category) => (
             <div key={category}>
-              <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-600 mb-4">{category}</h3>
+              <h3 className="text-xs font-bold uppercase tracking-widest text-stone-400 dark:text-stone-600 mb-4">{category}</h3>
               <div className="space-y-2">
                 {items.filter((item) => item.category === category).map((item) => (
                   <button
                     type="button"
                     key={item.id}
                     onClick={() => handleTogglePacked(item)}
-                    className="w-full flex items-center justify-between p-3 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all text-left group"
+                    className="w-full flex items-center justify-between p-3 rounded-xl bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 hover:border-stone-400 dark:hover:border-stone-600 transition-all text-left group"
                   >
                     <span className="flex items-center gap-3">
                       {item.is_packed ? (
                         <Check size={18} className="text-green-500" />
                       ) : (
-                        <Circle size={18} className="text-zinc-300 dark:text-zinc-700 group-hover:text-zinc-400" />
+                        <Circle size={18} className="text-stone-300 dark:text-stone-700 group-hover:text-stone-400" />
                       )}
-                      <span className={`text-sm ${item.is_packed ? 'text-zinc-400 dark:text-zinc-600 line-through' : 'text-zinc-700 dark:text-zinc-300'}`}>
+                      <span className={`text-sm ${item.is_packed ? 'text-stone-400 dark:text-stone-600 line-through' : 'text-stone-700 dark:text-stone-300'}`}>
                         {item.item}
                       </span>
                     </span>

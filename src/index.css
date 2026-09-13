@@ -2,6 +2,21 @@
 @custom-variant dark (&:where(.dark, .dark *));
 @source "./**/*.{ts,tsx}";
 
+@theme {
+  --font-display: "Fredoka", ui-sans-serif, system-ui, sans-serif;
+
+  --color-coral-50: #fff3ef;
+  --color-coral-100: #ffe4db;
+  --color-coral-200: #ffcab8;
+  --color-coral-300: #ffa98d;
+  --color-coral-400: #ff8763;
+  --color-coral-500: #ff6b4a;
+  --color-coral-600: #e8532e;
+  --color-coral-700: #c8431e;
+  --color-coral-800: #9f3417;
+  --color-coral-900: #7a2812;
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }

@@ -100,12 +100,12 @@ const BudgetView: React.FC<BudgetViewProps> = ({ tripId, travelData }) => {
   return (
     <div className="max-w-3xl mx-auto py-8 px-4">
       <div className="flex justify-between items-center mb-8">
-        <h2 className="text-2xl font-bold tracking-tighter">Budget Tracker</h2>
+        <h2 className="text-2xl font-display font-bold tracking-tighter">Budget Tracker</h2>
         <button
           type="submit"
           form="add-budget-item"
           disabled={isAdding || travelData.isReadOnly}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-medium hover:opacity-90 transition-opacity disabled:cursor-not-allowed disabled:opacity-50"
+          className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-coral-500 text-white text-sm font-medium hover:opacity-90 transition-opacity disabled:cursor-not-allowed disabled:opacity-50"
         >
           <Plus size={16} />
           Add Expense
@@ -125,7 +125,7 @@ const BudgetView: React.FC<BudgetViewProps> = ({ tripId, travelData }) => {
           value={formData.category}
           onChange={(event) => setFormData((current) => ({ ...current, category: event.target.value }))}
           placeholder={travelData.isReadOnly ? 'Demo mode is read-only' : 'Category'}
-          className="px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-transparent outline-none focus:ring-2 ring-zinc-900 dark:ring-zinc-100"
+          className="px-4 py-2 rounded-xl border border-stone-200 dark:border-stone-800 bg-transparent outline-none focus:ring-2 ring-stone-900 dark:ring-stone-100"
         />
         <input
           required
@@ -136,7 +136,7 @@ const BudgetView: React.FC<BudgetViewProps> = ({ tripId, travelData }) => {
           value={formData.amount}
           onChange={(event) => setFormData((current) => ({ ...current, amount: event.target.value }))}
           placeholder="Amount"
-          className="px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-transparent outline-none focus:ring-2 ring-zinc-900 dark:ring-zinc-100"
+          className="px-4 py-2 rounded-xl border border-stone-200 dark:border-stone-800 bg-transparent outline-none focus:ring-2 ring-stone-900 dark:ring-stone-100"
         />
         <input
           required
@@ -144,38 +144,38 @@ const BudgetView: React.FC<BudgetViewProps> = ({ tripId, travelData }) => {
           value={formData.currency}
           onChange={(event) => setFormData((current) => ({ ...current, currency: event.target.value.toUpperCase() }))}
           maxLength={3}
-          className="px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-transparent outline-none focus:ring-2 ring-zinc-900 dark:ring-zinc-100"
+          className="px-4 py-2 rounded-xl border border-stone-200 dark:border-stone-800 bg-transparent outline-none focus:ring-2 ring-stone-900 dark:ring-stone-100"
         />
       </form>
 
       <div className="grid grid-cols-2 gap-4 mb-12">
-        <div className="p-6 rounded-2xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-          <p className="text-xs font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1">Total Budget</p>
+        <div className="p-6 rounded-2xl bg-stone-100 dark:bg-stone-900 border border-stone-200 dark:border-stone-800">
+          <p className="text-xs font-medium uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-1">Total Budget</p>
           <p className="text-3xl font-bold">{formatMoney(total, items[0]?.currency ?? 'USD')}</p>
         </div>
-        <div className="p-6 rounded-2xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-          <p className="text-xs font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1">Amount Paid</p>
+        <div className="p-6 rounded-2xl bg-stone-100 dark:bg-stone-900 border border-stone-200 dark:border-stone-800">
+          <p className="text-xs font-medium uppercase tracking-wider text-stone-500 dark:text-stone-400 mb-1">Amount Paid</p>
           <p className="text-3xl font-bold text-green-600 dark:text-green-400">{formatMoney(paid, items[0]?.currency ?? 'USD')}</p>
         </div>
       </div>
 
       {isLoading ? (
-        <div className="py-12 text-center text-zinc-500 dark:text-zinc-400">Loading budget...</div>
+        <div className="py-12 text-center text-stone-500 dark:text-stone-400">Loading budget...</div>
       ) : items.length === 0 ? (
-        <div className="py-12 text-center text-zinc-500 dark:text-zinc-400">No expenses yet.</div>
+        <div className="py-12 text-center text-stone-500 dark:text-stone-400">No expenses yet.</div>
       ) : (
-        <div className="overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800">
+        <div className="overflow-hidden rounded-2xl border border-stone-200 dark:border-stone-800">
           <table className="w-full text-left border-collapse">
-            <thead className="bg-zinc-50 dark:bg-zinc-900 text-xs font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+            <thead className="bg-stone-50 dark:bg-stone-900 text-xs font-medium uppercase tracking-wider text-stone-500 dark:text-stone-400">
               <tr>
                 <th className="px-6 py-3">Category</th>
                 <th className="px-6 py-3 text-right">Amount</th>
                 <th className="px-6 py-3 text-center">Status</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-zinc-100 dark:divide-zinc-800">
+            <tbody className="divide-y divide-stone-100 dark:divide-stone-800">
               {items.map((item) => (
-                <tr key={item.id} className="hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition-colors">
+                <tr key={item.id} className="hover:bg-stone-50 dark:hover:bg-stone-900/50 transition-colors">
                   <td className="px-6 py-4 font-medium">{item.category}</td>
                   <td className="px-6 py-4 text-right font-mono">{formatMoney(item.amount, item.currency)}</td>
                   <td className="px-6 py-4">
@@ -183,7 +183,7 @@ const BudgetView: React.FC<BudgetViewProps> = ({ tripId, travelData }) => {
                       <button
                         type="button"
                         onClick={() => handleTogglePaid(item)}
-                        className="text-zinc-300 dark:text-zinc-700 hover:text-green-500 transition-colors"
+                        className="text-stone-300 dark:text-stone-700 hover:text-green-500 transition-colors"
                         aria-label={item.is_paid ? `Mark ${item.category} as planned` : `Mark ${item.category} as paid`}
                       >
                         {item.is_paid ? (

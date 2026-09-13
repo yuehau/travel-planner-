@@ -162,15 +162,15 @@ const ExplorePage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#0a0a0a] text-zinc-900 dark:text-zinc-100 transition-colors duration-300">
+    <div className="min-h-screen bg-white dark:bg-[#0a0a0a] text-stone-900 dark:text-stone-100 transition-colors duration-300">
       <AppNav />
 
       <main className="max-w-6xl mx-auto px-6 py-10 pb-40">
         {view === 'states' && (
           <>
             <div className="mb-10">
-              <h1 className="text-4xl font-bold tracking-tighter mb-2">Explore Malaysia</h1>
-              <p className="text-zinc-500 dark:text-zinc-400 font-light">Pick a state to browse its most-loved attractions.</p>
+              <h1 className="text-4xl font-display font-bold tracking-tighter mb-2">Explore Malaysia</h1>
+              <p className="text-stone-500 dark:text-stone-400 font-light">Pick a state to browse its most-loved attractions.</p>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -182,13 +182,13 @@ const ExplorePage: React.FC = () => {
                   onClick={() => handleSelectState(state.id)}
                   className={`text-left rounded-2xl border p-6 transition-all ${
                     state.available
-                      ? 'border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-zinc-100 hover:shadow-lg cursor-pointer'
-                      : 'border-zinc-100 dark:border-zinc-900 opacity-50 cursor-not-allowed'
+                      ? 'border-stone-200 dark:border-stone-800 hover:border-stone-900 dark:hover:border-stone-100 hover:shadow-lg cursor-pointer'
+                      : 'border-stone-100 dark:border-stone-900 opacity-50 cursor-not-allowed'
                   }`}
                 >
                   <div className="text-4xl mb-4">{state.emoji}</div>
                   <h3 className="text-xl font-semibold mb-1">{state.name}</h3>
-                  <p className="text-sm text-zinc-500 dark:text-zinc-400">{state.tagline}</p>
+                  <p className="text-sm text-stone-500 dark:text-stone-400">{state.tagline}</p>
                 </button>
               ))}
             </div>
@@ -200,17 +200,17 @@ const ExplorePage: React.FC = () => {
             <button
               type="button"
               onClick={() => setView('states')}
-              className="inline-flex items-center gap-2 text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors mb-6 group"
+              className="inline-flex items-center gap-2 text-sm text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 transition-colors mb-6 group"
             >
               <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
               All states
             </button>
 
             <div className="mb-8">
-              <h1 className="text-3xl font-bold tracking-tighter mb-1">
+              <h1 className="text-3xl font-display font-bold tracking-tighter mb-1">
                 {selectedState.emoji} {selectedState.name} plans
               </h1>
-              <p className="text-zinc-500 dark:text-zinc-400 font-light">Pick a ready-made plan, or build your own from scratch.</p>
+              <p className="text-stone-500 dark:text-stone-400 font-light">Pick a ready-made plan, or build your own from scratch.</p>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-3 mb-8">
@@ -219,25 +219,37 @@ const ExplorePage: React.FC = () => {
                 return (
                   <div
                     key={plan.id}
-                    className="flex flex-col rounded-2xl border border-zinc-200 dark:border-zinc-800 p-6 hover:border-zinc-900 dark:hover:border-zinc-100 hover:shadow-lg transition-all"
+                    className={`flex flex-col rounded-2xl p-6 hover:shadow-lg transition-all ${
+                      plan.tier === 'balanced'
+                        ? 'border-2 border-coral-500'
+                        : 'border border-stone-200 dark:border-stone-800 hover:border-stone-900 dark:hover:border-stone-100'
+                    }`}
                   >
-                    <span className="inline-flex w-fit items-center rounded-full bg-zinc-100 dark:bg-zinc-800 px-3 py-1 text-xs font-medium text-zinc-600 dark:text-zinc-400 mb-3">
+                    <span
+                      className={`inline-flex w-fit items-center rounded-full px-3 py-1 text-xs font-medium mb-3 ${
+                        plan.tier === 'budget'
+                          ? 'bg-coral-100 text-coral-700'
+                          : plan.tier === 'balanced'
+                            ? 'bg-teal-100 text-teal-700'
+                            : 'bg-amber-100 text-amber-800'
+                      }`}
+                    >
                       {tierLabels[plan.tier]}
                     </span>
                     <h3 className="text-lg font-semibold mb-1">
                       {plan.label} · {plan.name}
                     </h3>
-                    <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-4 flex-1">{plan.description}</p>
+                    <p className="text-sm text-stone-500 dark:text-stone-400 mb-4 flex-1">{plan.description}</p>
                     <div className="flex items-center justify-between text-sm mb-4">
                       <span className="font-semibold">{stats.cost === 0 ? 'Free' : `RM${stats.cost}`}</span>
-                      <span className="text-zinc-500 dark:text-zinc-400">
+                      <span className="text-stone-500 dark:text-stone-400">
                         {stats.days} day{stats.days === 1 ? '' : 's'} · {stats.count} stops
                       </span>
                     </div>
                     <button
                       type="button"
                       onClick={() => handleSelectPlan(plan)}
-                      className="w-full py-2.5 rounded-xl text-sm font-medium bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 hover:opacity-90 transition-opacity"
+                      className="w-full py-2.5 rounded-xl text-sm font-medium bg-coral-500 text-white hover:opacity-90 transition-opacity"
                     >
                       Use this plan
                     </button>
@@ -249,7 +261,7 @@ const ExplorePage: React.FC = () => {
             <button
               type="button"
               onClick={() => setView('attractions')}
-              className="text-sm font-medium text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors underline underline-offset-4"
+              className="text-sm font-medium text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 transition-colors underline underline-offset-4"
             >
               Or browse every attraction yourself
             </button>
@@ -261,17 +273,17 @@ const ExplorePage: React.FC = () => {
             <button
               type="button"
               onClick={() => setView('plans')}
-              className="inline-flex items-center gap-2 text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors mb-6 group"
+              className="inline-flex items-center gap-2 text-sm text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 transition-colors mb-6 group"
             >
               <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
               Back to plans
             </button>
 
             <div className="mb-6">
-              <h1 className="text-3xl font-bold tracking-tighter mb-1">
+              <h1 className="text-3xl font-display font-bold tracking-tighter mb-1">
                 {selectedState.emoji} {selectedState.name}
               </h1>
-              <p className="text-zinc-500 dark:text-zinc-400 font-light">Ranked by popularity - tap + to add to your cart.</p>
+              <p className="text-stone-500 dark:text-stone-400 font-light">Ranked by popularity - tap + to add to your cart.</p>
             </div>
 
             <div className="flex flex-wrap gap-2 mb-8">
@@ -280,8 +292,8 @@ const ExplorePage: React.FC = () => {
                 onClick={() => setCategoryFilter('all')}
                 className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
                   categoryFilter === 'all'
-                    ? 'bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900'
-                    : 'bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'
+                    ? 'bg-coral-500 text-white'
+                    : 'bg-stone-100 dark:bg-stone-900 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100'
                 }`}
               >
                 All
@@ -293,8 +305,8 @@ const ExplorePage: React.FC = () => {
                   onClick={() => setCategoryFilter(category)}
                   className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
                     categoryFilter === category
-                      ? 'bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900'
-                      : 'bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'
+                      ? 'bg-coral-500 text-white'
+                      : 'bg-stone-100 dark:bg-stone-900 text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100'
                   }`}
                 >
                   {categoryLabels[category]}
@@ -309,7 +321,7 @@ const ExplorePage: React.FC = () => {
                   <div
                     key={attraction.id}
                     className={`rounded-2xl border p-5 transition-all ${
-                      inCart ? 'border-zinc-900 dark:border-zinc-100' : 'border-zinc-200 dark:border-zinc-800'
+                      inCart ? 'border-teal-500' : 'border-stone-200 dark:border-stone-800'
                     }`}
                   >
                     <div className="flex items-start justify-between gap-3 mb-3">
@@ -320,8 +332,8 @@ const ExplorePage: React.FC = () => {
                         aria-label={inCart ? `Remove ${attraction.name} from cart` : `Add ${attraction.name} to cart`}
                         className={`shrink-0 flex h-8 w-8 items-center justify-center rounded-full transition-colors ${
                           inCart
-                            ? 'bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900'
-                            : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100'
+                            ? 'bg-coral-500 text-white'
+                            : 'bg-stone-100 dark:bg-stone-800 text-stone-500 hover:text-stone-900 dark:hover:text-stone-100'
                         }`}
                       >
                         {inCart ? <Check size={16} /> : <Plus size={16} />}
@@ -329,9 +341,9 @@ const ExplorePage: React.FC = () => {
                     </div>
 
                     <h3 className="text-base font-semibold mb-1">{attraction.name}</h3>
-                    <p className="text-xs text-zinc-500 dark:text-zinc-400 mb-3 line-clamp-2">{attraction.description}</p>
+                    <p className="text-xs text-stone-500 dark:text-stone-400 mb-3 line-clamp-2">{attraction.description}</p>
 
-                    <div className="flex items-center justify-between text-xs text-zinc-500 dark:text-zinc-400">
+                    <div className="flex items-center justify-between text-xs text-stone-500 dark:text-stone-400">
                       <span className="flex items-center gap-1">
                         <Star size={12} className="fill-amber-400 text-amber-400" />
                         {attraction.rating.toFixed(1)}
@@ -351,17 +363,17 @@ const ExplorePage: React.FC = () => {
             </div>
 
             {cart.size > 0 && (
-              <div className="fixed inset-x-0 bottom-0 z-20 border-t border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-6 py-4 shadow-[0_-4px_16px_rgba(0,0,0,0.06)]">
+              <div className="fixed inset-x-0 bottom-0 z-20 border-t border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-6 py-4 shadow-[0_-4px_16px_rgba(0,0,0,0.06)]">
                 <div className="max-w-6xl mx-auto flex items-center justify-between gap-4">
                   <div className="flex items-center gap-3 text-sm">
                     <ShoppingCart size={18} />
                     <span className="font-medium">{cart.size} selected</span>
-                    <span className="text-zinc-500 dark:text-zinc-400">· RM{cartTotalCost} estimated</span>
+                    <span className="text-stone-500 dark:text-stone-400">· RM{cartTotalCost} estimated</span>
                   </div>
                   <button
                     type="button"
                     onClick={() => setView('route')}
-                    className="px-5 py-2.5 rounded-full text-sm font-medium bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 hover:opacity-90 transition-opacity"
+                    className="px-5 py-2.5 rounded-full text-sm font-medium bg-coral-500 text-white hover:opacity-90 transition-opacity"
                   >
                     Build my route
                   </button>
@@ -376,15 +388,15 @@ const ExplorePage: React.FC = () => {
             <button
               type="button"
               onClick={() => setView('attractions')}
-              className="inline-flex items-center gap-2 text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors mb-6 group"
+              className="inline-flex items-center gap-2 text-sm text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 transition-colors mb-6 group"
             >
               <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
               Back to attractions
             </button>
 
             <div className="mb-8">
-              <h1 className="text-3xl font-bold tracking-tighter mb-1">Your {selectedState.name} route</h1>
-              <p className="text-zinc-500 dark:text-zinc-400 font-light">
+              <h1 className="text-3xl font-display font-bold tracking-tighter mb-1">Your {selectedState.name} route</h1>
+              <p className="text-stone-500 dark:text-stone-400 font-light">
                 {routeDays.length} day{routeDays.length === 1 ? '' : 's'} · RM{cartTotalCost} estimated, ordered by distance.
               </p>
             </div>
@@ -396,29 +408,29 @@ const ExplorePage: React.FC = () => {
             <div className="space-y-8 mb-10">
               {routeDays.map(([day, stops]) => (
                 <div key={day}>
-                  <h2 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-3">Day {day}</h2>
+                  <h2 className="text-xs font-semibold uppercase tracking-wider text-stone-400 dark:text-stone-500 mb-3">Day {day}</h2>
                   <div className="space-y-3">
                     {stops.map((stop) => (
                       <div
                         key={stop.attraction.id}
-                        className="flex items-center gap-4 rounded-xl border border-zinc-200 dark:border-zinc-800 p-4"
+                        className="flex items-center gap-4 rounded-xl border border-stone-200 dark:border-stone-800 p-4"
                       >
                         <div className="text-2xl">{stop.attraction.emoji}</div>
                         <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 text-xs font-medium text-zinc-400 dark:text-zinc-500 uppercase tracking-wider mb-1">
+                          <div className="flex items-center gap-2 text-xs font-medium text-stone-400 dark:text-stone-500 uppercase tracking-wider mb-1">
                             <Clock size={12} />
                             {formatHour(stop.startHour)}
                           </div>
                           <h3 className="text-sm font-semibold truncate">{stop.attraction.name}</h3>
                         </div>
-                        <div className="text-sm text-zinc-500 dark:text-zinc-400 shrink-0">
+                        <div className="text-sm text-stone-500 dark:text-stone-400 shrink-0">
                           {stop.attraction.estimatedCost === 0 ? 'Free' : `RM${stop.attraction.estimatedCost}`}
                         </div>
                         <button
                           type="button"
                           onClick={() => toggleCart(stop.attraction.id)}
                           aria-label={`Remove ${stop.attraction.name}`}
-                          className="shrink-0 p-1 text-zinc-300 dark:text-zinc-700 hover:text-red-500 transition-colors"
+                          className="shrink-0 p-1 text-stone-300 dark:text-stone-700 hover:text-red-500 transition-colors"
                         >
                           <X size={16} />
                         </button>
@@ -429,7 +441,7 @@ const ExplorePage: React.FC = () => {
               ))}
             </div>
 
-            <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-5 dark:border-zinc-800 dark:bg-zinc-900">
+            <div className="rounded-2xl border border-stone-200 bg-stone-50 p-5 dark:border-stone-800 dark:bg-stone-900">
               <label className="grid gap-1 text-sm font-medium max-w-xs">
                 Trip start date
                 <input
@@ -438,7 +450,7 @@ const ExplorePage: React.FC = () => {
                   disabled={isCreating || !travelData || travelData.isReadOnly}
                   value={tripStartDate}
                   onChange={(event) => setTripStartDate(event.target.value)}
-                  className="rounded-xl border border-zinc-200 bg-white px-4 py-2 outline-none ring-zinc-900 focus:ring-2 dark:border-zinc-800 dark:bg-[#0a0a0a] dark:ring-zinc-100"
+                  className="rounded-xl border border-stone-200 bg-white px-4 py-2 outline-none ring-stone-900 focus:ring-2 dark:border-stone-800 dark:bg-[#0a0a0a] dark:ring-stone-100"
                 />
               </label>
 
@@ -450,7 +462,7 @@ const ExplorePage: React.FC = () => {
                 type="button"
                 disabled={isCreating || !travelData || travelData.isReadOnly || !tripStartDate}
                 onClick={handleCreateTrip}
-                className="mt-4 px-6 py-3 rounded-xl bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 font-semibold hover:opacity-90 transition-opacity disabled:cursor-not-allowed disabled:opacity-50"
+                className="mt-4 px-6 py-3 rounded-xl bg-coral-500 text-white font-semibold hover:opacity-90 transition-opacity disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {isCreating ? 'Creating trip...' : 'Create this trip'}
               </button>

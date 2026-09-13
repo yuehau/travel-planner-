@@ -26,10 +26,10 @@ const formatTime = (time: string | null) => {
 
 const statusBorderClass = (node: ItineraryNode, isUnderReview: boolean) => {
   if (isUnderReview) return 'border-l-amber-500';
-  if (node.status === 'broken') return 'border-l-red-500';
-  if (node.status === 'replanned') return 'border-l-emerald-500';
-  if (node.status === 'cancelled') return 'border-l-zinc-300 dark:border-l-zinc-700';
-  return 'border-l-zinc-300 dark:border-l-zinc-700';
+  if (node.status === 'broken') return 'border-l-coral-500';
+  if (node.status === 'replanned') return 'border-l-teal-500';
+  if (node.status === 'cancelled') return 'border-l-stone-300 dark:border-l-stone-700';
+  return 'border-l-stone-300 dark:border-l-stone-700';
 };
 
 const MindMapView: React.FC<MindMapViewProps> = ({ tripId, travelData }) => {
@@ -174,14 +174,14 @@ const MindMapView: React.FC<MindMapViewProps> = ({ tripId, travelData }) => {
   };
 
   if (isLoading) {
-    return <div className="py-12 text-center text-zinc-500 dark:text-zinc-400">Loading mind map...</div>;
+    return <div className="py-12 text-center text-stone-500 dark:text-stone-400">Loading mind map...</div>;
   }
 
   return (
     <div className="max-w-6xl mx-auto py-8 px-4">
       <div className="mb-8">
-        <h2 className="text-2xl font-bold tracking-tighter">Mind Map</h2>
-        <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
+        <h2 className="text-2xl font-display font-bold tracking-tighter">Mind Map</h2>
+        <p className="text-sm text-stone-500 dark:text-stone-400 mt-1">
           Every stop is a node. Mark one broken and see how the plan re-flows.
         </p>
       </div>
@@ -195,19 +195,19 @@ const MindMapView: React.FC<MindMapViewProps> = ({ tripId, travelData }) => {
       )}
 
       {!isLoading && nodes.length === 0 && !loadError && (
-        <div className="py-12 text-center text-zinc-500 dark:text-zinc-400">No mind-map nodes for this trip yet.</div>
+        <div className="py-12 text-center text-stone-500 dark:text-stone-400">No mind-map nodes for this trip yet.</div>
       )}
 
       <div ref={containerRef} className="relative flex gap-8 overflow-x-auto pb-4">
         <svg className="absolute inset-0 h-full w-full pointer-events-none" style={{ overflow: 'visible' }}>
           {connectorPaths.map((path) => (
-            <path key={path.id} d={path.d} fill="none" stroke="currentColor" className="text-zinc-300 dark:text-zinc-700" strokeWidth={1.5} />
+            <path key={path.id} d={path.d} fill="none" stroke="currentColor" className="text-stone-300 dark:text-stone-700" strokeWidth={1.5} />
           ))}
         </svg>
 
         {days.map(([dayNumber, dayNodes]) => (
           <div key={dayNumber} className="relative z-10 flex w-72 shrink-0 flex-col gap-6">
-            <div className="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Day {dayNumber}</div>
+            <div className="text-xs font-semibold uppercase tracking-wider text-stone-400 dark:text-stone-500">Day {dayNumber}</div>
 
             {dayNodes.map((node) => {
               const isUnderReview = descendantIds.has(node.id) && (isRequesting || proposal !== null);
@@ -220,21 +220,21 @@ const MindMapView: React.FC<MindMapViewProps> = ({ tripId, travelData }) => {
                     if (el) cardRefs.current.set(node.id, el);
                     else cardRefs.current.delete(node.id);
                   }}
-                  className={`rounded-xl border border-zinc-200 dark:border-zinc-800 border-l-4 bg-white dark:bg-zinc-900 p-4 shadow-sm transition-all duration-500 ${statusBorderClass(node, isUnderReview)} ${node.status === 'cancelled' ? 'opacity-60' : ''}`}
+                  className={`rounded-xl border border-stone-200 dark:border-stone-800 border-l-4 bg-white dark:bg-stone-900 p-4 shadow-sm transition-all duration-500 ${statusBorderClass(node, isUnderReview)} ${node.status === 'cancelled' ? 'opacity-60' : ''}`}
                 >
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex-1">
                       {time && (
-                        <div className="flex items-center gap-1 text-xs font-medium text-zinc-400 dark:text-zinc-500 mb-1 uppercase tracking-wider">
+                        <div className="flex items-center gap-1 text-xs font-medium text-stone-400 dark:text-stone-500 mb-1 uppercase tracking-wider">
                           <Clock size={12} />
                           {time}
                         </div>
                       )}
-                      <h3 className={`text-sm font-semibold ${node.status === 'cancelled' ? 'line-through text-zinc-400' : ''}`}>
+                      <h3 className={`text-sm font-semibold ${node.status === 'cancelled' ? 'line-through text-stone-400' : ''}`}>
                         {node.title}
                       </h3>
-                      {node.notes && <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">{node.notes}</p>}
-                      <div className="flex items-center gap-2 mt-2 text-xs text-zinc-400 dark:text-zinc-500">
+                      {node.notes && <p className="text-xs text-stone-500 dark:text-stone-400 mt-1">{node.notes}</p>}
+                      <div className="flex items-center gap-2 mt-2 text-xs text-stone-400 dark:text-stone-500">
                         <Wallet size={12} />
                         {node.currency} {node.estimated_cost}
                         {node.ai_generated && (
@@ -244,7 +244,7 @@ const MindMapView: React.FC<MindMapViewProps> = ({ tripId, travelData }) => {
                         )}
                       </div>
                       {node.status === 'broken' && node.break_reason && (
-                        <p className="text-xs text-red-600 dark:text-red-400 mt-2">Broken: {node.break_reason}</p>
+                        <p className="text-xs text-coral-700 dark:text-coral-400 mt-2">Broken: {node.break_reason}</p>
                       )}
                     </div>
 
@@ -253,7 +253,7 @@ const MindMapView: React.FC<MindMapViewProps> = ({ tripId, travelData }) => {
                         type="button"
                         onClick={() => setBreakingNodeId(breakingNodeId === node.id ? null : node.id)}
                         aria-label={`Something broke with ${node.title}`}
-                        className="p-1 text-zinc-300 dark:text-zinc-700 hover:text-red-500 transition-colors"
+                        className="p-1 text-stone-300 dark:text-stone-700 hover:text-coral-500 transition-colors"
                       >
                         <AlertTriangle size={16} />
                       </button>
@@ -261,13 +261,13 @@ const MindMapView: React.FC<MindMapViewProps> = ({ tripId, travelData }) => {
                   </div>
 
                   {breakingNodeId === node.id && (
-                    <div className="mt-3 flex flex-col gap-2 border-t border-zinc-100 dark:border-zinc-800 pt-3">
+                    <div className="mt-3 flex flex-col gap-2 border-t border-stone-100 dark:border-stone-800 pt-3">
                       {BREAK_REASONS.map((reason) => (
                         <button
                           key={reason}
                           type="button"
                           onClick={() => handleBreak(node.id, reason)}
-                          className="text-left text-xs px-3 py-1.5 rounded-lg bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
+                          className="text-left text-xs px-3 py-1.5 rounded-lg bg-stone-100 dark:bg-stone-800 hover:bg-stone-200 dark:hover:bg-stone-700 transition-colors"
                         >
                           {reason}
                         </button>
@@ -277,13 +277,13 @@ const MindMapView: React.FC<MindMapViewProps> = ({ tripId, travelData }) => {
                           value={customReason}
                           onChange={(event) => setCustomReason(event.target.value)}
                           placeholder="Custom reason"
-                          className="flex-1 text-xs px-3 py-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-transparent outline-none"
+                          className="flex-1 text-xs px-3 py-1.5 rounded-lg border border-stone-200 dark:border-stone-800 bg-transparent outline-none"
                         />
                         <button
                           type="button"
                           disabled={!customReason.trim()}
                           onClick={() => handleBreak(node.id, customReason.trim())}
-                          className="text-xs px-3 py-1.5 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 disabled:opacity-40"
+                          className="text-xs px-3 py-1.5 rounded-lg bg-coral-500 text-white disabled:opacity-40"
                         >
                           Go
                         </button>
@@ -298,16 +298,16 @@ const MindMapView: React.FC<MindMapViewProps> = ({ tripId, travelData }) => {
       </div>
 
       {(isRequesting || proposal) && (
-        <div className="fixed inset-x-0 bottom-0 z-20 border-t border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-6 py-4 shadow-[0_-4px_16px_rgba(0,0,0,0.06)]">
+        <div className="fixed inset-x-0 bottom-0 z-20 border-t border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 px-6 py-4 shadow-[0_-4px_16px_rgba(0,0,0,0.06)]">
           <div className="max-w-6xl mx-auto">
-            {isRequesting && <div className="text-sm text-zinc-500 dark:text-zinc-400">Asking Claude how to re-plan around this...</div>}
+            {isRequesting && <div className="text-sm text-stone-500 dark:text-stone-400">Asking Claude how to re-plan around this...</div>}
 
             {proposal && (
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
                   <p className="text-sm font-medium">{proposal.summary}</p>
                   {!proposal.within_budget && (
-                    <p className="text-xs text-red-600 dark:text-red-400 mt-1">
+                    <p className="text-xs text-coral-700 dark:text-coral-400 mt-1">
                       This proposal exceeds the trip's budget cap (estimated total: {proposal.total_estimated_cost}).
                     </p>
                   )}
@@ -317,7 +317,7 @@ const MindMapView: React.FC<MindMapViewProps> = ({ tripId, travelData }) => {
                     type="button"
                     onClick={resetReplanState}
                     disabled={isApplying}
-                    className="px-4 py-2 rounded-full text-sm font-medium border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors disabled:opacity-50"
+                    className="px-4 py-2 rounded-full text-sm font-medium border border-stone-200 dark:border-stone-800 hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors disabled:opacity-50"
                   >
                     Discard
                   </button>
@@ -325,7 +325,7 @@ const MindMapView: React.FC<MindMapViewProps> = ({ tripId, travelData }) => {
                     type="button"
                     onClick={handleApply}
                     disabled={isApplying}
-                    className="px-4 py-2 rounded-full text-sm font-medium bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 hover:opacity-90 transition-opacity disabled:opacity-50"
+                    className="px-4 py-2 rounded-full text-sm font-medium bg-coral-500 text-white hover:opacity-90 transition-opacity disabled:opacity-50"
                   >
                     {isApplying ? 'Applying...' : 'Apply'}
                   </button>

@@ -37,18 +37,18 @@ const AuthPage: React.FC<AuthPageProps> = ({ mode }) => {
   };
 
   return (
-    <main className="min-h-screen bg-white dark:bg-[#0a0a0a] text-zinc-900 dark:text-zinc-100 flex items-center justify-center px-6">
+    <main className="min-h-screen bg-white dark:bg-[#0a0a0a] text-stone-900 dark:text-stone-100 flex items-center justify-center px-6">
       <div className="absolute right-6 top-6">
         <ThemeToggle />
       </div>
       <section className="w-full max-w-sm">
-        <Link to="/" className="group inline-flex items-center gap-2 text-xl font-semibold tracking-tight mb-10">
+        <Link to="/" className="group inline-flex items-center gap-2 font-display text-xl font-semibold tracking-tight mb-10">
           <BrandMark interactive />
           Cuti²
         </Link>
 
-        <h1 className="text-3xl font-bold tracking-tighter mb-3">{title}</h1>
-        <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-8">
+        <h1 className="text-3xl font-display font-bold tracking-tighter mb-3">{title}</h1>
+        <p className="text-sm text-stone-500 dark:text-stone-400 mb-8">
           Use Google to keep your trips private and synced.
         </p>
 
@@ -68,7 +68,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ mode }) => {
           type="button"
           onClick={handleGoogleAuth}
           disabled={isSubmitting || Boolean(configurationError)}
-          className="w-full rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 px-5 py-3 font-medium disabled:cursor-not-allowed disabled:opacity-50"
+          className="w-full rounded-full bg-coral-500 text-white px-5 py-3 font-medium disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isSubmitting ? 'Opening Google...' : buttonText}
         </button>
@@ -76,7 +76,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ mode }) => {
         <button
           type="button"
           onClick={handleDemoClick}
-          className="mt-3 w-full rounded-full px-5 py-3 font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+          className="mt-3 w-full rounded-full px-5 py-3 font-medium text-stone-600 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100"
         >
           Try read-only demo
         </button>

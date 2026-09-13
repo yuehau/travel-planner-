@@ -99,12 +99,12 @@ const ItineraryView: React.FC<ItineraryViewProps> = ({ tripId, travelData }) => 
   return (
     <div className="max-w-3xl mx-auto py-8 px-4">
       <div className="flex justify-between items-center mb-8">
-        <h2 className="text-2xl font-bold tracking-tighter">Itinerary</h2>
+        <h2 className="text-2xl font-display font-bold tracking-tighter">Itinerary</h2>
         <button
           type="submit"
           form="add-itinerary-item"
           disabled={isAdding || travelData.isReadOnly}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-medium hover:opacity-90 transition-opacity disabled:cursor-not-allowed disabled:opacity-50"
+          className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-coral-500 text-white text-sm font-medium hover:opacity-90 transition-opacity disabled:cursor-not-allowed disabled:opacity-50"
         >
           <Plus size={16} />
           Add Activity
@@ -126,7 +126,7 @@ const ItineraryView: React.FC<ItineraryViewProps> = ({ tripId, travelData }) => 
           value={formData.day_number}
           onChange={(event) => setFormData((current) => ({ ...current, day_number: event.target.value }))}
           placeholder="Day"
-          className="px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-transparent outline-none focus:ring-2 ring-zinc-900 dark:ring-zinc-100"
+          className="px-4 py-2 rounded-xl border border-stone-200 dark:border-stone-800 bg-transparent outline-none focus:ring-2 ring-stone-900 dark:ring-stone-100"
         />
         <input
           required
@@ -134,7 +134,7 @@ const ItineraryView: React.FC<ItineraryViewProps> = ({ tripId, travelData }) => 
           value={formData.activity}
           onChange={(event) => setFormData((current) => ({ ...current, activity: event.target.value }))}
           placeholder={travelData.isReadOnly ? 'Demo mode is read-only' : 'Activity'}
-          className="px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-transparent outline-none focus:ring-2 ring-zinc-900 dark:ring-zinc-100"
+          className="px-4 py-2 rounded-xl border border-stone-200 dark:border-stone-800 bg-transparent outline-none focus:ring-2 ring-stone-900 dark:ring-stone-100"
         />
         <select
           disabled={isAdding || travelData.isReadOnly}
@@ -147,7 +147,7 @@ const ItineraryView: React.FC<ItineraryViewProps> = ({ tripId, travelData }) => 
               location: place?.name ?? current.location,
             }));
           }}
-          className="px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-transparent outline-none focus:ring-2 ring-zinc-900 dark:ring-zinc-100"
+          className="px-4 py-2 rounded-xl border border-stone-200 dark:border-stone-800 bg-transparent outline-none focus:ring-2 ring-stone-900 dark:ring-stone-100"
         >
           <option value="">No saved place</option>
           {places.map((place) => (
@@ -159,14 +159,14 @@ const ItineraryView: React.FC<ItineraryViewProps> = ({ tripId, travelData }) => 
           value={formData.location}
           onChange={(event) => setFormData((current) => ({ ...current, location: event.target.value }))}
           placeholder="Location"
-          className="px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-transparent outline-none focus:ring-2 ring-zinc-900 dark:ring-zinc-100"
+          className="px-4 py-2 rounded-xl border border-stone-200 dark:border-stone-800 bg-transparent outline-none focus:ring-2 ring-stone-900 dark:ring-stone-100"
         />
         <input
           disabled={isAdding || travelData.isReadOnly}
           type="time"
           value={formData.start_time}
           onChange={(event) => setFormData((current) => ({ ...current, start_time: event.target.value }))}
-          className="px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-transparent outline-none focus:ring-2 ring-zinc-900 dark:ring-zinc-100"
+          className="px-4 py-2 rounded-xl border border-stone-200 dark:border-stone-800 bg-transparent outline-none focus:ring-2 ring-stone-900 dark:ring-stone-100"
         />
         <textarea
           disabled={isAdding || travelData.isReadOnly}
@@ -174,45 +174,45 @@ const ItineraryView: React.FC<ItineraryViewProps> = ({ tripId, travelData }) => 
           onChange={(event) => setFormData((current) => ({ ...current, notes: event.target.value }))}
           placeholder="Notes"
           rows={2}
-          className="md:col-span-4 px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-transparent outline-none focus:ring-2 ring-zinc-900 dark:ring-zinc-100 resize-none"
+          className="md:col-span-4 px-4 py-2 rounded-xl border border-stone-200 dark:border-stone-800 bg-transparent outline-none focus:ring-2 ring-stone-900 dark:ring-stone-100 resize-none"
         />
       </form>
 
-      {isLoading && <div className="py-12 text-center text-zinc-500 dark:text-zinc-400">Loading itinerary...</div>}
+      {isLoading && <div className="py-12 text-center text-stone-500 dark:text-stone-400">Loading itinerary...</div>}
 
       {!isLoading && items.length === 0 && (
-        <div className="py-12 text-center text-zinc-500 dark:text-zinc-400">No activities yet.</div>
+        <div className="py-12 text-center text-stone-500 dark:text-stone-400">No activities yet.</div>
       )}
 
       <div className="relative space-y-8">
-        {items.length > 0 && <div className="absolute left-4 top-2 bottom-2 w-px bg-zinc-200 dark:bg-zinc-800" />}
+        {items.length > 0 && <div className="absolute left-4 top-2 bottom-2 w-px bg-stone-200 dark:bg-stone-800" />}
 
         {items.map((item) => (
           <div key={item.id} className="relative pl-10 group">
-            <div className="absolute left-2 top-2 w-4 h-4 rounded-full bg-white dark:bg-zinc-900 border-2 border-zinc-900 dark:border-zinc-100 z-10 group-hover:scale-125 transition-transform" />
+            <div className="absolute left-2 top-2 w-4 h-4 rounded-full bg-white dark:bg-stone-900 border-2 border-stone-900 dark:border-stone-100 z-10 group-hover:scale-125 transition-transform" />
 
             <div className="flex justify-between items-start gap-4">
               <div className="flex-1">
-                <div className="flex items-center gap-2 text-xs font-medium text-zinc-400 dark:text-zinc-500 mb-1 uppercase tracking-wider">
+                <div className="flex items-center gap-2 text-xs font-medium text-stone-400 dark:text-stone-500 mb-1 uppercase tracking-wider">
                   <Clock size={12} />
                   Day {item.day_number} - {formatTime(item.start_time)}
                 </div>
                 <h3 className="text-lg font-semibold mb-1">{item.activity}</h3>
                 {item.location && (
-                  <div className="flex items-center gap-1 text-sm text-zinc-500 dark:text-zinc-400 mb-2">
+                  <div className="flex items-center gap-1 text-sm text-stone-500 dark:text-stone-400 mb-2">
                     <MapPin size={14} />
                     {item.location}
                   </div>
                 )}
                 {item.notes && (
-                  <p className="text-sm text-zinc-500 dark:text-zinc-400 font-light italic">
+                  <p className="text-sm text-stone-500 dark:text-stone-400 font-light italic">
                     {item.notes}
                   </p>
                 )}
               </div>
               <button
                 type="button"
-                className="p-1 text-zinc-300 dark:text-zinc-700 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                className="p-1 text-stone-300 dark:text-stone-700 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
                 aria-label={`More options for ${item.activity}`}
               >
                 <MoreVertical size={18} />

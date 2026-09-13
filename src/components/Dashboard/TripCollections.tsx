@@ -116,10 +116,10 @@ const TripCollections = ({ travelData, onPlanTrip }: TripCollectionsProps) => {
     <section className="mb-12">
       <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h2 className="text-2xl font-bold tracking-tighter">Collections</h2>
-          <p className="text-sm font-light text-zinc-500 dark:text-zinc-400">Save places you have visited or want to turn into future trips.</p>
+          <h2 className="text-2xl font-display font-bold tracking-tighter">Collections</h2>
+          <p className="text-sm font-light text-stone-500 dark:text-stone-400">Save places you have visited or want to turn into future trips.</p>
         </div>
-        <span className="text-xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-600">{items.length} saved</span>
+        <span className="text-xs font-bold uppercase tracking-widest text-stone-400 dark:text-stone-600">{items.length} saved</span>
       </div>
 
       {error && (
@@ -128,27 +128,27 @@ const TripCollections = ({ travelData, onPlanTrip }: TripCollectionsProps) => {
         </div>
       )}
 
-      <form onSubmit={handleAdd} className="mb-6 grid gap-3 rounded-2xl border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-800 dark:bg-zinc-900 md:grid-cols-[1fr_1fr_150px_auto]">
+      <form onSubmit={handleAdd} className="mb-6 grid gap-3 rounded-2xl border border-stone-200 bg-stone-50 p-4 dark:border-stone-800 dark:bg-stone-900 md:grid-cols-[1fr_1fr_150px_auto]">
         <input
           required
           disabled={isSaving || travelData?.isReadOnly}
           value={destination}
           onChange={(event) => setDestination(event.target.value)}
           placeholder={travelData?.isReadOnly ? 'Demo mode is read-only' : 'Destination'}
-          className="rounded-xl border border-zinc-200 bg-white px-4 py-2 text-sm outline-none ring-zinc-900 focus:ring-2 dark:border-zinc-800 dark:bg-[#0a0a0a] dark:ring-zinc-100"
+          className="rounded-xl border border-stone-200 bg-white px-4 py-2 text-sm outline-none ring-stone-900 focus:ring-2 dark:border-stone-800 dark:bg-[#0a0a0a] dark:ring-stone-100"
         />
         <input
           disabled={isSaving || travelData?.isReadOnly}
           value={notes}
           onChange={(event) => setNotes(event.target.value)}
           placeholder="Notes"
-          className="rounded-xl border border-zinc-200 bg-white px-4 py-2 text-sm outline-none ring-zinc-900 focus:ring-2 dark:border-zinc-800 dark:bg-[#0a0a0a] dark:ring-zinc-100"
+          className="rounded-xl border border-stone-200 bg-white px-4 py-2 text-sm outline-none ring-stone-900 focus:ring-2 dark:border-stone-800 dark:bg-[#0a0a0a] dark:ring-stone-100"
         />
         <select
           disabled={isSaving || travelData?.isReadOnly}
           value={status}
           onChange={(event) => setStatus(event.target.value as TripCollectionStatus)}
-          className="rounded-xl border border-zinc-200 bg-white px-4 py-2 text-sm outline-none ring-zinc-900 focus:ring-2 dark:border-zinc-800 dark:bg-[#0a0a0a] dark:ring-zinc-100"
+          className="rounded-xl border border-stone-200 bg-white px-4 py-2 text-sm outline-none ring-stone-900 focus:ring-2 dark:border-stone-800 dark:bg-[#0a0a0a] dark:ring-stone-100"
         >
           <option value="want_to_go">Want to go</option>
           <option value="visited">Visited</option>
@@ -156,7 +156,7 @@ const TripCollections = ({ travelData, onPlanTrip }: TripCollectionsProps) => {
         <button
           type="submit"
           disabled={isSaving || travelData?.isReadOnly}
-          className="inline-flex items-center justify-center gap-2 rounded-xl bg-zinc-900 px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-50 dark:bg-zinc-100 dark:text-zinc-900"
+          className="inline-flex items-center justify-center gap-2 rounded-xl bg-coral-500 px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
         >
           <Plus size={16} />
           Save
@@ -164,37 +164,37 @@ const TripCollections = ({ travelData, onPlanTrip }: TripCollectionsProps) => {
       </form>
 
       {isLoading ? (
-        <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-6 text-center text-sm text-zinc-500 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-400">
+        <div className="rounded-2xl border border-stone-200 bg-stone-50 p-6 text-center text-sm text-stone-500 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-400">
           Loading saved destinations...
         </div>
       ) : (
         <div className="grid gap-4 lg:grid-cols-2">
           {(['want_to_go', 'visited'] as TripCollectionStatus[]).map((groupStatus) => (
-            <div key={groupStatus} className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-800 dark:bg-zinc-900">
+            <div key={groupStatus} className="rounded-2xl border border-stone-200 bg-stone-50 p-4 dark:border-stone-800 dark:bg-stone-900">
               <div className="mb-4 flex items-center justify-between">
-                <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-600">{statusLabel[groupStatus]}</h3>
-                <span className="text-xs text-zinc-400 dark:text-zinc-600">{groupedItems[groupStatus].length}</span>
+                <h3 className="text-xs font-bold uppercase tracking-widest text-stone-400 dark:text-stone-600">{statusLabel[groupStatus]}</h3>
+                <span className="text-xs text-stone-400 dark:text-stone-600">{groupedItems[groupStatus].length}</span>
               </div>
 
               {groupedItems[groupStatus].length === 0 ? (
-                <p className="py-8 text-center text-sm text-zinc-500 dark:text-zinc-400">Nothing saved here yet.</p>
+                <p className="py-8 text-center text-sm text-stone-500 dark:text-stone-400">Nothing saved here yet.</p>
               ) : (
                 <div className="space-y-2">
                   {groupedItems[groupStatus].map((item) => (
-                    <article key={item.id} className="rounded-xl border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-[#0a0a0a]">
+                    <article key={item.id} className="rounded-xl border border-stone-200 bg-white p-4 dark:border-stone-800 dark:bg-[#0a0a0a]">
                       <div className="mb-3 flex items-start justify-between gap-4">
                         <div>
                           <div className="flex items-center gap-2">
-                            <MapPin size={16} className="text-zinc-400" />
+                            <MapPin size={16} className="text-stone-400" />
                             <h4 className="font-semibold">{item.destination}</h4>
                           </div>
-                          {item.notes && <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">{item.notes}</p>}
+                          {item.notes && <p className="mt-2 text-sm text-stone-500 dark:text-stone-400">{item.notes}</p>}
                         </div>
                         <button
                           type="button"
                           onClick={() => handleDelete(item)}
                           disabled={travelData?.isReadOnly}
-                          className="rounded-full p-1.5 text-zinc-300 transition-colors hover:text-red-600 disabled:cursor-not-allowed disabled:opacity-50 dark:text-zinc-700 dark:hover:text-red-400"
+                          className="rounded-full p-1.5 text-stone-300 transition-colors hover:text-red-600 disabled:cursor-not-allowed disabled:opacity-50 dark:text-stone-700 dark:hover:text-red-400"
                           aria-label={`Remove ${item.destination}`}
                         >
                           <Trash2 size={16} />
@@ -204,7 +204,7 @@ const TripCollections = ({ travelData, onPlanTrip }: TripCollectionsProps) => {
                         <button
                           type="button"
                           onClick={() => onPlanTrip(item.destination)}
-                          className="rounded-full border border-zinc-200 px-3 py-1.5 text-xs font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:border-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-100"
+                          className="rounded-full border border-stone-200 px-3 py-1.5 text-xs font-medium text-stone-600 transition-colors hover:text-stone-900 dark:border-stone-800 dark:text-stone-400 dark:hover:text-stone-100"
                         >
                           Plan trip
                         </button>
@@ -213,7 +213,7 @@ const TripCollections = ({ travelData, onPlanTrip }: TripCollectionsProps) => {
                             type="button"
                             onClick={() => handleStatusChange(item, 'visited')}
                             disabled={travelData?.isReadOnly}
-                            className="inline-flex items-center gap-1 rounded-full border border-zinc-200 px-3 py-1.5 text-xs font-medium text-zinc-600 transition-colors hover:text-zinc-900 disabled:cursor-not-allowed disabled:opacity-50 dark:border-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-100"
+                            className="inline-flex items-center gap-1 rounded-full border border-stone-200 px-3 py-1.5 text-xs font-medium text-stone-600 transition-colors hover:text-stone-900 disabled:cursor-not-allowed disabled:opacity-50 dark:border-stone-800 dark:text-stone-400 dark:hover:text-stone-100"
                           >
                             <Check size={13} />
                             Mark visited
@@ -223,7 +223,7 @@ const TripCollections = ({ travelData, onPlanTrip }: TripCollectionsProps) => {
                             type="button"
                             onClick={() => handleStatusChange(item, 'want_to_go')}
                             disabled={travelData?.isReadOnly}
-                            className="inline-flex items-center gap-1 rounded-full border border-zinc-200 px-3 py-1.5 text-xs font-medium text-zinc-600 transition-colors hover:text-zinc-900 disabled:cursor-not-allowed disabled:opacity-50 dark:border-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-100"
+                            className="inline-flex items-center gap-1 rounded-full border border-stone-200 px-3 py-1.5 text-xs font-medium text-stone-600 transition-colors hover:text-stone-900 disabled:cursor-not-allowed disabled:opacity-50 dark:border-stone-800 dark:text-stone-400 dark:hover:text-stone-100"
                           >
                             <Undo2 size={13} />
                             Want to go

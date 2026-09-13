@@ -100,24 +100,24 @@ const Dashboard: React.FC = () => {
   const nextTrip = trips.find((trip) => getTripStatus(trip.start_date, trip.end_date) !== 'past') ?? trips[0];
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#0a0a0a] text-zinc-900 dark:text-zinc-100 transition-colors duration-300">
+    <div className="min-h-screen bg-white dark:bg-[#0a0a0a] text-stone-900 dark:text-stone-100 transition-colors duration-300">
       <AppNav />
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-6 py-12 pb-32">
         <div className="mb-12">
           <div className="flex-1 w-full">
-            <h1 className="text-4xl font-bold tracking-tighter mb-2">Your Trips</h1>
-            <p className="text-zinc-500 dark:text-zinc-400 font-light mb-6">
+            <h1 className="text-4xl font-display font-bold tracking-tighter mb-2">Your Trips</h1>
+            <p className="text-stone-500 dark:text-stone-400 font-light mb-6">
               {isDemoMode ? 'Explore the read-only demo trip data.' : 'Manage your upcoming adventures and past memories.'}
             </p>
 
             <div className="relative max-w-md">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={18} />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400" size={18} />
               <input
                 type="text"
                 placeholder="Search destinations..."
-                className="w-full pl-10 pr-4 py-2 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 focus:ring-2 ring-zinc-900 dark:ring-zinc-100 outline-none transition-all text-sm"
+                className="w-full pl-10 pr-4 py-2 rounded-full border border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-900 focus:ring-2 ring-stone-900 dark:ring-stone-100 outline-none transition-all text-sm"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -132,31 +132,31 @@ const Dashboard: React.FC = () => {
         )}
 
         <section className="mb-12 grid gap-4 md:grid-cols-4">
-          <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-5 dark:border-zinc-800 dark:bg-zinc-900">
-            <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-600">Upcoming</p>
+          <div className="rounded-2xl border border-stone-200 bg-stone-50 p-5 dark:border-stone-800 dark:bg-stone-900">
+            <p className="text-xs font-bold uppercase tracking-widest text-stone-400 dark:text-stone-600">Upcoming</p>
             <p className="mt-3 text-3xl font-bold tracking-tighter">{upcomingTrips}</p>
           </div>
-          <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-5 dark:border-zinc-800 dark:bg-zinc-900">
-            <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-600">Active</p>
+          <div className="rounded-2xl border border-stone-200 bg-stone-50 p-5 dark:border-stone-800 dark:bg-stone-900">
+            <p className="text-xs font-bold uppercase tracking-widest text-stone-400 dark:text-stone-600">Active</p>
             <p className="mt-3 text-3xl font-bold tracking-tighter">{activeTrips}</p>
           </div>
-          <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-5 dark:border-zinc-800 dark:bg-zinc-900">
-            <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-600">Past</p>
+          <div className="rounded-2xl border border-stone-200 bg-stone-50 p-5 dark:border-stone-800 dark:bg-stone-900">
+            <p className="text-xs font-bold uppercase tracking-widest text-stone-400 dark:text-stone-600">Past</p>
             <p className="mt-3 text-3xl font-bold tracking-tighter">{pastTrips}</p>
           </div>
-          <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-5 dark:border-zinc-800 dark:bg-zinc-900">
-            <div className="mb-3 flex items-center justify-between text-zinc-400 dark:text-zinc-600">
+          <div className="rounded-2xl border border-stone-200 bg-stone-50 p-5 dark:border-stone-800 dark:bg-stone-900">
+            <div className="mb-3 flex items-center justify-between text-stone-400 dark:text-stone-600">
               <CalendarClock size={18} />
               <Globe2 size={18} />
             </div>
-            <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-600">Next Focus</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-stone-400 dark:text-stone-600">Next Focus</p>
             <p className="mt-2 truncate text-sm font-semibold">{nextTrip?.destination ?? 'Create your first trip'}</p>
           </div>
         </section>
 
         {/* Trip Grid */}
         {isLoading ? (
-          <div className="py-16 text-center text-zinc-500 dark:text-zinc-400">Loading trips...</div>
+          <div className="py-16 text-center text-stone-500 dark:text-stone-400">Loading trips...</div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredTrips.map((trip) => (
@@ -173,7 +173,7 @@ const Dashboard: React.FC = () => {
         )}
 
         {!isLoading && filteredTrips.length === 0 && (
-          <div className="py-16 text-center text-zinc-500 dark:text-zinc-400">
+          <div className="py-16 text-center text-stone-500 dark:text-stone-400">
             {searchQuery ? 'No trips match your search.' : 'No trips yet.'}
           </div>
         )}
@@ -182,7 +182,7 @@ const Dashboard: React.FC = () => {
       <button
         type="button"
         onClick={() => openCreateTripModal()}
-        className="fixed bottom-6 right-6 z-40 inline-flex items-center gap-2 rounded-full bg-zinc-900 px-6 py-4 font-semibold text-white shadow-2xl shadow-zinc-900/20 transition-all hover:-translate-y-0.5 hover:opacity-90 dark:bg-zinc-100 dark:text-zinc-900 dark:shadow-zinc-100/10 sm:bottom-8 sm:right-8"
+        className="fixed bottom-6 right-6 z-40 inline-flex items-center gap-2 rounded-full bg-coral-500 px-6 py-4 font-semibold text-white shadow-2xl shadow-coral-500/30 transition-all hover:-translate-y-0.5 hover:opacity-90 sm:bottom-8 sm:right-8"
       >
         <Plus size={20} />
         <span>New Trip</span>

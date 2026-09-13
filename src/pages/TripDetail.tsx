@@ -66,7 +66,7 @@ const TripDetail: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-white dark:bg-[#0a0a0a] text-zinc-500 dark:text-zinc-400 flex items-center justify-center">
+      <div className="min-h-screen bg-white dark:bg-[#0a0a0a] text-stone-500 dark:text-stone-400 flex items-center justify-center">
         Loading trip...
       </div>
     );
@@ -74,30 +74,30 @@ const TripDetail: React.FC = () => {
 
   if (!trip || !travelData || !tripId) {
     return (
-      <div className="min-h-screen bg-white dark:bg-[#0a0a0a] text-zinc-900 dark:text-zinc-100">
+      <div className="min-h-screen bg-white dark:bg-[#0a0a0a] text-stone-900 dark:text-stone-100">
         <main className="max-w-3xl mx-auto px-6 py-16">
           <Link
             to="/dashboard"
-            className="inline-flex items-center gap-2 text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors mb-8 group"
+            className="inline-flex items-center gap-2 text-sm text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 transition-colors mb-8 group"
           >
             <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
             Back to Dashboard
           </Link>
-          <h1 className="text-3xl font-bold tracking-tighter mb-3">Trip unavailable</h1>
-          <p className="text-zinc-500 dark:text-zinc-400">{error ?? 'Trip was not found.'}</p>
+          <h1 className="text-3xl font-display font-bold tracking-tighter mb-3">Trip unavailable</h1>
+          <p className="text-stone-500 dark:text-stone-400">{error ?? 'Trip was not found.'}</p>
         </main>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#0a0a0a] text-zinc-900 dark:text-zinc-100 transition-colors duration-300">
+    <div className="min-h-screen bg-white dark:bg-[#0a0a0a] text-stone-900 dark:text-stone-100 transition-colors duration-300">
       {/* Header */}
       <header className="max-w-5xl mx-auto px-6 py-8">
         <div className="mb-8 flex items-center justify-between">
           <Link
             to="/dashboard"
-            className="inline-flex items-center gap-2 text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors group"
+            className="inline-flex items-center gap-2 text-sm text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 transition-colors group"
           >
             <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
             Back to Dashboard
@@ -107,13 +107,13 @@ const TripDetail: React.FC = () => {
 
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
           <div>
-            <h1 className="text-4xl font-bold tracking-tighter mb-2">{trip.destination}</h1>
-            <div className="flex items-center gap-3 text-sm text-zinc-500 dark:text-zinc-400 font-light">
+            <h1 className="text-4xl font-display font-bold tracking-tighter mb-2">{trip.destination}</h1>
+            <div className="flex items-center gap-3 text-sm text-stone-500 dark:text-stone-400 font-light">
               <span className="flex items-center gap-1"><Calendar size={14} /> {formatTripDate(trip.start_date)} — {formatTripDate(trip.end_date)}</span>
             </div>
           </div>
           {trip.description && (
-            <p className="max-w-md text-right text-sm text-zinc-500 dark:text-zinc-400 font-light italic">
+            <p className="max-w-md text-right text-sm text-stone-500 dark:text-stone-400 font-light italic">
               {trip.description}
             </p>
           )}
@@ -122,7 +122,7 @@ const TripDetail: React.FC = () => {
 
       {/* Tabs Navigation */}
       <div className="max-w-5xl mx-auto px-6 mb-8">
-        <div className="flex max-w-full gap-1 overflow-x-auto p-1 bg-zinc-100 dark:bg-zinc-900 rounded-full w-fit border border-zinc-200 dark:border-zinc-800">
+        <div className="flex max-w-full gap-1 overflow-x-auto p-1 bg-stone-100 dark:bg-stone-900 rounded-full w-fit border border-stone-200 dark:border-stone-800">
           {tripTabs.map((tab) => {
             const Icon = tab.icon;
             return (
@@ -131,8 +131,8 @@ const TripDetail: React.FC = () => {
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${
                   activeTab === tab.id
-                    ? 'bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 shadow-sm'
-                    : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'
+                    ? 'bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-100 shadow-sm'
+                    : 'text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100'
                 }`}
               >
                 <Icon size={16} />

@@ -17,7 +17,7 @@ const iconSize = {
 
 const BrandMark = ({ size = 'md', interactive = false }: BrandMarkProps) => (
   <span
-    className={`${sizeClass[size]} flex shrink-0 items-center justify-center bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 ${
+    className={`${sizeClass[size]} flex shrink-0 items-center justify-center bg-coral-500 text-white ${
       interactive ? 'transition-transform group-hover:rotate-6' : ''
     }`}
     aria-hidden="true"

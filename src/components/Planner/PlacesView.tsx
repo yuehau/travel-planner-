@@ -134,24 +134,24 @@ const PlacesView = ({ tripId, travelData }: PlacesViewProps) => {
     <div className="mx-auto max-w-5xl px-4 py-8">
       <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
-          <h2 className="text-2xl font-bold tracking-tighter">Map & Places</h2>
-          <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Search, save, and pin the places that shape this trip.</p>
+          <h2 className="text-2xl font-display font-bold tracking-tighter">Map & Places</h2>
+          <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">Search, save, and pin the places that shape this trip.</p>
         </div>
         <form onSubmit={handleSearch} className="flex w-full gap-2 md:max-w-md">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={18} />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400" size={18} />
             <input
               disabled={isSearching}
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Search places"
-              className="w-full rounded-full border border-zinc-200 bg-zinc-50 py-2 pl-10 pr-4 text-sm outline-none ring-zinc-900 transition-all focus:ring-2 dark:border-zinc-800 dark:bg-zinc-900 dark:ring-zinc-100"
+              className="w-full rounded-full border border-stone-200 bg-stone-50 py-2 pl-10 pr-4 text-sm outline-none ring-stone-900 transition-all focus:ring-2 dark:border-stone-800 dark:bg-stone-900 dark:ring-stone-100"
             />
           </div>
           <button
             type="submit"
             disabled={isSearching}
-            className="rounded-full bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-zinc-100 dark:text-zinc-900"
+            className="rounded-full bg-coral-500 px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {isSearching ? 'Searching' : 'Search'}
           </button>
@@ -160,7 +160,7 @@ const PlacesView = ({ tripId, travelData }: PlacesViewProps) => {
 
       {error && <div className="mb-6 rounded-lg border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-700">{error}</div>}
 
-      <div className="mb-8 h-[360px] overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800">
+      <div className="mb-8 h-[360px] overflow-hidden rounded-2xl border border-stone-200 dark:border-stone-800">
         <MapContainer key={`${mapCenter[0]}-${mapCenter[1]}`} center={mapCenter} zoom={places.length ? 12 : 2} className="h-full w-full">
           <TileLayer attribution="&copy; OpenStreetMap contributors" url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           {places.map((place) =>
@@ -178,19 +178,19 @@ const PlacesView = ({ tripId, travelData }: PlacesViewProps) => {
 
       {results.length > 0 && (
         <section className="mb-10">
-          <h3 className="mb-3 text-xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-600">Search Results</h3>
+          <h3 className="mb-3 text-xs font-bold uppercase tracking-widest text-stone-400 dark:text-stone-600">Search Results</h3>
           <div className="space-y-2">
             {results.map((result) => (
-              <div key={result.place_id} className="flex items-start justify-between gap-4 rounded-xl border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-800 dark:bg-zinc-900">
+              <div key={result.place_id} className="flex items-start justify-between gap-4 rounded-xl border border-stone-200 bg-stone-50 p-4 dark:border-stone-800 dark:bg-stone-900">
                 <div>
                   <p className="text-sm font-semibold">{result.name || result.display_name.split(',')[0]}</p>
-                  <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">{result.display_name}</p>
+                  <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">{result.display_name}</p>
                 </div>
                 <button
                   type="button"
                   disabled={isAdding || travelData.isReadOnly}
                   onClick={() => handleSaveResult(result)}
-                  className="rounded-full bg-zinc-900 px-3 py-1.5 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-50 dark:bg-zinc-100 dark:text-zinc-900"
+                  className="rounded-full bg-coral-500 px-3 py-1.5 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   Save
                 </button>
@@ -207,19 +207,19 @@ const PlacesView = ({ tripId, travelData }: PlacesViewProps) => {
           value={manualName}
           onChange={(event) => setManualName(event.target.value)}
           placeholder={travelData.isReadOnly ? 'Demo mode is read-only' : 'Place name'}
-          className="rounded-xl border border-zinc-200 bg-transparent px-4 py-2 outline-none ring-zinc-900 focus:ring-2 dark:border-zinc-800 dark:ring-zinc-100"
+          className="rounded-xl border border-stone-200 bg-transparent px-4 py-2 outline-none ring-stone-900 focus:ring-2 dark:border-stone-800 dark:ring-stone-100"
         />
         <input
           disabled={isAdding || travelData.isReadOnly}
           value={manualAddress}
           onChange={(event) => setManualAddress(event.target.value)}
           placeholder="Address or notes"
-          className="rounded-xl border border-zinc-200 bg-transparent px-4 py-2 outline-none ring-zinc-900 focus:ring-2 dark:border-zinc-800 dark:ring-zinc-100"
+          className="rounded-xl border border-stone-200 bg-transparent px-4 py-2 outline-none ring-stone-900 focus:ring-2 dark:border-stone-800 dark:ring-stone-100"
         />
         <button
           type="submit"
           disabled={isAdding || travelData.isReadOnly}
-          className="inline-flex items-center justify-center gap-2 rounded-xl bg-zinc-900 px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-50 dark:bg-zinc-100 dark:text-zinc-900"
+          className="inline-flex items-center justify-center gap-2 rounded-xl bg-coral-500 px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
         >
           <Plus size={16} />
           Add
@@ -227,21 +227,21 @@ const PlacesView = ({ tripId, travelData }: PlacesViewProps) => {
       </form>
 
       {isLoading ? (
-        <div className="py-12 text-center text-zinc-500 dark:text-zinc-400">Loading places...</div>
+        <div className="py-12 text-center text-stone-500 dark:text-stone-400">Loading places...</div>
       ) : places.length === 0 ? (
-        <div className="py-12 text-center text-zinc-500 dark:text-zinc-400">No places saved yet.</div>
+        <div className="py-12 text-center text-stone-500 dark:text-stone-400">No places saved yet.</div>
       ) : (
         <div className="grid gap-4 md:grid-cols-2">
           {places.map((place) => (
-            <article key={place.id} className="rounded-2xl border border-zinc-200 bg-zinc-50 p-5 dark:border-zinc-800 dark:bg-zinc-900">
+            <article key={place.id} className="rounded-2xl border border-stone-200 bg-stone-50 p-5 dark:border-stone-800 dark:bg-stone-900">
               <div className="mb-3 flex items-start justify-between gap-3">
                 <div>
                   <h3 className="font-semibold">{place.name}</h3>
-                  {place.address && <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">{place.address}</p>}
+                  {place.address && <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">{place.address}</p>}
                 </div>
-                <MapPin size={18} className="text-zinc-400" />
+                <MapPin size={18} className="text-stone-400" />
               </div>
-              <div className="flex items-center gap-3 text-xs text-zinc-500 dark:text-zinc-400">
+              <div className="flex items-center gap-3 text-xs text-stone-500 dark:text-stone-400">
                 <span>{place.source}</span>
                 {place.rating !== null && (
                   <span className="inline-flex items-center gap-1">

@@ -15,7 +15,7 @@ const ThemeToggle = ({ variant = 'square' }: ThemeToggleProps) => {
     <button
       type="button"
       onClick={toggleTheme}
-      className={`p-2 text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 ${
+      className={`p-2 text-stone-500 transition-colors hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100 ${
         variant === 'circle' ? 'rounded-full' : 'rounded-md'
       }`}
       aria-label={`Switch to ${nextTheme} mode`}
