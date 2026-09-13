@@ -51,13 +51,13 @@ const CollectionsPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white text-zinc-900 transition-colors duration-300 dark:bg-[#0a0a0a] dark:text-zinc-100">
+    <div className="min-h-screen bg-sand-50 text-sand-900 transition-colors duration-300 dark:bg-sand-950 dark:text-sand-100">
       <AppNav />
 
       <main className="mx-auto max-w-7xl px-6 py-12 pb-32">
         <div className="mb-10 max-w-2xl">
           <h1 className="mb-2 text-4xl font-bold tracking-tighter">Collections</h1>
-          <p className="text-zinc-500 dark:text-zinc-400">
+          <p className="text-sand-500 dark:text-sand-400">
             Save places you have visited or want to turn into future trips.
           </p>
         </div>
@@ -68,7 +68,7 @@ const CollectionsPage = () => {
       <button
         type="button"
         onClick={() => openCreateTripModal()}
-        className="fixed bottom-6 right-6 z-40 inline-flex items-center gap-2 rounded-full bg-zinc-900 px-6 py-4 font-semibold text-white shadow-2xl shadow-zinc-900/20 transition-all hover:-translate-y-0.5 hover:opacity-90 dark:bg-zinc-100 dark:text-zinc-900 dark:shadow-zinc-100/10 sm:bottom-8 sm:right-8"
+        className="fixed bottom-6 right-6 z-40 inline-flex items-center gap-2 rounded-full bg-clay-600 px-6 py-4 font-semibold text-white shadow-2xl shadow-clay-900/25 transition-all hover:-translate-y-0.5 hover:opacity-90 dark:bg-clay-500 dark:text-white dark:shadow-clay-900/30 sm:bottom-8 sm:right-8"
       >
         <Plus size={20} />
         <span>New Trip</span>

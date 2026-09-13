@@ -37,7 +37,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ mode }) => {
   };
 
   return (
-    <main className="min-h-screen bg-white dark:bg-[#0a0a0a] text-zinc-900 dark:text-zinc-100 flex items-center justify-center px-6">
+    <main className="min-h-screen bg-sand-50 dark:bg-sand-950 text-sand-900 dark:text-sand-100 flex items-center justify-center px-6">
       <div className="absolute right-6 top-6">
         <ThemeToggle />
       </div>
@@ -48,7 +48,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ mode }) => {
         </Link>
 
         <h1 className="text-3xl font-bold tracking-tighter mb-3">{title}</h1>
-        <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-8">
+        <p className="text-sm text-sand-500 dark:text-sand-400 mb-8">
           Use Google to keep your trips private and synced.
         </p>
 
@@ -68,7 +68,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ mode }) => {
           type="button"
           onClick={handleGoogleAuth}
           disabled={isSubmitting || Boolean(configurationError)}
-          className="w-full rounded-full bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 px-5 py-3 font-medium disabled:cursor-not-allowed disabled:opacity-50"
+          className="w-full rounded-full bg-clay-600 dark:bg-clay-500 text-white dark:text-white px-5 py-3 font-medium disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isSubmitting ? 'Opening Google...' : buttonText}
         </button>
@@ -76,7 +76,7 @@ const AuthPage: React.FC<AuthPageProps> = ({ mode }) => {
         <button
           type="button"
           onClick={handleDemoClick}
-          className="mt-3 w-full rounded-full px-5 py-3 font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+          className="mt-3 w-full rounded-full px-5 py-3 font-medium text-sand-600 hover:text-sand-900 dark:text-sand-400 dark:hover:text-sand-100"
         >
           Try read-only demo
         </button>

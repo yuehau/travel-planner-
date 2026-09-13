@@ -2,11 +2,96 @@
 @custom-variant dark (&:where(.dark, .dark *));
 @source "./**/*.{ts,tsx}";
 
+/*
+ * Warm travel palette.
+ * sand   - warm neutral, replaces zinc for surfaces, borders and body copy
+ * clay   - terracotta primary accent, used for actions and emphasis
+ * lagoon - teal secondary accent, used for status and supporting detail
+ */
+@theme {
+  --color-sand-50: #fbf7f2;
+  --color-sand-100: #f5efe6;
+  --color-sand-200: #e9e0d3;
+  --color-sand-300: #d8cbb8;
+  --color-sand-400: #b9a88f;
+  --color-sand-500: #97866d;
+  --color-sand-600: #776955;
+  --color-sand-700: #564b3c;
+  --color-sand-800: #3a332a;
+  --color-sand-900: #241f19;
+  --color-sand-950: #16130f;
+
+  --color-clay-50: #fdf5f1;
+  --color-clay-100: #fae7dd;
+  --color-clay-200: #f3cbb9;
+  --color-clay-300: #e9a88c;
+  --color-clay-400: #dd7f5a;
+  --color-clay-500: #c75f36;
+  --color-clay-600: #a94a28;
+  --color-clay-700: #8a3b20;
+  --color-clay-800: #6b2f1b;
+  --color-clay-900: #4a2213;
+
+  --color-lagoon-50: #eef9f8;
+  --color-lagoon-100: #d4f0ed;
+  --color-lagoon-200: #a8e0db;
+  --color-lagoon-300: #72c9c2;
+  --color-lagoon-400: #42aba4;
+  --color-lagoon-500: #268c86;
+  --color-lagoon-600: #1c706c;
+  --color-lagoon-700: #185956;
+  --color-lagoon-800: #154644;
+  --color-lagoon-900: #103432;
+
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+
+  --animate-fade-in: fade-in 0.5s ease-out both;
+  --animate-rise-in: rise-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: var(--font-sans);
+  color-scheme: light;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
+  background-color: var(--color-sand-50);
+  -webkit-font-smoothing: antialiased;
+}
+
+.dark body {
+  background-color: var(--color-sand-950);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -4,8 +4,8 @@
   "description": "A focused workspace for trips, places, reservations, budgets, packing, and tasks.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#0a0a0a",
+  "background_color": "#fbf7f2",
+  "theme_color": "#c75f36",
   "icons": [
     {
       "src": "/favicon.svg",

@@ -12,7 +12,7 @@ const DemoRedirect = () => {
   }, [navigate, setDemoMode]);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#0a0a0a] text-zinc-500 dark:text-zinc-400 flex items-center justify-center">
+    <div className="min-h-screen bg-sand-50 dark:bg-sand-950 text-sand-500 dark:text-sand-400 flex items-center justify-center">
       Loading demo...
     </div>
   );

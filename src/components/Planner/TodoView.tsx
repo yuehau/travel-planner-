@@ -86,13 +86,13 @@ const TodoView = ({ tripId, travelData }: TodoViewProps) => {
       <div className="mb-8 flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold tracking-tighter">Trip To-Dos</h2>
-          <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">{completedCount} of {items.length} done</p>
+          <p className="mt-1 text-sm text-sand-500 dark:text-sand-400">{completedCount} of {items.length} done</p>
         </div>
         <button
           type="submit"
           form="add-todo"
           disabled={isAdding || travelData.isReadOnly}
-          className="inline-flex items-center gap-2 rounded-full bg-zinc-900 px-3 py-1.5 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-zinc-100 dark:text-zinc-900"
+          className="inline-flex items-center gap-2 rounded-full bg-clay-600 px-3 py-1.5 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-clay-500 dark:text-white"
         >
           <Plus size={16} />
           Add Task
@@ -108,20 +108,20 @@ const TodoView = ({ tripId, travelData }: TodoViewProps) => {
           value={formData.title}
           onChange={(event) => setFormData((current) => ({ ...current, title: event.target.value }))}
           placeholder={travelData.isReadOnly ? 'Demo mode is read-only' : 'Task'}
-          className="rounded-xl border border-zinc-200 bg-transparent px-4 py-2 outline-none ring-zinc-900 focus:ring-2 dark:border-zinc-800 dark:ring-zinc-100"
+          className="rounded-xl border border-sand-200 bg-transparent px-4 py-2 outline-none ring-clay-500 focus:ring-2 dark:border-sand-800 dark:ring-clay-400"
         />
         <input
           disabled={isAdding || travelData.isReadOnly}
           type="date"
           value={formData.due_date}
           onChange={(event) => setFormData((current) => ({ ...current, due_date: event.target.value }))}
-          className="rounded-xl border border-zinc-200 bg-transparent px-4 py-2 outline-none ring-zinc-900 focus:ring-2 dark:border-zinc-800 dark:ring-zinc-100"
+          className="rounded-xl border border-sand-200 bg-transparent px-4 py-2 outline-none ring-clay-500 focus:ring-2 dark:border-sand-800 dark:ring-clay-400"
         />
         <select
           disabled={isAdding || travelData.isReadOnly}
           value={formData.priority}
           onChange={(event) => setFormData((current) => ({ ...current, priority: event.target.value as TripTodoPriority }))}
-          className="rounded-xl border border-zinc-200 bg-transparent px-4 py-2 outline-none ring-zinc-900 focus:ring-2 dark:border-zinc-800 dark:ring-zinc-100"
+          className="rounded-xl border border-sand-200 bg-transparent px-4 py-2 outline-none ring-clay-500 focus:ring-2 dark:border-sand-800 dark:ring-clay-400"
         >
           {priorities.map((priority) => (
             <option key={priority} value={priority}>{priority}</option>
@@ -130,9 +130,9 @@ const TodoView = ({ tripId, travelData }: TodoViewProps) => {
       </form>
 
       {isLoading ? (
-        <div className="py-12 text-center text-zinc-500 dark:text-zinc-400">Loading tasks...</div>
+        <div className="py-12 text-center text-sand-500 dark:text-sand-400">Loading tasks...</div>
       ) : items.length === 0 ? (
-        <div className="py-12 text-center text-zinc-500 dark:text-zinc-400">No tasks yet.</div>
+        <div className="py-12 text-center text-sand-500 dark:text-sand-400">No tasks yet.</div>
       ) : (
         <div className="space-y-2">
           {items.map((item) => (
@@ -140,16 +140,16 @@ const TodoView = ({ tripId, travelData }: TodoViewProps) => {
               key={item.id}
               type="button"
               onClick={() => handleToggle(item)}
-              className="flex w-full items-center justify-between gap-4 rounded-xl border border-zinc-200 bg-zinc-50 p-4 text-left transition-all hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-zinc-600"
+              className="flex w-full items-center justify-between gap-4 rounded-xl border border-sand-200 bg-sand-50 p-4 text-left transition-all hover:border-sand-400 dark:border-sand-800 dark:bg-sand-900 dark:hover:border-sand-600"
             >
               <span className="flex items-center gap-3">
-                {item.is_completed ? <Check size={18} className="text-green-500" /> : <Circle size={18} className="text-zinc-400" />}
+                {item.is_completed ? <Check size={18} className="text-green-500" /> : <Circle size={18} className="text-sand-400" />}
                 <span>
-                  <span className={`block text-sm font-medium ${item.is_completed ? 'text-zinc-400 line-through dark:text-zinc-600' : ''}`}>{item.title}</span>
-                  {item.due_date && <span className="text-xs text-zinc-500 dark:text-zinc-400">Due {item.due_date}</span>}
+                  <span className={`block text-sm font-medium ${item.is_completed ? 'text-sand-400 line-through dark:text-sand-600' : ''}`}>{item.title}</span>
+                  {item.due_date && <span className="text-xs text-sand-500 dark:text-sand-400">Due {item.due_date}</span>}
                 </span>
               </span>
-              <span className="text-xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-600">{item.priority}</span>
+              <span className="text-xs font-bold uppercase tracking-widest text-sand-400 dark:text-sand-600">{item.priority}</span>
             </button>
           ))}
         </div>

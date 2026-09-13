@@ -13,29 +13,29 @@ interface TripCardProps {
   status: TripStatus;
 }
 
+const statusBadgeClass: Record<TripStatus, string> = {
+  upcoming: 'bg-white/90 text-clay-700 backdrop-blur-sm',
+  active: 'bg-lagoon-500/95 text-white backdrop-blur-sm',
+  past: 'bg-sand-800/60 text-sand-100 backdrop-blur-sm',
+};
+
 const TripCard: React.FC<TripCardProps> = ({ id, destination, startDate, endDate, image, status }) => {
   return (
     <Link
       to={`/trip/${id}`}
-      className="group relative block overflow-hidden rounded-2xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all duration-300"
+      className="group relative block overflow-hidden rounded-3xl border border-sand-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-clay-300 hover:shadow-xl hover:shadow-clay-900/5 dark:border-sand-800 dark:bg-sand-900 dark:hover:border-clay-700 dark:hover:shadow-black/30"
     >
       {/* Card Image/Placeholder */}
-      <div className="aspect-[4/3] overflow-hidden bg-zinc-200 dark:bg-zinc-800 relative">
+      <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-sand-100 via-clay-50 to-lagoon-50 dark:from-sand-800 dark:via-sand-900 dark:to-lagoon-900/40">
         {image ? (
-          <img src={image} alt={destination} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+          <img src={image} alt={destination} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-zinc-400 dark:text-zinc-600">
-            <MapPin size={40} strokeWidth={1} />
+          <div className="flex h-full w-full items-center justify-center text-clay-300 transition-transform duration-500 group-hover:scale-110 dark:text-clay-700">
+            <MapPin size={40} strokeWidth={1.25} />
           </div>
         )}
         <div className="absolute top-3 right-3">
-          <span className={`px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${
-            status === 'upcoming'
-              ? 'bg-white/90 text-zinc-900 backdrop-blur-sm'
-              : status === 'active'
-                ? 'bg-green-500/90 text-white backdrop-blur-sm'
-              : 'bg-zinc-500/50 text-white backdrop-blur-sm'
-          }`}>
+          <span className={`rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest ${statusBadgeClass[status]}`}>
             {status}
           </span>
         </div>
@@ -43,10 +43,10 @@ const TripCard: React.FC<TripCardProps> = ({ id, destination, startDate, endDate
 
       {/* Card Content */}
       <div className="p-5">
-        <h3 className="text-lg font-semibold mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+        <h3 className="mb-2 text-lg font-semibold tracking-tight transition-colors group-hover:text-clay-600 dark:group-hover:text-clay-300">
           {destination}
         </h3>
-        <div className="flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400 font-light">
+        <div className="flex items-center gap-2 text-sm font-light text-sand-500 dark:text-sand-400">
           <Calendar size={14} />
           <span>{startDate} — {endDate}</span>
         </div>

@@ -61,9 +61,9 @@ const SharingView = ({ tripId, travelData }: SharingViewProps) => {
       <div className="mb-8 flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold tracking-tighter">Sharing</h2>
-          <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">Invite collaborators to plan this trip with you.</p>
+          <p className="mt-1 text-sm text-sand-500 dark:text-sand-400">Invite collaborators to plan this trip with you.</p>
         </div>
-        <Users size={22} className="text-zinc-400" />
+        <Users size={22} className="text-sand-400" />
       </div>
 
       {error && <div className="mb-6 rounded-lg border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-700">{error}</div>}
@@ -76,12 +76,12 @@ const SharingView = ({ tripId, travelData }: SharingViewProps) => {
           value={email}
           onChange={(event) => setEmail(event.target.value)}
           placeholder={travelData.isReadOnly ? 'Demo mode is read-only' : 'friend@example.com'}
-          className="flex-1 rounded-xl border border-zinc-200 bg-transparent px-4 py-2 outline-none ring-zinc-900 focus:ring-2 dark:border-zinc-800 dark:ring-zinc-100"
+          className="flex-1 rounded-xl border border-sand-200 bg-transparent px-4 py-2 outline-none ring-clay-500 focus:ring-2 dark:border-sand-800 dark:ring-clay-400"
         />
         <button
           type="submit"
           disabled={isInviting || travelData.isReadOnly}
-          className="inline-flex items-center justify-center gap-2 rounded-xl bg-zinc-900 px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-50 dark:bg-zinc-100 dark:text-zinc-900"
+          className="inline-flex items-center justify-center gap-2 rounded-xl bg-clay-600 px-4 py-2 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-50 dark:bg-clay-500 dark:text-white"
         >
           <MailPlus size={16} />
           Invite
@@ -89,18 +89,18 @@ const SharingView = ({ tripId, travelData }: SharingViewProps) => {
       </form>
 
       {isLoading ? (
-        <div className="py-12 text-center text-zinc-500 dark:text-zinc-400">Loading members...</div>
+        <div className="py-12 text-center text-sand-500 dark:text-sand-400">Loading members...</div>
       ) : members.length === 0 ? (
-        <div className="py-12 text-center text-zinc-500 dark:text-zinc-400">No members yet.</div>
+        <div className="py-12 text-center text-sand-500 dark:text-sand-400">No members yet.</div>
       ) : (
         <div className="space-y-3">
           {members.map((member) => (
-            <article key={member.id} className="flex items-center justify-between rounded-2xl border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-800 dark:bg-zinc-900">
+            <article key={member.id} className="flex items-center justify-between rounded-2xl border border-sand-200 bg-sand-50 p-4 dark:border-sand-800 dark:bg-sand-900">
               <div>
                 <p className="font-medium">{member.invited_email}</p>
-                <p className="text-sm text-zinc-500 dark:text-zinc-400">{member.role}</p>
+                <p className="text-sm text-sand-500 dark:text-sand-400">{member.role}</p>
               </div>
-              <span className="text-xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-600">{member.status}</span>
+              <span className="text-xs font-bold uppercase tracking-widest text-sand-400 dark:text-sand-600">{member.status}</span>
             </article>
           ))}
         </div>
