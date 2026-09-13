@@ -2,6 +2,7 @@ import { Link, NavLink } from 'react-router-dom';
 import LogOut from 'lucide-react/dist/esm/icons/log-out.mjs';
 import Bookmark from 'lucide-react/dist/esm/icons/bookmark.mjs';
 import Briefcase from 'lucide-react/dist/esm/icons/briefcase.mjs';
+import Compass from 'lucide-react/dist/esm/icons/compass.mjs';
 import BrandMark from './BrandMark';
 import ThemeToggle from './ThemeToggle';
 import { useAuth } from '../hooks/useAuth';
@@ -39,6 +40,10 @@ const AppNav = () => {
         <NavLink to="/dashboard" className={navLinkClass}>
           <Briefcase size={16} />
           <span>My Trips</span>
+        </NavLink>
+        <NavLink to="/explore" className={navLinkClass}>
+          <Compass size={16} />
+          <span>Explore</span>
         </NavLink>
         <NavLink to="/collections" className={navLinkClass}>
           <Bookmark size={16} />

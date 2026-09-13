@@ -111,6 +111,7 @@ Last updated: 2026-09-12.
 - Removed the booking/reservation workflow from the visible app UI and local app data contract.
 - Replaced the profile image fallback with a plain minimalist grey/white avatar.
 - Added the "something broke" re-planning prototype (Cuti² step 4): `itinerary_nodes`/`replan_events` schema, a new `Mind Map` tab (`MindMapView`) rendering the node tree with SVG connectors, a break-trigger + proposal review/apply flow (`src/services/replan.ts`), and a `replan-node` Supabase Edge Function that calls Claude with forced structured tool-calling. Additive only — `itinerary_items`/`ItineraryView` are untouched.
+- Added an Apple/Spotify-style **Explore** flow (`/explore`, `ExplorePage.tsx`): pick a Malaysia state, browse its attractions ranked by popularity (curated seed data in `src/data/attractions.ts` - Penang and Melaka populated, other states marked coming-soon), add favorites to a cart, then auto-build a day-by-day route ordered by geographic distance (`src/utils/routeBuilder.ts` - haversine nearest-neighbor + an hours-per-day budget). "Create this trip" writes the computed route into real `places`/`itinerary_nodes` rows via the existing `travelData` service.
 
 ### Verified
 - `npm test` passed (22 tests, including new `replan.test.ts` coverage for the descendant-tree walk and proposal validation).
