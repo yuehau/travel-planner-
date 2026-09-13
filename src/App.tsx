@@ -4,6 +4,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import LandingPage from './pages/LandingPage';
 import Dashboard from './pages/Dashboard';
 import ExplorePage from './pages/ExplorePage';
+import GroupTripsPage from './pages/GroupTripsPage';
 import CollectionsPage from './pages/CollectionsPage';
 import TripDetail from './pages/TripDetail';
 import AuthPage from './pages/AuthPage';
@@ -23,6 +24,7 @@ function App() {
               <Route element={<ProtectedRoute />}>
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/explore" element={<ExplorePage />} />
+                <Route path="/groups" element={<GroupTripsPage />} />
                 <Route path="/collections" element={<CollectionsPage />} />
                 <Route path="/trip/:tripId" element={<TripDetail />} />
               </Route>

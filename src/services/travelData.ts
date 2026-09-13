@@ -117,6 +117,11 @@ export type TripMemberCreateInput = {
   role?: 'member';
 };
 
+export type GroupSettingsInput = {
+  group_open: boolean;
+  group_capacity?: number | null;
+};
+
 export type TripCollectionCreateInput = {
   destination: string;
   status?: TripCollectionStatus;
@@ -153,6 +158,13 @@ export type TravelDataClient = {
   updateTodoCompleted: (id: string, isCompleted: boolean) => Promise<TripTodo>;
   listTripMembers: (tripId: string) => Promise<TripMember[]>;
   inviteTripMember: (tripId: string, input: TripMemberCreateInput) => Promise<TripMember>;
+  removeTripMember: (memberId: string) => Promise<void>;
+  updateTripGroupSettings: (tripId: string, input: GroupSettingsInput) => Promise<Trip>;
+  listOpenGroupTrips: () => Promise<Trip[]>;
+  previewTripPlaces: (tripId: string) => Promise<Place[]>;
+  countGroupTripMembers: (tripId: string) => Promise<number>;
+  joinGroupTrip: (tripId: string) => Promise<TripMember>;
+  listMyGroupMemberships: () => Promise<TripMember[]>;
   listTripCollections: () => Promise<TripCollection[]>;
   createTripCollection: (input: TripCollectionCreateInput) => Promise<TripCollection>;
   updateTripCollectionStatus: (id: string, status: TripCollectionStatus) => Promise<TripCollection>;
@@ -630,6 +642,84 @@ export const createSupabaseTravelDataClient = (userId: string): TravelDataClient
 
       return handleSingle(data, error, 'Could not invite member.');
     },
+    async removeTripMember(memberId) {
+      const { error } = await supabase.from('trip_members').delete().eq('id', memberId);
+
+      if (error) throw new TravelDataError(error.message, 'data_error');
+    },
+    async updateTripGroupSettings(tripId, input) {
+      if (input.group_open && (!input.group_capacity || input.group_capacity < 1)) {
+        throw new TravelDataError('Set how many people you want in the group.', 'validation_error');
+      }
+
+      const { data, error } = await supabase
+        .from('trips')
+        .update({
+          group_open: input.group_open,
+          group_capacity: input.group_open ? input.group_capacity : null,
+        })
+        .eq('id', tripId)
+        .eq('user_id', userId)
+        .select('*')
+        .single();
+
+      return handleSingle(data, error, 'Could not update group settings.');
+    },
+    async listOpenGroupTrips() {
+      const { data, error } = await supabase
+        .from('trips')
+        .select('*')
+        .eq('group_open', true)
+        .neq('user_id', userId)
+        .order('start_date', { ascending: true });
+
+      if (error) throw new TravelDataError(error.message, 'data_error');
+      return data ?? [];
+    },
+    async previewTripPlaces(tripId) {
+      const { data, error } = await supabase
+        .from('places')
+        .select('*')
+        .eq('trip_id', tripId)
+        .order('created_at', { ascending: true });
+
+      if (error) throw new TravelDataError(error.message, 'data_error');
+      return data ?? [];
+    },
+    async countGroupTripMembers(tripId) {
+      const { count, error } = await supabase
+        .from('trip_members')
+        .select('*', { count: 'exact', head: true })
+        .eq('trip_id', tripId)
+        .eq('status', 'accepted');
+
+      if (error) throw new TravelDataError(error.message, 'data_error');
+      return count ?? 0;
+    },
+    async joinGroupTrip(tripId) {
+      const { data, error } = await supabase
+        .from('trip_members')
+        .insert({
+          trip_id: tripId,
+          user_id: userId,
+          role: 'member',
+          status: 'accepted',
+        })
+        .select('*')
+        .single();
+
+      return handleSingle(data, error, 'Could not join this trip. It may be full or no longer open.');
+    },
+    async listMyGroupMemberships() {
+      const { data, error } = await supabase
+        .from('trip_members')
+        .select('*')
+        .eq('user_id', userId)
+        .eq('status', 'accepted');
+
+      if (error) throw new TravelDataError(error.message, 'data_error');
+      return data ?? [];
+    },
     async listTripCollections() {
       const { data, error } = await supabase
         .from('trip_collections')
@@ -715,6 +805,8 @@ const demoTrips: Trip[] = [
     end_date: '2026-10-20',
     description: 'A deep dive into the contrast of futuristic neon and ancient traditions.',
     budget_cap: 3000,
+    group_open: true,
+    group_capacity: 4,
     created_at: '2026-01-01T00:00:00Z',
   },
   {
@@ -726,6 +818,8 @@ const demoTrips: Trip[] = [
     end_date: '2026-05-10',
     description: 'Museums, slow mornings, and long walks along the Seine.',
     budget_cap: null,
+    group_open: false,
+    group_capacity: null,
     created_at: '2026-01-02T00:00:00Z',
   },
 ];
@@ -965,6 +1059,27 @@ export const createDemoTravelDataClient = (): TravelDataClient => ({
   },
   async inviteTripMember() {
     return requireWritableDemo();
+  },
+  async removeTripMember() {
+    return requireWritableDemo();
+  },
+  async updateTripGroupSettings() {
+    return requireWritableDemo();
+  },
+  async listOpenGroupTrips() {
+    return [];
+  },
+  async previewTripPlaces(tripId) {
+    return demoPlaces.filter((place) => place.trip_id === tripId);
+  },
+  async countGroupTripMembers(tripId) {
+    return demoMembers.filter((member) => member.trip_id === tripId && member.status === 'accepted').length;
+  },
+  async joinGroupTrip() {
+    return requireWritableDemo();
+  },
+  async listMyGroupMemberships() {
+    return [];
   },
   async listTripCollections() {
     return demoCollections;

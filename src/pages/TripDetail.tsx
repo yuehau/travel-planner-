@@ -10,7 +10,7 @@ import BudgetView from '../components/Planner/BudgetView';
 import ChecklistView from '../components/Planner/ChecklistView';
 import InfoView from '../components/Planner/InfoView';
 import TodoView from '../components/Planner/TodoView';
-import SharingView from '../components/Planner/SharingView';
+import GroupTripView from '../components/Planner/GroupTripView';
 import SettingsView from '../components/Planner/SettingsView';
 import { useTravelDataClient } from '../hooks/useTravelDataClient';
 import type { Trip } from '../types/database';
@@ -152,7 +152,7 @@ const TripDetail: React.FC = () => {
         {activeTab === 'checklist' && <ChecklistView tripId={tripId} travelData={travelData} />}
         {activeTab === 'todos' && <TodoView tripId={tripId} travelData={travelData} />}
         {activeTab === 'info' && <InfoView tripId={tripId} travelData={travelData} trip={trip} />}
-        {activeTab === 'sharing' && <SharingView tripId={tripId} travelData={travelData} />}
+        {activeTab === 'group' && <GroupTripView tripId={tripId} travelData={travelData} trip={trip} />}
         {activeTab === 'settings' && <SettingsView travelData={travelData} />}
       </main>
     </div>

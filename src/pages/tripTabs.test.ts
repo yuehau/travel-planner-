@@ -11,7 +11,7 @@ describe('trip detail tabs', () => {
       'Packing',
       'To-Dos',
       'Essentials',
-      'Sharing',
+      'Group Trip',
       'Settings',
     ]);
     expect(tripTabs.map((tab) => tab.id)).not.toContain('reservations');

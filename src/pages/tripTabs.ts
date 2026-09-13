@@ -9,7 +9,7 @@ import Users from 'lucide-react/dist/esm/icons/users.mjs';
 import Wallet from 'lucide-react/dist/esm/icons/wallet.mjs';
 import type { LucideIcon } from 'lucide-react';
 
-export type TripTab = 'itinerary' | 'mindmap' | 'places' | 'budget' | 'checklist' | 'todos' | 'info' | 'sharing' | 'settings';
+export type TripTab = 'itinerary' | 'mindmap' | 'places' | 'budget' | 'checklist' | 'todos' | 'info' | 'group' | 'settings';
 
 export type TripTabDefinition = {
   id: TripTab;
@@ -25,6 +25,6 @@ export const tripTabs: TripTabDefinition[] = [
   { id: 'checklist', label: 'Packing', icon: Briefcase },
   { id: 'todos', label: 'To-Dos', icon: CheckSquare },
   { id: 'info', label: 'Essentials', icon: Info },
-  { id: 'sharing', label: 'Sharing', icon: Users },
+  { id: 'group', label: 'Group Trip', icon: Users },
   { id: 'settings', label: 'Settings', icon: Settings },
 ];

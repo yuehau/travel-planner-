@@ -14,6 +14,8 @@ export type Trip = {
   end_date: string;
   description: string | null;
   budget_cap: number | null;
+  group_open: boolean;
+  group_capacity: number | null;
   created_at: string;
 };
 
@@ -128,7 +130,7 @@ export type TripMember = {
   id: string;
   trip_id: string;
   user_id: string | null;
-  invited_email: string;
+  invited_email: string | null;
   role: TripMemberRole;
   status: TripMemberStatus;
   created_at: string;
@@ -186,6 +188,8 @@ export type Database = {
           end_date: string;
           description?: string | null;
           budget_cap?: number | null;
+          group_open?: boolean;
+          group_capacity?: number | null;
           created_at?: string;
         };
         Update: Partial<Omit<Trip, 'created_at'>>;
@@ -328,7 +332,7 @@ export type Database = {
           id?: string;
           trip_id: string;
           user_id?: string | null;
-          invited_email: string;
+          invited_email?: string | null;
           role?: TripMemberRole;
           status?: TripMemberStatus;
           created_at?: string;

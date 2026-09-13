@@ -348,6 +348,54 @@ create index if not exists packing_items_trip_id_created_at_idx on public.packin
 create index if not exists trip_infos_trip_id_category_created_at_idx on public.trip_infos (trip_id, category, created_at);
 create index if not exists trip_todos_trip_id_due_date_idx on public.trip_todos (trip_id, is_completed, due_date);
 create index if not exists trip_members_trip_id_email_idx on public.trip_members (trip_id, invited_email);
+-- Group Trip: an open trip lists its places/itinerary publicly so other users
+-- can preview it and self-join, instead of the owner inviting people by email.
+alter table public.trips add column if not exists group_open boolean not null default false;
+alter table public.trips add column if not exists group_capacity int;
+
+alter table public.trip_members alter column invited_email drop not null;
+
+create or replace function public.trip_is_open_group(target_trip_id uuid)
+returns boolean
+language sql
+security invoker
+stable
+set search_path = public
+as $$
+  select exists (
+    select 1 from public.trips
+    where trips.id = target_trip_id
+      and trips.group_open = true
+  );
+$$;
+
+revoke execute on function public.trip_is_open_group(uuid) from public;
+grant execute on function public.trip_is_open_group(uuid) to authenticated;
+
+drop policy if exists "Users can view own trips." on public.trips;
+create policy "Users can view own trips." on public.trips for select to authenticated using ((select auth.uid()) = user_id or group_open = true);
+
+drop policy if exists "Users can view places of their own trips." on public.places;
+create policy "Users can view places of their own trips." on public.places for select to authenticated using (public.user_owns_trip(trip_id) or public.trip_is_open_group(trip_id));
+
+drop policy if exists "Users can view items of their own trips." on public.itinerary_items;
+create policy "Users can view items of their own trips." on public.itinerary_items for select to authenticated using (public.user_owns_trip(trip_id) or public.trip_is_open_group(trip_id));
+
+drop policy if exists "Users can view nodes of their own trips." on public.itinerary_nodes;
+create policy "Users can view nodes of their own trips." on public.itinerary_nodes for select to authenticated using (public.user_owns_trip(trip_id) or public.trip_is_open_group(trip_id));
+
+drop policy if exists "Users can view members of their own trips." on public.trip_members;
+create policy "Users can view members of their own trips." on public.trip_members for select to authenticated using (public.user_owns_trip(trip_id) or public.trip_is_open_group(trip_id));
+
+drop policy if exists "Users can self-join open group trips." on public.trip_members;
+create policy "Users can self-join open group trips." on public.trip_members for insert to authenticated with check (
+  public.trip_is_open_group(trip_id)
+  and user_id = (select auth.uid())
+  and status = 'accepted'
+);
+
+create index if not exists trips_group_open_idx on public.trips (group_open) where group_open = true;
+
 create index if not exists trip_collections_user_id_status_created_idx on public.trip_collections (user_id, status, created_at desc);
 create index if not exists itinerary_nodes_trip_id_day_seq_idx on public.itinerary_nodes (trip_id, day_number, sequence_index);
 create index if not exists itinerary_nodes_parent_idx on public.itinerary_nodes (parent_node_id);
