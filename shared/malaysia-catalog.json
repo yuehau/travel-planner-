@@ -1,0 +1,3331 @@
+[
+  {
+    "id": "kl-petronas-towers",
+    "name": "Petronas Twin Towers",
+    "city": "Kuala Lumpur",
+    "region": "Kuala Lumpur",
+    "category": "landmark",
+    "vibes": [
+      "urban",
+      "iconic",
+      "skyline",
+      "night"
+    ],
+    "description": "The 452 m twin towers that define the KL skyline. Walk the Skybridge on level 41, then watch the Lake Symphony fountains from the park below after dark.",
+    "address": "Kuala Lumpur City Centre, 50088 Kuala Lumpur",
+    "latitude": 3.1579,
+    "longitude": 101.7116,
+    "rating": 4.7,
+    "reviewCount": 48211,
+    "reviews": [
+      {
+        "author": "Aina R.",
+        "rating": 5,
+        "text": "Book the Skybridge slot early in the morning. The view of KLCC Park from level 86 is unreal.",
+        "date": "2026-07-14"
+      },
+      {
+        "author": "Daniel L.",
+        "rating": 4,
+        "text": "Crowded but worth it. The fountain show at 8pm is the best free thing in the city.",
+        "date": "2026-06-02"
+      }
+    ],
+    "openingHours": "9:00 – 21:00 (closed Mon)",
+    "priceLevel": 2,
+    "popular": true,
+    "image": "/places/kl-petronas-towers.svg"
+  },
+  {
+    "id": "kl-batu-caves",
+    "name": "Batu Caves",
+    "city": "Gombak",
+    "region": "Kuala Lumpur",
+    "category": "culture",
+    "vibes": [
+      "temple",
+      "colourful",
+      "hike",
+      "morning"
+    ],
+    "description": "A limestone hill topped with Hindu shrines, reached by 272 rainbow-painted steps beside a 43 m golden Murugan statue.",
+    "address": "Gombak, 68100 Batu Caves, Selangor",
+    "latitude": 3.2379,
+    "longitude": 101.684,
+    "rating": 4.6,
+    "reviewCount": 39804,
+    "reviews": [
+      {
+        "author": "Priya S.",
+        "rating": 5,
+        "text": "Go before 9am to beat the heat. Hold your bag close, the macaques are bold.",
+        "date": "2026-08-01"
+      },
+      {
+        "author": "Marcus T.",
+        "rating": 4,
+        "text": "Twenty minutes by KTM from KL Sentral. The steps are easier than they look.",
+        "date": "2026-05-19"
+      }
+    ],
+    "openingHours": "6:00 – 21:00",
+    "priceLevel": 1,
+    "popular": true,
+    "image": "/places/kl-batu-caves.svg"
+  },
+  {
+    "id": "kl-jalan-alor",
+    "name": "Jalan Alor Food Street",
+    "city": "Kuala Lumpur",
+    "region": "Kuala Lumpur",
+    "category": "food",
+    "vibes": [
+      "street food",
+      "night",
+      "busy",
+      "hawker"
+    ],
+    "description": "KL's most famous night food street. Grilled chicken wings, satay, hokkien mee and durian stalls stretch the whole block from sunset until late.",
+    "address": "Jalan Alor, Bukit Bintang, 50200 Kuala Lumpur",
+    "latitude": 3.1454,
+    "longitude": 101.7089,
+    "rating": 4.4,
+    "reviewCount": 27560,
+    "reviews": [
+      {
+        "author": "Wei Ling",
+        "rating": 5,
+        "text": "Wong Ah Wah chicken wings are still the move. Arrive around 7pm before the queue forms.",
+        "date": "2026-07-28"
+      },
+      {
+        "author": "Jonas K.",
+        "rating": 4,
+        "text": "Touristy prices but the variety is unmatched. Try the grilled stingray.",
+        "date": "2026-04-11"
+      }
+    ],
+    "openingHours": "17:00 – 02:00",
+    "priceLevel": 1,
+    "popular": true,
+    "image": "/places/kl-jalan-alor.svg"
+  },
+  {
+    "id": "kl-merdeka-square",
+    "name": "Merdeka Square",
+    "city": "Kuala Lumpur",
+    "region": "Kuala Lumpur",
+    "category": "landmark",
+    "vibes": [
+      "history",
+      "colonial",
+      "photo",
+      "walk"
+    ],
+    "description": "The lawn where Malaysia's flag was first raised in 1957, framed by the Moorish Sultan Abdul Samad Building and the mock-Tudor Royal Selangor Club.",
+    "address": "Jalan Raja, City Centre, 50050 Kuala Lumpur",
+    "latitude": 3.1479,
+    "longitude": 101.6937,
+    "rating": 4.5,
+    "reviewCount": 18930,
+    "reviews": [
+      {
+        "author": "Hafiz A.",
+        "rating": 5,
+        "text": "Sunset lights up the clock tower beautifully. Combine with the River of Life walk next door.",
+        "date": "2026-06-20"
+      },
+      {
+        "author": "Elena V.",
+        "rating": 4,
+        "text": "Lovely architecture; not much shade so bring water.",
+        "date": "2026-03-09"
+      }
+    ],
+    "openingHours": "Open 24 hours",
+    "priceLevel": 1,
+    "image": "/places/kl-merdeka-square.svg"
+  },
+  {
+    "id": "kl-thean-hou-temple",
+    "name": "Thean Hou Temple",
+    "city": "Kuala Lumpur",
+    "region": "Kuala Lumpur",
+    "category": "culture",
+    "vibes": [
+      "temple",
+      "lanterns",
+      "view",
+      "calm"
+    ],
+    "description": "A six-tiered Chinese temple on Robson Hill with hundreds of red lanterns, a tortoise pond, and a panoramic view over the city.",
+    "address": "65 Persiaran Endah, Taman Persiaran Desa, 50460 Kuala Lumpur",
+    "latitude": 3.1219,
+    "longitude": 101.6874,
+    "rating": 4.6,
+    "reviewCount": 15412,
+    "reviews": [
+      {
+        "author": "Chloe N.",
+        "rating": 5,
+        "text": "Come at blue hour when the lanterns switch on. Quiet on weekdays.",
+        "date": "2026-02-14"
+      },
+      {
+        "author": "Ravi M.",
+        "rating": 4,
+        "text": "Grab is the easiest way up the hill. Free entry, donation box at the altar.",
+        "date": "2026-07-03"
+      }
+    ],
+    "openingHours": "8:00 – 22:00",
+    "priceLevel": 1,
+    "image": "/places/kl-thean-hou-temple.svg"
+  },
+  {
+    "id": "kl-forest-eco-park",
+    "name": "KL Forest Eco Park",
+    "city": "Kuala Lumpur",
+    "region": "Kuala Lumpur",
+    "category": "nature",
+    "vibes": [
+      "canopy",
+      "jungle",
+      "walk",
+      "green"
+    ],
+    "description": "A pocket of primary rainforest at the foot of KL Tower with a 200 m canopy walkway threading through the treetops above the traffic.",
+    "address": "Jalan Raja Chulan, Bukit Nanas, 50250 Kuala Lumpur",
+    "latitude": 3.1522,
+    "longitude": 101.7047,
+    "rating": 4.3,
+    "reviewCount": 7420,
+    "reviews": [
+      {
+        "author": "Sam O.",
+        "rating": 4,
+        "text": "Surprisingly wild for a city park. The canopy walk gives a great angle on KL Tower.",
+        "date": "2026-05-30"
+      },
+      {
+        "author": "Nur I.",
+        "rating": 4,
+        "text": "Bring insect repellent and go early; it gets steamy after 11.",
+        "date": "2026-08-12"
+      }
+    ],
+    "openingHours": "8:00 – 17:30",
+    "priceLevel": 1,
+    "image": "/places/kl-forest-eco-park.svg"
+  },
+  {
+    "id": "kl-central-market",
+    "name": "Central Market",
+    "city": "Kuala Lumpur",
+    "region": "Kuala Lumpur",
+    "category": "shopping",
+    "vibes": [
+      "crafts",
+      "batik",
+      "souvenirs",
+      "art deco"
+    ],
+    "description": "A 1888 art-deco wet market turned crafts bazaar: batik, pewter, songket and local art under one cool roof, plus a hawker food court upstairs.",
+    "address": "Jalan Hang Kasturi, 50050 Kuala Lumpur",
+    "latitude": 3.1456,
+    "longitude": 101.6954,
+    "rating": 4.3,
+    "reviewCount": 22180,
+    "reviews": [
+      {
+        "author": "Grace H.",
+        "rating": 4,
+        "text": "Best place for gifts without the haggling stress. The batik workshop is fun.",
+        "date": "2026-06-08"
+      },
+      {
+        "author": "Tom B.",
+        "rating": 4,
+        "text": "Air-conditioned escape between Chinatown and Merdeka Square.",
+        "date": "2026-01-25"
+      }
+    ],
+    "openingHours": "10:00 – 21:30",
+    "priceLevel": 2,
+    "image": "/places/kl-central-market.svg"
+  },
+  {
+    "id": "kl-petaling-street",
+    "name": "Petaling Street, Chinatown",
+    "city": "Kuala Lumpur",
+    "region": "Kuala Lumpur",
+    "category": "food",
+    "vibes": [
+      "chinatown",
+      "market",
+      "street food",
+      "heritage"
+    ],
+    "description": "The covered bazaar at the heart of KL's Chinatown, ringed by old kopitiams, Kwai Chai Hong's murals, and some of the city's oldest noodle stalls.",
+    "address": "Jalan Petaling, City Centre, 50000 Kuala Lumpur",
+    "latitude": 3.1443,
+    "longitude": 101.6976,
+    "rating": 4.2,
+    "reviewCount": 31005,
+    "reviews": [
+      {
+        "author": "Kelvin C.",
+        "rating": 5,
+        "text": "Skip the knock-off stalls and head for Kim Lian Kee hokkien mee and the air mata kucing stand.",
+        "date": "2026-07-19"
+      },
+      {
+        "author": "Sofia P.",
+        "rating": 4,
+        "text": "Kwai Chai Hong lane is beautifully restored. Great for photos before the crowd.",
+        "date": "2026-04-27"
+      }
+    ],
+    "openingHours": "10:00 – 22:00",
+    "priceLevel": 1,
+    "image": "/places/kl-petaling-street.svg"
+  },
+  {
+    "id": "kl-klcc-park",
+    "name": "KLCC Park",
+    "city": "Kuala Lumpur",
+    "region": "Kuala Lumpur",
+    "category": "nature",
+    "vibes": [
+      "park",
+      "jogging",
+      "fountain",
+      "family"
+    ],
+    "description": "A 50-acre landscaped park beneath the towers with a jogging loop, wading pool, and the Lake Symphony fountain show every evening.",
+    "address": "Jalan Ampang, Kuala Lumpur City Centre, 50088 Kuala Lumpur",
+    "latitude": 3.1546,
+    "longitude": 101.7134,
+    "rating": 4.6,
+    "reviewCount": 26340,
+    "reviews": [
+      {
+        "author": "Lim J.",
+        "rating": 5,
+        "text": "Best free view of the towers. The evening breeze here is a lifesaver.",
+        "date": "2026-08-20"
+      },
+      {
+        "author": "Andrea F.",
+        "rating": 4,
+        "text": "Nice loop for a slow walk after dinner at Suria.",
+        "date": "2026-02-02"
+      }
+    ],
+    "openingHours": "7:00 – 22:00",
+    "priceLevel": 1,
+    "image": "/places/kl-klcc-park.svg"
+  },
+  {
+    "id": "kl-vcr-bangsar",
+    "name": "VCR Bangsar",
+    "city": "Kuala Lumpur",
+    "region": "Kuala Lumpur",
+    "category": "cafe",
+    "vibes": [
+      "coffee",
+      "brunch",
+      "laptop-friendly",
+      "chill"
+    ],
+    "description": "A KL specialty-coffee institution in a converted shophouse. Slow mornings, single-origin pour-overs and a brunch menu that changes with the season.",
+    "address": "31 Jalan Telawi 3, Bangsar Baru, 59100 Kuala Lumpur",
+    "latitude": 3.1284,
+    "longitude": 101.671,
+    "rating": 4.5,
+    "reviewCount": 4120,
+    "reviews": [
+      {
+        "author": "Mei Xin",
+        "rating": 5,
+        "text": "The flat white and the kaya French toast are the reason I keep coming back.",
+        "date": "2026-08-30"
+      },
+      {
+        "author": "Ben W.",
+        "rating": 4,
+        "text": "Busy on weekends. Weekday afternoons are calm enough to work from.",
+        "date": "2026-06-15"
+      }
+    ],
+    "openingHours": "8:30 – 22:00",
+    "priceLevel": 2,
+    "image": "/places/kl-vcr-bangsar.svg"
+  },
+  {
+    "id": "kl-bukit-bintang",
+    "name": "Bukit Bintang",
+    "city": "Kuala Lumpur",
+    "region": "Kuala Lumpur",
+    "category": "nightlife",
+    "vibes": [
+      "shopping",
+      "nightlife",
+      "neon",
+      "malls"
+    ],
+    "description": "KL's shopping and entertainment district: Pavilion and Lot 10 malls by day, Changkat Bukit Bintang's bars and rooftop lounges by night.",
+    "address": "Bukit Bintang, 55100 Kuala Lumpur",
+    "latitude": 3.1466,
+    "longitude": 101.7108,
+    "rating": 4.5,
+    "reviewCount": 35720,
+    "reviews": [
+      {
+        "author": "Zara K.",
+        "rating": 5,
+        "text": "Everything within walking distance. Pavilion's Tokyo Street basement is a fun food stop.",
+        "date": "2026-07-07"
+      },
+      {
+        "author": "Oliver R.",
+        "rating": 4,
+        "text": "Loud and bright at night, exactly what you want from a city break.",
+        "date": "2026-03-21"
+      }
+    ],
+    "openingHours": "Open 24 hours",
+    "priceLevel": 2,
+    "popular": true,
+    "image": "/places/kl-bukit-bintang.svg"
+  },
+  {
+    "id": "kl-heli-lounge-bar",
+    "name": "Heli Lounge Bar",
+    "city": "Kuala Lumpur",
+    "region": "Kuala Lumpur",
+    "category": "nightlife",
+    "vibes": [
+      "rooftop",
+      "sunset",
+      "cocktails",
+      "view"
+    ],
+    "description": "A working helipad that turns into an open-air rooftop bar after 6pm, with a 360° view of the towers and no railings between you and the sky.",
+    "address": "Level 34, Menara KH, Jalan Sultan Ismail, 50250 Kuala Lumpur",
+    "latitude": 3.149,
+    "longitude": 101.7089,
+    "rating": 4.4,
+    "reviewCount": 12890,
+    "reviews": [
+      {
+        "author": "Isabel M.",
+        "rating": 5,
+        "text": "Get there at 6 for sunset. One drink minimum is fair for that view.",
+        "date": "2026-05-05"
+      },
+      {
+        "author": "Arjun P.",
+        "rating": 4,
+        "text": "Dress code is enforced; no slippers. Cocktails are decent, view is the star.",
+        "date": "2026-08-09"
+      }
+    ],
+    "openingHours": "18:00 – 02:00",
+    "priceLevel": 3,
+    "image": "/places/kl-heli-lounge-bar.svg"
+  },
+  {
+    "id": "pg-george-town-street-art",
+    "name": "George Town Street Art",
+    "city": "George Town",
+    "region": "Penang",
+    "category": "culture",
+    "vibes": [
+      "murals",
+      "heritage",
+      "walk",
+      "photo"
+    ],
+    "description": "Ernest Zacharevic's murals and the wrought-iron caricatures scattered across the UNESCO core. Start on Armenian Street and get lost on purpose.",
+    "address": "Armenian Street, George Town, 10200 Penang",
+    "latitude": 5.4147,
+    "longitude": 100.3385,
+    "rating": 4.7,
+    "reviewCount": 21460,
+    "reviews": [
+      {
+        "author": "Farah Z.",
+        "rating": 5,
+        "text": "Rent a bicycle and do the mural trail at 8am before the tour groups.",
+        "date": "2026-06-11"
+      },
+      {
+        "author": "Luca D.",
+        "rating": 5,
+        "text": "Every corner has something. The 'Kids on Bicycle' mural queue moves fast.",
+        "date": "2026-03-30"
+      }
+    ],
+    "openingHours": "Open 24 hours",
+    "priceLevel": 1,
+    "popular": true,
+    "image": "/places/pg-george-town-street-art.svg"
+  },
+  {
+    "id": "pg-kek-lok-si",
+    "name": "Kek Lok Si Temple",
+    "city": "Air Itam",
+    "region": "Penang",
+    "category": "culture",
+    "vibes": [
+      "temple",
+      "pagoda",
+      "hill",
+      "lanterns"
+    ],
+    "description": "Southeast Asia's largest Buddhist temple complex climbing the Air Itam hillside, crowned by a 30 m bronze Kuan Yin and a seven-tier pagoda.",
+    "address": "Jalan Balik Pulau, Air Itam, 11500 Penang",
+    "latitude": 5.3993,
+    "longitude": 100.2732,
+    "rating": 4.6,
+    "reviewCount": 17820,
+    "reviews": [
+      {
+        "author": "Siew Mei",
+        "rating": 5,
+        "text": "During Chinese New Year the whole complex is lit with thousands of lanterns. Magical.",
+        "date": "2026-02-08"
+      },
+      {
+        "author": "Peter G.",
+        "rating": 4,
+        "text": "Take the inclined lift to the top statue; the view over Air Itam is worth it.",
+        "date": "2026-07-22"
+      }
+    ],
+    "openingHours": "8:30 – 17:30",
+    "priceLevel": 1,
+    "image": "/places/pg-kek-lok-si.svg"
+  },
+  {
+    "id": "pg-penang-hill",
+    "name": "Penang Hill",
+    "city": "Air Itam",
+    "region": "Penang",
+    "category": "nature",
+    "vibes": [
+      "view",
+      "cool air",
+      "funicular",
+      "sunset"
+    ],
+    "description": "Ride the funicular 833 m up for cooler air, colonial bungalows, The Habitat canopy walk and the best sunset view over George Town and the bridges.",
+    "address": "Jalan Bukit Bendera, Air Itam, 11500 Penang",
+    "latitude": 5.4245,
+    "longitude": 100.2686,
+    "rating": 4.5,
+    "reviewCount": 24310,
+    "reviews": [
+      {
+        "author": "Nadia H.",
+        "rating": 5,
+        "text": "The Habitat's Curtis Crest tree-top walk is the highlight. Buy the fast-lane ticket on weekends.",
+        "date": "2026-08-03"
+      },
+      {
+        "author": "Kenji O.",
+        "rating": 4,
+        "text": "Go up around 5pm, watch the sunset, come down when the city lights are on.",
+        "date": "2026-05-16"
+      }
+    ],
+    "openingHours": "6:30 – 23:00",
+    "priceLevel": 2,
+    "popular": true,
+    "image": "/places/pg-penang-hill.svg"
+  },
+  {
+    "id": "pg-clan-jetties",
+    "name": "Chew Jetty",
+    "city": "George Town",
+    "region": "Penang",
+    "category": "culture",
+    "vibes": [
+      "waterfront",
+      "heritage",
+      "stilt houses",
+      "sunset"
+    ],
+    "description": "A 19th-century Chinese clan settlement of wooden houses on stilts stretching over the harbour. Still lived in, still lovely at golden hour.",
+    "address": "Pengkalan Weld, George Town, 10300 Penang",
+    "latitude": 5.4113,
+    "longitude": 100.3396,
+    "rating": 4.3,
+    "reviewCount": 13570,
+    "reviews": [
+      {
+        "author": "Amirah L.",
+        "rating": 4,
+        "text": "Please be quiet, people live here. The end of the jetty at sunset is peaceful.",
+        "date": "2026-04-18"
+      },
+      {
+        "author": "Hannah S.",
+        "rating": 4,
+        "text": "Small but atmospheric. Combine with the street-art walk.",
+        "date": "2026-07-25"
+      }
+    ],
+    "openingHours": "9:00 – 21:00",
+    "priceLevel": 1,
+    "image": "/places/pg-clan-jetties.svg"
+  },
+  {
+    "id": "pg-gurney-drive",
+    "name": "Gurney Drive Hawker Centre",
+    "city": "George Town",
+    "region": "Penang",
+    "category": "food",
+    "vibes": [
+      "hawker",
+      "seafood",
+      "night",
+      "laksa"
+    ],
+    "description": "The seaside hawker centre where Penang's greatest hits line up: assam laksa, char kway teow, oh chien, rojak and lok lok, all a few steps apart.",
+    "address": "172 Solok Gurney 1, 10250 George Town, Penang",
+    "latitude": 5.4372,
+    "longitude": 100.3094,
+    "rating": 4.4,
+    "reviewCount": 19960,
+    "reviews": [
+      {
+        "author": "Jason Y.",
+        "rating": 5,
+        "text": "Order from three different stalls and share. The laksa is the sourest, best version I know.",
+        "date": "2026-08-17"
+      },
+      {
+        "author": "Camille B.",
+        "rating": 4,
+        "text": "Cash only for most stalls. The sea breeze makes the heat bearable.",
+        "date": "2026-06-24"
+      }
+    ],
+    "openingHours": "17:00 – 00:00",
+    "priceLevel": 1,
+    "popular": true,
+    "image": "/places/pg-gurney-drive.svg"
+  },
+  {
+    "id": "pg-khoo-kongsi",
+    "name": "Khoo Kongsi",
+    "city": "George Town",
+    "region": "Penang",
+    "category": "culture",
+    "vibes": [
+      "clanhouse",
+      "carvings",
+      "heritage",
+      "quiet"
+    ],
+    "description": "The most ornate clan house in Malaysia: carved granite pillars, gilded beams and a courtyard theatre built by the Khoo family in 1906.",
+    "address": "18 Cannon Square, George Town, 10200 Penang",
+    "latitude": 5.4145,
+    "longitude": 100.3372,
+    "rating": 4.5,
+    "reviewCount": 9840,
+    "reviews": [
+      {
+        "author": "Wong K.",
+        "rating": 5,
+        "text": "The roof carvings alone justify the ticket. Guides are excellent.",
+        "date": "2026-03-12"
+      },
+      {
+        "author": "Olivia T.",
+        "rating": 4,
+        "text": "Small, calm, and beautifully kept. Half an hour is enough.",
+        "date": "2026-07-30"
+      }
+    ],
+    "openingHours": "9:00 – 17:00",
+    "priceLevel": 1,
+    "image": "/places/pg-khoo-kongsi.svg"
+  },
+  {
+    "id": "pg-blue-mansion",
+    "name": "Cheong Fatt Tze Blue Mansion",
+    "city": "George Town",
+    "region": "Penang",
+    "category": "landmark",
+    "vibes": [
+      "indigo",
+      "mansion",
+      "feng shui",
+      "heritage"
+    ],
+    "description": "An indigo-washed 1880s courtyard mansion built for a tycoon, restored to UNESCO-award standard. Guided tours explain the feng-shui geometry.",
+    "address": "14 Leith Street, George Town, 10200 Penang",
+    "latitude": 5.4198,
+    "longitude": 100.3355,
+    "rating": 4.5,
+    "reviewCount": 8720,
+    "reviews": [
+      {
+        "author": "Rachel Q.",
+        "rating": 5,
+        "text": "Book the 11am tour. The story of the family and the rainwater courtyards is fascinating.",
+        "date": "2026-05-22"
+      },
+      {
+        "author": "Diego A.",
+        "rating": 4,
+        "text": "Photogenic from every angle. Indigo restaurant inside is a treat.",
+        "date": "2026-08-25"
+      }
+    ],
+    "openingHours": "Tours at 11:00, 14:00, 15:30",
+    "priceLevel": 2,
+    "image": "/places/pg-blue-mansion.svg"
+  },
+  {
+    "id": "pg-batu-ferringhi",
+    "name": "Batu Ferringhi Beach",
+    "city": "Batu Ferringhi",
+    "region": "Penang",
+    "category": "beach",
+    "vibes": [
+      "beach",
+      "night market",
+      "resort",
+      "sunset"
+    ],
+    "description": "Penang's resort strip: a long sandy beach for parasailing and sunsets, then a lively night market along the main road.",
+    "address": "Batu Ferringhi, 11100 Penang",
+    "latitude": 5.4728,
+    "longitude": 100.246,
+    "rating": 4.2,
+    "reviewCount": 11230,
+    "reviews": [
+      {
+        "author": "Nabil R.",
+        "rating": 4,
+        "text": "Not a swimming beach, but perfect for a sunset walk and the night market.",
+        "date": "2026-06-05"
+      },
+      {
+        "author": "Sophie L.",
+        "rating": 4,
+        "text": "Stay a night here for a slower pace than George Town.",
+        "date": "2026-04-02"
+      }
+    ],
+    "openingHours": "Open 24 hours",
+    "priceLevel": 2,
+    "image": "/places/pg-batu-ferringhi.svg"
+  },
+  {
+    "id": "pg-china-house",
+    "name": "ChinaHouse",
+    "city": "George Town",
+    "region": "Penang",
+    "category": "cafe",
+    "vibes": [
+      "cake",
+      "coffee",
+      "courtyard",
+      "live music"
+    ],
+    "description": "Three heritage shophouses joined into one long café, gallery and bar. Famous for its 40-cake counter and the tiramisu everyone photographs.",
+    "address": "153 & 155 Beach Street, George Town, 10300 Penang",
+    "latitude": 5.4148,
+    "longitude": 100.34,
+    "rating": 4.4,
+    "reviewCount": 10310,
+    "reviews": [
+      {
+        "author": "Mira T.",
+        "rating": 5,
+        "text": "Walk all the way through to the back courtyard. Salted caramel cheesecake is the pick.",
+        "date": "2026-08-14"
+      },
+      {
+        "author": "Ethan J.",
+        "rating": 4,
+        "text": "Pricey for Penang but the space is special. Live music on weekends.",
+        "date": "2026-02-27"
+      }
+    ],
+    "openingHours": "9:00 – 23:00",
+    "priceLevel": 2,
+    "image": "/places/pg-china-house.svg"
+  },
+  {
+    "id": "lk-sky-bridge",
+    "name": "Langkawi Sky Bridge",
+    "city": "Langkawi",
+    "region": "Langkawi",
+    "category": "landmark",
+    "vibes": [
+      "view",
+      "cable car",
+      "island",
+      "adventure"
+    ],
+    "description": "A curved 125 m pedestrian bridge suspended 660 m above sea level, reached by the SkyCab cable car over rainforest to the top of Gunung Mat Cincang.",
+    "address": "Oriental Village, Burau Bay, 07000 Langkawi, Kedah",
+    "latitude": 6.3862,
+    "longitude": 99.6631,
+    "rating": 4.6,
+    "reviewCount": 20450,
+    "reviews": [
+      {
+        "author": "Aiman F.",
+        "rating": 5,
+        "text": "Clear mornings give views to Thailand. Check the weather board before buying tickets.",
+        "date": "2026-07-09"
+      },
+      {
+        "author": "Julia R.",
+        "rating": 4,
+        "text": "The cable car is steeper than expected. The bridge itself is calm and stunning.",
+        "date": "2026-03-25"
+      }
+    ],
+    "openingHours": "9:30 – 19:00",
+    "priceLevel": 3,
+    "popular": true,
+    "image": "/places/lk-sky-bridge.svg"
+  },
+  {
+    "id": "lk-cenang-beach",
+    "name": "Pantai Cenang",
+    "city": "Langkawi",
+    "region": "Langkawi",
+    "category": "beach",
+    "vibes": [
+      "beach",
+      "sunset",
+      "bars",
+      "swim"
+    ],
+    "description": "Langkawi's main beach: 2 km of soft sand, warm shallow water, jet skis by day and beach bars with fire shows once the sun drops behind the islands.",
+    "address": "Pantai Cenang, 07000 Langkawi, Kedah",
+    "latitude": 6.2929,
+    "longitude": 99.7264,
+    "rating": 4.5,
+    "reviewCount": 25130,
+    "reviews": [
+      {
+        "author": "Dina S.",
+        "rating": 5,
+        "text": "Sunset from the sand with a coconut is the whole point of Langkawi.",
+        "date": "2026-08-21"
+      },
+      {
+        "author": "Matt H.",
+        "rating": 4,
+        "text": "Busier than Tengah next door, but the food and bar options make up for it.",
+        "date": "2026-05-12"
+      }
+    ],
+    "openingHours": "Open 24 hours",
+    "priceLevel": 1,
+    "popular": true,
+    "image": "/places/lk-cenang-beach.svg"
+  },
+  {
+    "id": "lk-kilim-geoforest",
+    "name": "Kilim Karst Geoforest Park",
+    "city": "Langkawi",
+    "region": "Langkawi",
+    "category": "nature",
+    "vibes": [
+      "mangrove",
+      "boat",
+      "eagles",
+      "caves"
+    ],
+    "description": "A UNESCO geopark of mangrove channels and limestone karsts explored by boat: bat caves, floating fish farms and eagles circling over the river mouth.",
+    "address": "Kilim Jetty, Kampung Kilim, 07000 Langkawi, Kedah",
+    "latitude": 6.4064,
+    "longitude": 99.8533,
+    "rating": 4.6,
+    "reviewCount": 9870,
+    "reviews": [
+      {
+        "author": "Karim B.",
+        "rating": 5,
+        "text": "Choose an operator that doesn't feed the eagles. The mangrove tunnels are serene.",
+        "date": "2026-06-28"
+      },
+      {
+        "author": "Lena P.",
+        "rating": 5,
+        "text": "Four hours went by fast. The crocodile cave at low tide is fun.",
+        "date": "2026-02-19"
+      }
+    ],
+    "openingHours": "8:00 – 18:00",
+    "priceLevel": 2,
+    "image": "/places/lk-kilim-geoforest.svg"
+  },
+  {
+    "id": "lk-eagle-square",
+    "name": "Eagle Square",
+    "city": "Kuah",
+    "region": "Langkawi",
+    "category": "landmark",
+    "vibes": [
+      "statue",
+      "harbour",
+      "evening",
+      "photo"
+    ],
+    "description": "The 12 m reddish-brown eagle statue at Kuah harbour that gives Langkawi its name. Best at dusk, when the ferries come in and the square lights up.",
+    "address": "Persiaran Putra, Kuah, 07000 Langkawi, Kedah",
+    "latitude": 6.3086,
+    "longitude": 99.85,
+    "rating": 4.3,
+    "reviewCount": 14650,
+    "reviews": [
+      {
+        "author": "Ishak M.",
+        "rating": 4,
+        "text": "Quick stop near the jetty. The surrounding Legenda Park is nice for a stroll.",
+        "date": "2026-04-30"
+      },
+      {
+        "author": "Bea C.",
+        "rating": 4,
+        "text": "Great sunset photos with the statue silhouetted.",
+        "date": "2026-08-06"
+      }
+    ],
+    "openingHours": "Open 24 hours",
+    "priceLevel": 1,
+    "image": "/places/lk-eagle-square.svg"
+  },
+  {
+    "id": "lk-tanjung-rhu",
+    "name": "Tanjung Rhu Beach",
+    "city": "Langkawi",
+    "region": "Langkawi",
+    "category": "beach",
+    "vibes": [
+      "quiet",
+      "white sand",
+      "casuarina",
+      "swim"
+    ],
+    "description": "The island's quietest beach on the northern tip: white sand, casuarina shade, limestone islets offshore and hardly any crowds.",
+    "address": "Tanjung Rhu, 07000 Langkawi, Kedah",
+    "latitude": 6.4527,
+    "longitude": 99.8232,
+    "rating": 4.6,
+    "reviewCount": 6980,
+    "reviews": [
+      {
+        "author": "Yasmin A.",
+        "rating": 5,
+        "text": "Calm water, shade, and a sandbar you can walk out on at low tide. Bring your own snacks.",
+        "date": "2026-07-16"
+      },
+      {
+        "author": "Robert N.",
+        "rating": 5,
+        "text": "Our favourite beach on the island. Far from everything, which is the charm.",
+        "date": "2026-03-04"
+      }
+    ],
+    "openingHours": "Open 24 hours",
+    "priceLevel": 1,
+    "image": "/places/lk-tanjung-rhu.svg"
+  },
+  {
+    "id": "lk-telaga-tujuh",
+    "name": "Telaga Tujuh Waterfalls",
+    "city": "Langkawi",
+    "region": "Langkawi",
+    "category": "nature",
+    "vibes": [
+      "waterfall",
+      "hike",
+      "swim",
+      "jungle"
+    ],
+    "description": "Seven natural rock pools linked by a stream that tumbles 90 m down the mountain. A steep 600-step climb rewards you with a jungle swim.",
+    "address": "Jalan Telaga Tujuh, 07000 Langkawi, Kedah",
+    "latitude": 6.383,
+    "longitude": 99.6725,
+    "rating": 4.4,
+    "reviewCount": 7650,
+    "reviews": [
+      {
+        "author": "Haziq R.",
+        "rating": 5,
+        "text": "Go after rain for full pools. Watch for monkeys near the car park.",
+        "date": "2026-08-27"
+      },
+      {
+        "author": "Clara E.",
+        "rating": 4,
+        "text": "Tough climb in the heat but the top pools are worth it.",
+        "date": "2026-06-13"
+      }
+    ],
+    "openingHours": "8:00 – 18:00",
+    "priceLevel": 1,
+    "image": "/places/lk-telaga-tujuh.svg"
+  },
+  {
+    "id": "ch-boh-tea",
+    "name": "BOH Tea Plantation, Sungai Palas",
+    "city": "Brinchang",
+    "region": "Cameron Highlands",
+    "category": "nature",
+    "vibes": [
+      "tea",
+      "hills",
+      "cool",
+      "scones"
+    ],
+    "description": "Rolling tea terraces at 1,600 m with a cliff-edge café serving the plantation's own brews and scones. Watch the pickers work the slopes below.",
+    "address": "Sungai Palas, 39100 Brinchang, Pahang",
+    "latitude": 4.525,
+    "longitude": 101.418,
+    "rating": 4.6,
+    "reviewCount": 13480,
+    "reviews": [
+      {
+        "author": "Vivian L.",
+        "rating": 5,
+        "text": "The view from the café deck with a pot of Cameronian Gold is the definition of chill.",
+        "date": "2026-05-25"
+      },
+      {
+        "author": "Adam S.",
+        "rating": 4,
+        "text": "Narrow road up; arrive before 10am on weekends to find parking.",
+        "date": "2026-08-10"
+      }
+    ],
+    "openingHours": "9:00 – 16:30 (closed Mon)",
+    "priceLevel": 1,
+    "popular": true,
+    "image": "/places/ch-boh-tea.svg"
+  },
+  {
+    "id": "ch-mossy-forest",
+    "name": "Mossy Forest",
+    "city": "Brinchang",
+    "region": "Cameron Highlands",
+    "category": "nature",
+    "vibes": [
+      "cloud forest",
+      "boardwalk",
+      "mist",
+      "hike"
+    ],
+    "description": "A cloud forest on Gunung Brinchang where every branch drips with moss, pitcher plants line the boardwalk and the mist rolls in by early afternoon.",
+    "address": "Gunung Brinchang, 39100 Brinchang, Pahang",
+    "latitude": 4.516,
+    "longitude": 101.383,
+    "rating": 4.4,
+    "reviewCount": 6120,
+    "reviews": [
+      {
+        "author": "Teo W.",
+        "rating": 5,
+        "text": "Go with a guide early morning; the mist makes it otherworldly. 4WD needed for the road.",
+        "date": "2026-07-01"
+      },
+      {
+        "author": "Ingrid K.",
+        "rating": 4,
+        "text": "Short boardwalk but a unique ecosystem. Wear layers, it is cold.",
+        "date": "2026-02-22"
+      }
+    ],
+    "openingHours": "8:30 – 17:00",
+    "priceLevel": 1,
+    "image": "/places/ch-mossy-forest.svg"
+  },
+  {
+    "id": "ch-strawberry-farm",
+    "name": "Big Red Strawberry Farm",
+    "city": "Brinchang",
+    "region": "Cameron Highlands",
+    "category": "food",
+    "vibes": [
+      "strawberries",
+      "family",
+      "dessert",
+      "farm"
+    ],
+    "description": "Pick-your-own strawberry rows, a hydroponic salad garden and a café doing strawberry waffles and cream that regulars drive up for.",
+    "address": "Lot 1, Jalan Sungai Burung, 39100 Brinchang, Pahang",
+    "latitude": 4.478,
+    "longitude": 101.38,
+    "rating": 4.2,
+    "reviewCount": 5330,
+    "reviews": [
+      {
+        "author": "Nurul H.",
+        "rating": 4,
+        "text": "Fun with kids. The strawberry ice cream is better than the waffles.",
+        "date": "2026-06-19"
+      },
+      {
+        "author": "Gavin T.",
+        "rating": 4,
+        "text": "Touristy but relaxed. Bring a hat, the greenhouses get warm.",
+        "date": "2026-04-08"
+      }
+    ],
+    "openingHours": "8:00 – 18:00",
+    "priceLevel": 1,
+    "image": "/places/ch-strawberry-farm.svg"
+  },
+  {
+    "id": "mk-jonker-street",
+    "name": "Jonker Street",
+    "city": "Malacca",
+    "region": "Malacca",
+    "category": "shopping",
+    "vibes": [
+      "night market",
+      "antiques",
+      "heritage",
+      "weekend"
+    ],
+    "description": "The heart of Malacca's old Chinatown: antique shops and Peranakan cafés by day, and a packed Friday–Sunday night market with chicken rice balls and cendol.",
+    "address": "Jalan Hang Jebat, 75200 Melaka",
+    "latitude": 2.1955,
+    "longitude": 102.2467,
+    "rating": 4.4,
+    "reviewCount": 29870,
+    "reviews": [
+      {
+        "author": "Shaun L.",
+        "rating": 5,
+        "text": "Friday night market is the one to catch. Nyonya cendol at the corner stall.",
+        "date": "2026-08-22"
+      },
+      {
+        "author": "Maya R.",
+        "rating": 4,
+        "text": "Weekday mornings are calm and better for the antique shops.",
+        "date": "2026-05-03"
+      }
+    ],
+    "openingHours": "10:00 – 22:00 (night market Fri–Sun)",
+    "priceLevel": 1,
+    "popular": true,
+    "image": "/places/mk-jonker-street.svg"
+  },
+  {
+    "id": "mk-a-famosa",
+    "name": "A Famosa",
+    "city": "Malacca",
+    "region": "Malacca",
+    "category": "landmark",
+    "vibes": [
+      "fort",
+      "portuguese",
+      "history",
+      "hill"
+    ],
+    "description": "The Porta de Santiago gate is all that remains of the 1511 Portuguese fortress. Climb St Paul's Hill behind it for the ruined church and harbour view.",
+    "address": "Jalan Parameswara, Bandar Hilir, 75000 Melaka",
+    "latitude": 2.1918,
+    "longitude": 102.2503,
+    "rating": 4.3,
+    "reviewCount": 16540,
+    "reviews": [
+      {
+        "author": "Irfan Z.",
+        "rating": 4,
+        "text": "Small gate, big history. The walk up to St Paul's is short and breezy.",
+        "date": "2026-07-11"
+      },
+      {
+        "author": "Nina B.",
+        "rating": 4,
+        "text": "Come at sunset; the hill gives a nice view over the Straits.",
+        "date": "2026-03-17"
+      }
+    ],
+    "openingHours": "Open 24 hours",
+    "priceLevel": 1,
+    "image": "/places/mk-a-famosa.svg"
+  },
+  {
+    "id": "mk-stadthuys",
+    "name": "The Stadthuys",
+    "city": "Malacca",
+    "region": "Malacca",
+    "category": "culture",
+    "vibes": [
+      "dutch",
+      "red square",
+      "museum",
+      "trishaws"
+    ],
+    "description": "The terracotta-red Dutch town hall of 1650 on Dutch Square, now a history museum, surrounded by neon-lit trishaws and the Christ Church.",
+    "address": "Jalan Gereja, Bandar Hilir, 75000 Melaka",
+    "latitude": 2.1946,
+    "longitude": 102.2489,
+    "rating": 4.3,
+    "reviewCount": 12320,
+    "reviews": [
+      {
+        "author": "Chen H.",
+        "rating": 4,
+        "text": "The red square is Malacca's postcard. Museum is decent for an hour indoors.",
+        "date": "2026-06-30"
+      },
+      {
+        "author": "Laura M.",
+        "rating": 4,
+        "text": "Take a trishaw ride from here at night for the full kitsch experience.",
+        "date": "2026-08-15"
+      }
+    ],
+    "openingHours": "9:00 – 17:30",
+    "priceLevel": 1,
+    "image": "/places/mk-stadthuys.svg"
+  },
+  {
+    "id": "mk-river-cruise",
+    "name": "Melaka River Cruise",
+    "city": "Malacca",
+    "region": "Malacca",
+    "category": "nature",
+    "vibes": [
+      "river",
+      "boat",
+      "night",
+      "murals"
+    ],
+    "description": "A 45-minute boat ride along the restored river past mural-covered warehouses, kampung houses and riverside cafés, prettiest after dark.",
+    "address": "Jalan Laksamana, 75000 Melaka",
+    "latitude": 2.196,
+    "longitude": 102.248,
+    "rating": 4.4,
+    "reviewCount": 14980,
+    "reviews": [
+      {
+        "author": "Zulkifli A.",
+        "rating": 5,
+        "text": "Take the night cruise. The lights along the riverbank are lovely.",
+        "date": "2026-07-27"
+      },
+      {
+        "author": "Emma W.",
+        "rating": 4,
+        "text": "Relaxing way to see the town. Buy tickets at Muara Jetty to skip the queue.",
+        "date": "2026-04-21"
+      }
+    ],
+    "openingHours": "9:00 – 23:30",
+    "priceLevel": 2,
+    "image": "/places/mk-river-cruise.svg"
+  },
+  {
+    "id": "ip-concubine-lane",
+    "name": "Concubine Lane",
+    "city": "Ipoh",
+    "region": "Ipoh",
+    "category": "shopping",
+    "vibes": [
+      "old town",
+      "lanterns",
+      "snacks",
+      "weekend"
+    ],
+    "description": "A narrow 1908 lane in Ipoh Old Town now strung with lanterns, souvenir stalls and snack windows selling egg tarts, salted chicken and ice balls.",
+    "address": "Lorong Panglima, 30000 Ipoh, Perak",
+    "latitude": 4.5972,
+    "longitude": 101.079,
+    "rating": 4.2,
+    "reviewCount": 15760,
+    "reviews": [
+      {
+        "author": "Poh Ling",
+        "rating": 4,
+        "text": "Very crowded on weekends. Walk one street over to Market Lane for the same vibe with fewer people.",
+        "date": "2026-08-02"
+      },
+      {
+        "author": "Alex D.",
+        "rating": 4,
+        "text": "Cute for an hour, then head for the kopitiams nearby.",
+        "date": "2026-05-09"
+      }
+    ],
+    "openingHours": "9:00 – 18:00",
+    "priceLevel": 1,
+    "image": "/places/ip-concubine-lane.svg"
+  },
+  {
+    "id": "ip-kellies-castle",
+    "name": "Kellie's Castle",
+    "city": "Batu Gajah",
+    "region": "Ipoh",
+    "category": "landmark",
+    "vibes": [
+      "ruins",
+      "mansion",
+      "mystery",
+      "photo"
+    ],
+    "description": "An unfinished 1915 Scottish planter's mansion in Moorish-Indian style, abandoned when its owner died and left with secret passages and ghost stories.",
+    "address": "Jalan Gopeng, 31000 Batu Gajah, Perak",
+    "latitude": 4.466,
+    "longitude": 101.045,
+    "rating": 4.3,
+    "reviewCount": 9430,
+    "reviews": [
+      {
+        "author": "Syafiq N.",
+        "rating": 4,
+        "text": "Atmospheric ruins. The rooftop terrace has nice views over the plantations.",
+        "date": "2026-06-06"
+      },
+      {
+        "author": "Helen P.",
+        "rating": 4,
+        "text": "About 25 minutes from Ipoh by car. Go late afternoon for softer light.",
+        "date": "2026-02-11"
+      }
+    ],
+    "openingHours": "9:00 – 18:00",
+    "priceLevel": 1,
+    "image": "/places/ip-kellies-castle.svg"
+  },
+  {
+    "id": "ip-sin-yoon-loong",
+    "name": "Sin Yoon Loong Kopitiam",
+    "city": "Ipoh",
+    "region": "Ipoh",
+    "category": "cafe",
+    "vibes": [
+      "white coffee",
+      "kopitiam",
+      "breakfast",
+      "old town"
+    ],
+    "description": "The 1937 coffee shop credited with inventing Ipoh white coffee. Order it hot with kaya toast and half-boiled eggs at a marble table.",
+    "address": "15A Jalan Bandar Timah, 30000 Ipoh, Perak",
+    "latitude": 4.5969,
+    "longitude": 101.0781,
+    "rating": 4.4,
+    "reviewCount": 7290,
+    "reviews": [
+      {
+        "author": "Kok Wai",
+        "rating": 5,
+        "text": "This is the original. Smooth, not too sweet. Get there before 9am.",
+        "date": "2026-07-20"
+      },
+      {
+        "author": "Tara V.",
+        "rating": 4,
+        "text": "No frills, fast service, perfect breakfast before wandering Old Town.",
+        "date": "2026-04-14"
+      }
+    ],
+    "openingHours": "6:00 – 17:30",
+    "priceLevel": 1,
+    "image": "/places/ip-sin-yoon-loong.svg"
+  },
+  {
+    "id": "ip-perak-cave-temple",
+    "name": "Perak Cave Temple",
+    "city": "Ipoh",
+    "region": "Ipoh",
+    "category": "culture",
+    "vibes": [
+      "cave",
+      "temple",
+      "murals",
+      "view"
+    ],
+    "description": "A limestone cave temple with a 12 m seated Buddha and 400 steps winding up through painted chambers to a viewpoint over Ipoh's karst hills.",
+    "address": "Jalan Kuala Kangsar, 30010 Ipoh, Perak",
+    "latitude": 4.636,
+    "longitude": 101.094,
+    "rating": 4.5,
+    "reviewCount": 8110,
+    "reviews": [
+      {
+        "author": "Devi R.",
+        "rating": 5,
+        "text": "The climb to the top viewpoint is the highlight. Cool inside the cave even at noon.",
+        "date": "2026-08-08"
+      },
+      {
+        "author": "Mike S.",
+        "rating": 4,
+        "text": "Free entry, quiet on weekdays. Murals are beautiful.",
+        "date": "2026-03-27"
+      }
+    ],
+    "openingHours": "8:00 – 18:00",
+    "priceLevel": 1,
+    "image": "/places/ip-perak-cave-temple.svg"
+  },
+  {
+    "id": "sb-kinabalu-park",
+    "name": "Kinabalu Park",
+    "city": "Ranau",
+    "region": "Sabah",
+    "category": "nature",
+    "vibes": [
+      "mountain",
+      "hike",
+      "cool",
+      "unesco"
+    ],
+    "description": "Malaysia's first UNESCO site at the base of 4,095 m Mount Kinabalu. Botanical trails, orchid gardens and cool mountain air even if you skip the summit.",
+    "address": "Jalan Ranau-Tamparuli, 89300 Ranau, Sabah",
+    "latitude": 6.008,
+    "longitude": 116.542,
+    "rating": 4.7,
+    "reviewCount": 9010,
+    "reviews": [
+      {
+        "author": "Jenny L.",
+        "rating": 5,
+        "text": "Even the short Silau-Silau trail is beautiful. Summit climbs need permits months ahead.",
+        "date": "2026-06-16"
+      },
+      {
+        "author": "Paul G.",
+        "rating": 5,
+        "text": "Two hours from KK. The sunrise view of the peak from the park HQ is worth the early start.",
+        "date": "2026-08-23"
+      }
+    ],
+    "openingHours": "7:00 – 17:00",
+    "priceLevel": 2,
+    "popular": true,
+    "image": "/places/sb-kinabalu-park.svg"
+  },
+  {
+    "id": "sb-sepilok",
+    "name": "Sepilok Orangutan Rehabilitation Centre",
+    "city": "Sandakan",
+    "region": "Sabah",
+    "category": "nature",
+    "vibes": [
+      "wildlife",
+      "orangutans",
+      "rainforest",
+      "morning"
+    ],
+    "description": "A 43 km² reserve where orphaned orangutans learn to live wild again. Feeding platforms at 10am and 3pm, plus the sun bear centre next door.",
+    "address": "Jalan Sepilok, 90000 Sandakan, Sabah",
+    "latitude": 5.8746,
+    "longitude": 117.944,
+    "rating": 4.7,
+    "reviewCount": 7480,
+    "reviews": [
+      {
+        "author": "Anita K.",
+        "rating": 5,
+        "text": "The outdoor nursery viewing is the best part. Combine with the sun bear centre.",
+        "date": "2026-07-05"
+      },
+      {
+        "author": "Chris M.",
+        "rating": 5,
+        "text": "Well run, ethical, unforgettable. Morning feeding had more activity.",
+        "date": "2026-04-25"
+      }
+    ],
+    "openingHours": "9:00 – 12:00, 14:00 – 16:00",
+    "priceLevel": 2,
+    "image": "/places/sb-sepilok.svg"
+  },
+  {
+    "id": "sb-kk-waterfront",
+    "name": "Kota Kinabalu Waterfront",
+    "city": "Kota Kinabalu",
+    "region": "Sabah",
+    "category": "nightlife",
+    "vibes": [
+      "sunset",
+      "seafood",
+      "bars",
+      "harbour"
+    ],
+    "description": "KK's seafront promenade of seafood restaurants and bars facing the South China Sea, famous for some of the most dramatic sunsets in Borneo.",
+    "address": "Jalan Tun Fuad Stephens, 88000 Kota Kinabalu, Sabah",
+    "latitude": 5.982,
+    "longitude": 116.073,
+    "rating": 4.3,
+    "reviewCount": 11720,
+    "reviews": [
+      {
+        "author": "Fauzi H.",
+        "rating": 5,
+        "text": "The sunset here is the city's daily show. Grab a table at 6pm.",
+        "date": "2026-08-19"
+      },
+      {
+        "author": "Sara D.",
+        "rating": 4,
+        "text": "Seafood is pricier than the night market next door but the setting wins.",
+        "date": "2026-05-27"
+      }
+    ],
+    "openingHours": "16:00 – 01:00",
+    "priceLevel": 2,
+    "image": "/places/sb-kk-waterfront.svg"
+  },
+  {
+    "id": "sb-tar-marine-park",
+    "name": "Tunku Abdul Rahman Marine Park",
+    "city": "Kota Kinabalu",
+    "region": "Sabah",
+    "category": "beach",
+    "vibes": [
+      "islands",
+      "snorkel",
+      "boat",
+      "coral"
+    ],
+    "description": "Five islands a 15-minute speedboat from KK's Jesselton Point, with coral gardens for snorkelling, jungle trails and quiet stretches of sand.",
+    "address": "Jesselton Point Ferry Terminal, 88000 Kota Kinabalu, Sabah",
+    "latitude": 6,
+    "longitude": 116,
+    "rating": 4.4,
+    "reviewCount": 8330,
+    "reviews": [
+      {
+        "author": "Melissa T.",
+        "rating": 5,
+        "text": "Sapi and Manukan are easiest. Take the earliest boat for calm water and fewer people.",
+        "date": "2026-06-22"
+      },
+      {
+        "author": "Kevin F.",
+        "rating": 4,
+        "text": "Bring your own snorkel gear. The fish near the jetty are ridiculously friendly.",
+        "date": "2026-03-13"
+      }
+    ],
+    "openingHours": "8:00 – 17:00",
+    "priceLevel": 2,
+    "image": "/places/sb-tar-marine-park.svg"
+  },
+  {
+    "id": "kl-kwai-chai-hong",
+    "name": "Kwai Chai Hong",
+    "city": "Kuala Lumpur",
+    "region": "Kuala Lumpur",
+    "category": "culture",
+    "vibes": [
+      "murals",
+      "heritage",
+      "lane",
+      "photo"
+    ],
+    "description": "A restored 1960s laneway off Petaling Street with murals of old Chinatown life, lantern-lit at night and ringed by cocktail bars and cafés.",
+    "address": "Lorong Panggung, 50000 Kuala Lumpur",
+    "latitude": 3.1424,
+    "longitude": 101.6979,
+    "rating": 4.4,
+    "reviewCount": 9820,
+    "reviews": [
+      {
+        "author": "Sook Yee",
+        "rating": 5,
+        "text": "Tiny but charming. Come at dusk when the lanterns are on and the bars open.",
+        "date": "2026-07-12"
+      },
+      {
+        "author": "Ryan P.",
+        "rating": 4,
+        "text": "Great murals, gets crowded on weekends. Concubine KL for a drink after.",
+        "date": "2026-04-05"
+      }
+    ],
+    "openingHours": "9:00 – 00:00",
+    "priceLevel": 1,
+    "image": "/places/kl-kwai-chai-hong.svg"
+  },
+  {
+    "id": "kl-perdana-botanical-garden",
+    "name": "Perdana Botanical Garden",
+    "city": "Kuala Lumpur",
+    "region": "Kuala Lumpur",
+    "category": "nature",
+    "vibes": [
+      "park",
+      "lake",
+      "orchids",
+      "morning"
+    ],
+    "description": "KL’s oldest public park: 92 hectares of lakes, an orchid garden, hibiscus garden and the bird park, a short walk from the National Mosque.",
+    "address": "Jalan Kebun Bunga, Tasik Perdana, 55100 Kuala Lumpur",
+    "latitude": 3.1425,
+    "longitude": 101.6844,
+    "rating": 4.5,
+    "reviewCount": 11450,
+    "reviews": [
+      {
+        "author": "Amira Z.",
+        "rating": 5,
+        "text": "Perfect early morning walk before the heat. The orchid garden is free.",
+        "date": "2026-06-09"
+      },
+      {
+        "author": "Tom L.",
+        "rating": 4,
+        "text": "Rent the shuttle buggy if you have kids. Bird park next door is worth the ticket.",
+        "date": "2026-03-22"
+      }
+    ],
+    "openingHours": "7:00 – 20:00",
+    "priceLevel": 1,
+    "image": "/places/kl-perdana-botanical-garden.svg"
+  },
+  {
+    "id": "kl-islamic-arts-museum",
+    "name": "Islamic Arts Museum Malaysia",
+    "city": "Kuala Lumpur",
+    "region": "Kuala Lumpur",
+    "category": "culture",
+    "vibes": [
+      "museum",
+      "calm",
+      "architecture",
+      "rainy day"
+    ],
+    "description": "One of the finest Islamic art collections in Southeast Asia under a series of luminous domes: textiles, manuscripts, ceramics and scale models of great mosques.",
+    "address": "Jalan Lembah, Tasik Perdana, 50480 Kuala Lumpur",
+    "latitude": 3.1417,
+    "longitude": 101.69,
+    "rating": 4.7,
+    "reviewCount": 8760,
+    "reviews": [
+      {
+        "author": "Hana K.",
+        "rating": 5,
+        "text": "Beautifully curated and never crowded. The architecture gallery is the highlight.",
+        "date": "2026-08-04"
+      },
+      {
+        "author": "Marco D.",
+        "rating": 5,
+        "text": "Best museum in KL. The café does a lovely Middle Eastern lunch.",
+        "date": "2026-05-27"
+      }
+    ],
+    "openingHours": "9:30 – 18:00",
+    "priceLevel": 1,
+    "image": "/places/kl-islamic-arts-museum.svg"
+  },
+  {
+    "id": "kl-tower",
+    "name": "KL Tower",
+    "city": "Kuala Lumpur",
+    "region": "Kuala Lumpur",
+    "category": "landmark",
+    "vibes": [
+      "view",
+      "skydeck",
+      "night",
+      "iconic"
+    ],
+    "description": "The 421 m telecommunications tower on Bukit Nanas with an open-air Sky Deck and glass Sky Box that looks straight down over the city.",
+    "address": "2 Jalan Punchak, 50250 Kuala Lumpur",
+    "latitude": 3.1528,
+    "longitude": 101.7038,
+    "rating": 4.5,
+    "reviewCount": 21340,
+    "reviews": [
+      {
+        "author": "Faris M.",
+        "rating": 5,
+        "text": "Sky Deck at sunset beats the Petronas Skybridge for views because you can see the towers.",
+        "date": "2026-07-30"
+      },
+      {
+        "author": "Elise G.",
+        "rating": 4,
+        "text": "The Sky Box photo queue is long; go on a weekday.",
+        "date": "2026-02-18"
+      }
+    ],
+    "openingHours": "9:00 – 22:00",
+    "priceLevel": 2,
+    "image": "/places/kl-tower.svg"
+  },
+  {
+    "id": "kl-chow-kit-market",
+    "name": "Chow Kit Market",
+    "city": "Kuala Lumpur",
+    "region": "Kuala Lumpur",
+    "category": "food",
+    "vibes": [
+      "wet market",
+      "local",
+      "breakfast",
+      "nasi lemak"
+    ],
+    "description": "The city’s biggest wet market, freshly rebuilt: produce and seafood downstairs, hawker stalls and one of KL’s best nasi lemak counters upstairs.",
+    "address": "Jalan Tuanku Abdul Rahman, Chow Kit, 50350 Kuala Lumpur",
+    "latitude": 3.166,
+    "longitude": 101.6985,
+    "rating": 4.2,
+    "reviewCount": 6210,
+    "reviews": [
+      {
+        "author": "Zul H.",
+        "rating": 5,
+        "text": "Go hungry at 8am. Nasi lemak, roti canai and kopi for a few ringgit.",
+        "date": "2026-06-21"
+      },
+      {
+        "author": "Nina R.",
+        "rating": 4,
+        "text": "Real local KL. Bring cash and a bag; the fruit stalls are excellent.",
+        "date": "2026-04-13"
+      }
+    ],
+    "openingHours": "6:00 – 16:00",
+    "priceLevel": 1,
+    "image": "/places/kl-chow-kit-market.svg"
+  },
+  {
+    "id": "sl-putra-mosque",
+    "name": "Putra Mosque",
+    "city": "Putrajaya",
+    "region": "Selangor",
+    "category": "culture",
+    "vibes": [
+      "pink mosque",
+      "lake",
+      "architecture",
+      "sunset"
+    ],
+    "description": "The rose-tinted granite mosque on Putrajaya Lake, with a 116 m minaret and a lakeside promenade that glows at sunset.",
+    "address": "Persiaran Persekutuan, Presint 1, 62000 Putrajaya",
+    "latitude": 2.9358,
+    "longitude": 101.6896,
+    "rating": 4.7,
+    "reviewCount": 18930,
+    "reviews": [
+      {
+        "author": "Aisyah N.",
+        "rating": 5,
+        "text": "Stunning at golden hour. Robes are provided for visitors; check prayer times.",
+        "date": "2026-08-15"
+      },
+      {
+        "author": "David W.",
+        "rating": 5,
+        "text": "Combine with a lake cruise from the jetty below. Very peaceful.",
+        "date": "2026-05-08"
+      }
+    ],
+    "openingHours": "9:00 – 12:30, 14:00 – 16:00",
+    "priceLevel": 1,
+    "popular": true,
+    "image": "/places/sl-putra-mosque.svg"
+  },
+  {
+    "id": "sl-sunway-lagoon",
+    "name": "Sunway Lagoon",
+    "city": "Subang Jaya",
+    "region": "Selangor",
+    "category": "landmark",
+    "vibes": [
+      "theme park",
+      "water park",
+      "family",
+      "fun"
+    ],
+    "description": "A six-park playground on a former tin mine: wave pool, water slides, a wildlife park and extreme rides, next to Sunway Pyramid mall.",
+    "address": "3 Jalan PJS 11/11, Bandar Sunway, 47500 Subang Jaya",
+    "latitude": 3.071,
+    "longitude": 101.607,
+    "rating": 4.3,
+    "reviewCount": 24110,
+    "reviews": [
+      {
+        "author": "Kavitha R.",
+        "rating": 4,
+        "text": "Full day out with kids. Buy tickets online for the discount.",
+        "date": "2026-07-04"
+      },
+      {
+        "author": "Jamie C.",
+        "rating": 4,
+        "text": "The wave pool and Vuvuzela slide are worth it. Weekdays are far quieter.",
+        "date": "2026-03-16"
+      }
+    ],
+    "openingHours": "10:00 – 18:00",
+    "priceLevel": 3,
+    "image": "/places/sl-sunway-lagoon.svg"
+  },
+  {
+    "id": "sl-sekinchan-paddy",
+    "name": "Sekinchan Paddy Fields",
+    "city": "Sekinchan",
+    "region": "Selangor",
+    "category": "nature",
+    "vibes": [
+      "paddy",
+      "countryside",
+      "cycling",
+      "photo"
+    ],
+    "description": "Endless green paddy fields on the Selangor coast, best cycled at dawn; the rice gallery, wishing tree and fishing village are a short ride away.",
+    "address": "Jalan Sekinchan, 45400 Sekinchan, Selangor",
+    "latitude": 3.5085,
+    "longitude": 101.1,
+    "rating": 4.4,
+    "reviewCount": 5420,
+    "reviews": [
+      {
+        "author": "Wei Jun",
+        "rating": 5,
+        "text": "Plant season (April, October) turns everything electric green. Cycle early.",
+        "date": "2026-04-20"
+      },
+      {
+        "author": "Sarah O.",
+        "rating": 4,
+        "text": "Lovely slow day trip from KL. The seafood by the jetty is fresh and cheap.",
+        "date": "2026-08-11"
+      }
+    ],
+    "openingHours": "Open 24 hours",
+    "priceLevel": 1,
+    "image": "/places/sl-sekinchan-paddy.svg"
+  },
+  {
+    "id": "sl-kuala-selangor-fireflies",
+    "name": "Kuala Selangor Fireflies",
+    "city": "Kuala Selangor",
+    "region": "Selangor",
+    "category": "nature",
+    "vibes": [
+      "fireflies",
+      "boat",
+      "night",
+      "river"
+    ],
+    "description": "Wooden boats glide along the Selangor River after dark past mangroves that twinkle with thousands of synchronised fireflies.",
+    "address": "Kampung Kuantan, 45000 Kuala Selangor, Selangor",
+    "latitude": 3.348,
+    "longitude": 101.301,
+    "rating": 4.5,
+    "reviewCount": 7630,
+    "reviews": [
+      {
+        "author": "Hafizah B.",
+        "rating": 5,
+        "text": "Magical on a moonless night. Choose the rowing boats, not the motorboats.",
+        "date": "2026-06-27"
+      },
+      {
+        "author": "Lucas T.",
+        "rating": 4,
+        "text": "Book a slot ahead on weekends. Visit Bukit Melawati earlier for the monkeys and views.",
+        "date": "2026-02-09"
+      }
+    ],
+    "openingHours": "19:30 – 22:30",
+    "priceLevel": 1,
+    "image": "/places/sl-kuala-selangor-fireflies.svg"
+  },
+  {
+    "id": "sl-klang-bak-kut-teh",
+    "name": "Klang Bak Kut Teh Street",
+    "city": "Klang",
+    "region": "Selangor",
+    "category": "food",
+    "vibes": [
+      "bak kut teh",
+      "breakfast",
+      "local",
+      "heritage"
+    ],
+    "description": "The birthplace of bak kut teh. Old shophouses around Jalan Besar serve the herbal pork-rib broth from 7am with yau char kwai and tea.",
+    "address": "Jalan Besar, 41000 Klang, Selangor",
+    "latitude": 3.043,
+    "longitude": 101.445,
+    "rating": 4.4,
+    "reviewCount": 8910,
+    "reviews": [
+      {
+        "author": "Kenneth L.",
+        "rating": 5,
+        "text": "Seng Huat under the bridge is the classic. Dry version is a must.",
+        "date": "2026-07-19"
+      },
+      {
+        "author": "Priya M.",
+        "rating": 4,
+        "text": "Worth the KTM ride from KL. Go before 9am, they sell out.",
+        "date": "2026-05-14"
+      }
+    ],
+    "openingHours": "7:00 – 14:00",
+    "priceLevel": 1,
+    "image": "/places/sl-klang-bak-kut-teh.svg"
+  },
+  {
+    "id": "pg-entopia",
+    "name": "Entopia Butterfly Farm",
+    "city": "Teluk Bahang",
+    "region": "Penang",
+    "category": "nature",
+    "vibes": [
+      "butterflies",
+      "family",
+      "garden",
+      "rainy day"
+    ],
+    "description": "A living garden of 15,000 butterflies and a discovery centre of insects and reptiles, ten minutes from the Penang National Park entrance.",
+    "address": "830 Jalan Teluk Bahang, 11050 Penang",
+    "latitude": 5.4585,
+    "longitude": 100.222,
+    "rating": 4.5,
+    "reviewCount": 9340,
+    "reviews": [
+      {
+        "author": "Melinda Q.",
+        "rating": 5,
+        "text": "Kids loved it. Go in the morning when the butterflies are most active.",
+        "date": "2026-08-02"
+      },
+      {
+        "author": "Owen J.",
+        "rating": 4,
+        "text": "Well designed and air-conditioned inside. About two hours is enough.",
+        "date": "2026-04-26"
+      }
+    ],
+    "openingHours": "9:00 – 18:00",
+    "priceLevel": 2,
+    "image": "/places/pg-entopia.svg"
+  },
+  {
+    "id": "pg-penang-national-park",
+    "name": "Penang National Park",
+    "city": "Teluk Bahang",
+    "region": "Penang",
+    "category": "nature",
+    "vibes": [
+      "jungle",
+      "hike",
+      "turtle beach",
+      "boat"
+    ],
+    "description": "The smallest national park in Malaysia: coastal jungle trails to Monkey Beach and the turtle sanctuary at Pantai Kerachut, with boats back if your legs give up.",
+    "address": "Jalan Hassan Abas, Teluk Bahang, 11050 Penang",
+    "latitude": 5.459,
+    "longitude": 100.201,
+    "rating": 4.4,
+    "reviewCount": 8120,
+    "reviews": [
+      {
+        "author": "Aaron S.",
+        "rating": 5,
+        "text": "Hike to Kerachut, see the meromictic lake, boat back. Free entry, register at the gate.",
+        "date": "2026-06-03"
+      },
+      {
+        "author": "Ines F.",
+        "rating": 4,
+        "text": "Humid and slippery after rain. Start by 8am.",
+        "date": "2026-03-28"
+      }
+    ],
+    "openingHours": "8:00 – 17:00",
+    "priceLevel": 1,
+    "image": "/places/pg-penang-national-park.svg"
+  },
+  {
+    "id": "pg-tropical-spice-garden",
+    "name": "Tropical Spice Garden",
+    "city": "Teluk Bahang",
+    "region": "Penang",
+    "category": "nature",
+    "vibes": [
+      "spices",
+      "garden",
+      "cooking class",
+      "calm"
+    ],
+    "description": "A hillside garden of 500 tropical plants and spices with shaded trails, a cooking school and a café overlooking the sea.",
+    "address": "Lone Crag Villa, Lot 595 Mukim 2, Jalan Teluk Bahang, 11050 Penang",
+    "latitude": 5.465,
+    "longitude": 100.226,
+    "rating": 4.5,
+    "reviewCount": 6480,
+    "reviews": [
+      {
+        "author": "Ling Ling",
+        "rating": 5,
+        "text": "The audio tour is excellent. Book the cooking class for a proper Nyonya lunch.",
+        "date": "2026-07-08"
+      },
+      {
+        "author": "Ben H.",
+        "rating": 4,
+        "text": "Peaceful and shady, a nice counterpoint to George Town.",
+        "date": "2026-05-19"
+      }
+    ],
+    "openingHours": "9:00 – 18:00",
+    "priceLevel": 2,
+    "image": "/places/pg-tropical-spice-garden.svg"
+  },
+  {
+    "id": "pg-kimberley-street",
+    "name": "Kimberley Street Food Stalls",
+    "city": "George Town",
+    "region": "Penang",
+    "category": "food",
+    "vibes": [
+      "hawker",
+      "night",
+      "koay chiap",
+      "local"
+    ],
+    "description": "A night-time street of legendary stalls: duck koay chiap, char kway teow, chee cheong fun and roast meats, all within fifty metres.",
+    "address": "Lebuh Kimberley, George Town, 10100 Penang",
+    "latitude": 5.4165,
+    "longitude": 100.333,
+    "rating": 4.5,
+    "reviewCount": 7210,
+    "reviews": [
+      {
+        "author": "Kok Hong",
+        "rating": 5,
+        "text": "The duck koay chiap stall has queued since the 70s for good reason.",
+        "date": "2026-08-13"
+      },
+      {
+        "author": "Chloe A.",
+        "rating": 4,
+        "text": "Less touristy than Gurney Drive. Come at 7pm and eat your way down the street.",
+        "date": "2026-04-09"
+      }
+    ],
+    "openingHours": "18:00 – 00:00",
+    "priceLevel": 1,
+    "image": "/places/pg-kimberley-street.svg"
+  },
+  {
+    "id": "lk-underwater-world",
+    "name": "Underwater World Langkawi",
+    "city": "Langkawi",
+    "region": "Langkawi",
+    "category": "landmark",
+    "vibes": [
+      "aquarium",
+      "family",
+      "penguins",
+      "rainy day"
+    ],
+    "description": "A large aquarium at the south end of Cenang with a walk-through tunnel, rockhopper penguins and a rainforest zone for wet afternoons.",
+    "address": "Zon Pantai Cenang, 07000 Langkawi, Kedah",
+    "latitude": 6.2895,
+    "longitude": 99.7255,
+    "rating": 4.2,
+    "reviewCount": 10530,
+    "reviews": [
+      {
+        "author": "Nabilah S.",
+        "rating": 4,
+        "text": "Good rainy-day option with kids. Penguin feeding is at 11 and 3.",
+        "date": "2026-06-18"
+      },
+      {
+        "author": "Greg P.",
+        "rating": 4,
+        "text": "Bigger than expected. The tunnel tank is the highlight.",
+        "date": "2026-02-24"
+      }
+    ],
+    "openingHours": "10:00 – 18:00",
+    "priceLevel": 2,
+    "image": "/places/lk-underwater-world.svg"
+  },
+  {
+    "id": "lk-black-sand-beach",
+    "name": "Black Sand Beach",
+    "city": "Langkawi",
+    "region": "Langkawi",
+    "category": "beach",
+    "vibes": [
+      "quiet",
+      "black sand",
+      "sunset",
+      "legend"
+    ],
+    "description": "A small northern beach where the sand is streaked black with tourmaline and ilmenite; quiet, legend-laden and lovely at low tide.",
+    "address": "Pantai Pasir Hitam, 07000 Langkawi, Kedah",
+    "latitude": 6.426,
+    "longitude": 99.788,
+    "rating": 4.1,
+    "reviewCount": 4870,
+    "reviews": [
+      {
+        "author": "Iman R.",
+        "rating": 4,
+        "text": "Quick stop between Tanjung Rhu and the cable car. Interesting rather than swimmable.",
+        "date": "2026-07-23"
+      },
+      {
+        "author": "Petra V.",
+        "rating": 4,
+        "text": "Pretty at sunset with the fishing boats. Small market stalls by the road.",
+        "date": "2026-03-11"
+      }
+    ],
+    "openingHours": "Open 24 hours",
+    "priceLevel": 1,
+    "image": "/places/lk-black-sand-beach.svg"
+  },
+  {
+    "id": "lk-gunung-raya",
+    "name": "Gunung Raya",
+    "city": "Langkawi",
+    "region": "Langkawi",
+    "category": "nature",
+    "vibes": [
+      "mountain",
+      "view",
+      "drive",
+      "hornbills"
+    ],
+    "description": "Langkawi’s highest peak at 881 m, reached by a winding forest road; hornbills, macaques and a summit view across the whole island.",
+    "address": "Jalan Gunung Raya, 07000 Langkawi, Kedah",
+    "latitude": 6.385,
+    "longitude": 99.82,
+    "rating": 4.3,
+    "reviewCount": 3960,
+    "reviews": [
+      {
+        "author": "Danish A.",
+        "rating": 5,
+        "text": "Drive up at 5pm for sunset and watch for hornbills on the way. Empty on weekdays.",
+        "date": "2026-08-29"
+      },
+      {
+        "author": "Anna M.",
+        "rating": 4,
+        "text": "The lookout tower is often closed but the roadside viewpoints are enough.",
+        "date": "2026-05-02"
+      }
+    ],
+    "openingHours": "Open 24 hours",
+    "priceLevel": 1,
+    "image": "/places/lk-gunung-raya.svg"
+  },
+  {
+    "id": "mk-baba-nyonya-museum",
+    "name": "Baba & Nyonya Heritage Museum",
+    "city": "Malacca",
+    "region": "Malacca",
+    "category": "culture",
+    "vibes": [
+      "peranakan",
+      "mansion",
+      "heritage",
+      "guided tour"
+    ],
+    "description": "Three joined 1890s townhouses on Heeren Street kept as a Peranakan family home: gilded screens, English tiles, and a courtyard open to the rain.",
+    "address": "48-50 Jalan Tun Tan Cheng Lock, 75200 Melaka",
+    "latitude": 2.1948,
+    "longitude": 102.246,
+    "rating": 4.5,
+    "reviewCount": 7940,
+    "reviews": [
+      {
+        "author": "Joyce T.",
+        "rating": 5,
+        "text": "The guided tour brings the house alive. No photos inside, which keeps it calm.",
+        "date": "2026-06-14"
+      },
+      {
+        "author": "Rahul S.",
+        "rating": 4,
+        "text": "Beautiful interiors; tours run every 45 minutes or so.",
+        "date": "2026-08-24"
+      }
+    ],
+    "openingHours": "10:00 – 17:00 (closed Tue)",
+    "priceLevel": 2,
+    "image": "/places/mk-baba-nyonya-museum.svg"
+  },
+  {
+    "id": "mk-encore-melaka",
+    "name": "Encore Melaka",
+    "city": "Malacca",
+    "region": "Malacca",
+    "category": "culture",
+    "vibes": [
+      "theatre",
+      "show",
+      "evening",
+      "spectacle"
+    ],
+    "description": "A 70-minute theatrical spectacle of Malacca’s six-century story on a rotating auditorium, staged in a striking waterfront theatre.",
+    "address": "Impression City, Jalan KSB 1, 75200 Melaka",
+    "latitude": 2.244,
+    "longitude": 102.215,
+    "rating": 4.6,
+    "reviewCount": 6580,
+    "reviews": [
+      {
+        "author": "Alicia W.",
+        "rating": 5,
+        "text": "The rotating seats and the water stage are genuinely impressive. Book the 8:30pm show.",
+        "date": "2026-07-26"
+      },
+      {
+        "author": "Sean K.",
+        "rating": 4,
+        "text": "A polished production. The theatre is out of town, so take a Grab.",
+        "date": "2026-04-17"
+      }
+    ],
+    "openingHours": "Shows at 17:30 & 20:30",
+    "priceLevel": 3,
+    "image": "/places/mk-encore-melaka.svg"
+  },
+  {
+    "id": "mk-kampung-morten",
+    "name": "Kampung Morten",
+    "city": "Malacca",
+    "region": "Malacca",
+    "category": "culture",
+    "vibes": [
+      "kampung",
+      "riverside",
+      "traditional houses",
+      "walk"
+    ],
+    "description": "A living Malay village of traditional stilt houses on a bend of the Melaka River, ten minutes’ walk from Jonker along the river path.",
+    "address": "Kampung Morten, 75300 Melaka",
+    "latitude": 2.201,
+    "longitude": 102.244,
+    "rating": 4.3,
+    "reviewCount": 5120,
+    "reviews": [
+      {
+        "author": "Nurhaliza",
+        "rating": 5,
+        "text": "Villa Sentosa is a family-run house museum with a lovely host. Walk in the evening.",
+        "date": "2026-05-31"
+      },
+      {
+        "author": "Peter H.",
+        "rating": 4,
+        "text": "Quiet and photogenic; respect that people live here.",
+        "date": "2026-08-19"
+      }
+    ],
+    "openingHours": "Open 24 hours",
+    "priceLevel": 1,
+    "image": "/places/mk-kampung-morten.svg"
+  },
+  {
+    "id": "ch-time-tunnel",
+    "name": "Time Tunnel Museum",
+    "city": "Brinchang",
+    "region": "Cameron Highlands",
+    "category": "culture",
+    "vibes": [
+      "museum",
+      "nostalgia",
+      "rainy day",
+      "quirky"
+    ],
+    "description": "A cluttered, charming memorabilia museum of old Malaysia: tin toys, barbershop chairs and the history of the highland tea and strawberry farms.",
+    "address": "Kea Farm, 39100 Brinchang, Pahang",
+    "latitude": 4.49,
+    "longitude": 101.388,
+    "rating": 4.2,
+    "reviewCount": 4210,
+    "reviews": [
+      {
+        "author": "Yvonne C.",
+        "rating": 4,
+        "text": "Quirky and fun for an hour. Older Malaysians will love the nostalgia.",
+        "date": "2026-06-22"
+      },
+      {
+        "author": "Mark R.",
+        "rating": 4,
+        "text": "Good rainy-afternoon stop next to the Kea Farm market.",
+        "date": "2026-03-05"
+      }
+    ],
+    "openingHours": "9:00 – 18:00",
+    "priceLevel": 1,
+    "image": "/places/ch-time-tunnel.svg"
+  },
+  {
+    "id": "ch-cactus-valley",
+    "name": "Cactus Valley",
+    "city": "Brinchang",
+    "region": "Cameron Highlands",
+    "category": "nature",
+    "vibes": [
+      "cacti",
+      "garden",
+      "flowers",
+      "family"
+    ],
+    "description": "Terraces of cacti and highland flowers climbing the slope above Brinchang, with strawberry patches and a view over the town.",
+    "address": "Jalan Besar, 39100 Brinchang, Pahang",
+    "latitude": 4.495,
+    "longitude": 101.39,
+    "rating": 4.1,
+    "reviewCount": 3850,
+    "reviews": [
+      {
+        "author": "Lim Su",
+        "rating": 4,
+        "text": "More colourful than expected. Nice quick stop with kids.",
+        "date": "2026-04-30"
+      },
+      {
+        "author": "Julian B.",
+        "rating": 4,
+        "text": "Pleasant, cheap, a little touristy. Combine with the Kea Farm market.",
+        "date": "2026-07-15"
+      }
+    ],
+    "openingHours": "8:30 – 18:00",
+    "priceLevel": 1,
+    "image": "/places/ch-cactus-valley.svg"
+  },
+  {
+    "id": "ip-pangkor-island",
+    "name": "Pangkor Island",
+    "city": "Pangkor",
+    "region": "Ipoh",
+    "category": "beach",
+    "vibes": [
+      "island",
+      "beach",
+      "fishing village",
+      "hornbills"
+    ],
+    "description": "A laid-back island off Lumut: Coral Bay and Nipah beaches, a Dutch fort, hornbills at dusk and a working fishing village serving dried anchovies.",
+    "address": "Pulau Pangkor, 32300 Perak",
+    "latitude": 4.232,
+    "longitude": 100.554,
+    "rating": 4.3,
+    "reviewCount": 6890,
+    "reviews": [
+      {
+        "author": "Farhan I.",
+        "rating": 5,
+        "text": "Rent a scooter and loop the island in an afternoon. Nipah Bay for sunset.",
+        "date": "2026-08-07"
+      },
+      {
+        "author": "Kate N.",
+        "rating": 4,
+        "text": "Easy ferry from Lumut. The satay stalls at Pasir Bogak are great.",
+        "date": "2026-05-23"
+      }
+    ],
+    "openingHours": "Open 24 hours",
+    "priceLevel": 1,
+    "image": "/places/ip-pangkor-island.svg"
+  },
+  {
+    "id": "ip-taiping-lake-gardens",
+    "name": "Taiping Lake Gardens",
+    "city": "Taiping",
+    "region": "Ipoh",
+    "category": "nature",
+    "vibes": [
+      "rain trees",
+      "lake",
+      "walk",
+      "heritage"
+    ],
+    "description": "Malaysia’s oldest public garden, laid out in 1880 on old tin-mining pools under century-old rain trees that arch over the road.",
+    "address": "Jalan Pekeliling, 34000 Taiping, Perak",
+    "latitude": 4.852,
+    "longitude": 100.746,
+    "rating": 4.6,
+    "reviewCount": 9780,
+    "reviews": [
+      {
+        "author": "Hazel L.",
+        "rating": 5,
+        "text": "The rain-tree tunnel at 7am with the mist on the lake is unforgettable.",
+        "date": "2026-07-02"
+      },
+      {
+        "author": "Aidan M.",
+        "rating": 5,
+        "text": "Taiping is the wettest town in Malaysia; pack a brolly. The gardens are gorgeous.",
+        "date": "2026-03-19"
+      }
+    ],
+    "openingHours": "Open 24 hours",
+    "priceLevel": 1,
+    "image": "/places/ip-taiping-lake-gardens.svg"
+  },
+  {
+    "id": "ip-royal-belum",
+    "name": "Royal Belum State Park",
+    "city": "Gerik",
+    "region": "Ipoh",
+    "category": "nature",
+    "vibes": [
+      "rainforest",
+      "houseboat",
+      "rafflesia",
+      "remote"
+    ],
+    "description": "One of the oldest rainforests on earth, explored by houseboat on Temenggor Lake: rafflesia blooms, salt licks, hornbills and Orang Asli villages.",
+    "address": "Pulau Banding, 33300 Gerik, Perak",
+    "latitude": 5.53,
+    "longitude": 101.42,
+    "rating": 4.6,
+    "reviewCount": 2780,
+    "reviews": [
+      {
+        "author": "Syed A.",
+        "rating": 5,
+        "text": "Two nights on a houseboat, no signal, ten hornbill species. Book with a licensed guide.",
+        "date": "2026-06-06"
+      },
+      {
+        "author": "Ella R.",
+        "rating": 5,
+        "text": "Remote and worth the drive from Ipoh. Permits are needed; the operator handles it.",
+        "date": "2026-08-28"
+      }
+    ],
+    "openingHours": "By guided tour",
+    "priceLevel": 3,
+    "image": "/places/ip-royal-belum.svg"
+  },
+  {
+    "id": "ip-gua-tempurung",
+    "name": "Gua Tempurung",
+    "city": "Gopeng",
+    "region": "Ipoh",
+    "category": "nature",
+    "vibes": [
+      "cave",
+      "adventure",
+      "river",
+      "family"
+    ],
+    "description": "A 3 km limestone cave system near Gopeng with lit walkways to a wind tunnel chamber and wet-and-wild river tours for the adventurous.",
+    "address": "Jalan Gua Tempurung, 31600 Gopeng, Perak",
+    "latitude": 4.417,
+    "longitude": 101.188,
+    "rating": 4.4,
+    "reviewCount": 7150,
+    "reviews": [
+      {
+        "author": "Vincent T.",
+        "rating": 5,
+        "text": "Do the full river tour if you are fit: crawling through water in the dark is a blast.",
+        "date": "2026-07-20"
+      },
+      {
+        "author": "Rina D.",
+        "rating": 4,
+        "text": "The dry tour is fine for families. Bring a torch and grippy shoes.",
+        "date": "2026-04-03"
+      }
+    ],
+    "openingHours": "9:00 – 16:00",
+    "priceLevel": 1,
+    "image": "/places/ip-gua-tempurung.svg"
+  },
+  {
+    "id": "jh-legoland",
+    "name": "Legoland Malaysia",
+    "city": "Iskandar Puteri",
+    "region": "Johor",
+    "category": "landmark",
+    "vibes": [
+      "theme park",
+      "family",
+      "lego",
+      "water park"
+    ],
+    "description": "Asia’s first Legoland: a theme park, water park and Sea Life aquarium built from millions of bricks, an easy day trip from Johor Bahru or Singapore.",
+    "address": "7 Jalan Legoland, Bandar Medini, 79250 Iskandar Puteri, Johor",
+    "latitude": 1.426,
+    "longitude": 103.63,
+    "rating": 4.4,
+    "reviewCount": 26540,
+    "reviews": [
+      {
+        "author": "Hui Min",
+        "rating": 5,
+        "text": "Miniland alone is worth the trip. Buy the combo ticket and stay for the water park.",
+        "date": "2026-08-01"
+      },
+      {
+        "author": "Chris E.",
+        "rating": 4,
+        "text": "Best for ages 4 to 12. Arrive at opening; queues build by 11.",
+        "date": "2026-06-10"
+      }
+    ],
+    "openingHours": "10:00 – 18:00",
+    "priceLevel": 3,
+    "popular": true,
+    "image": "/places/jh-legoland.svg"
+  },
+  {
+    "id": "jh-desaru-coast",
+    "name": "Desaru Coast",
+    "city": "Desaru",
+    "region": "Johor",
+    "category": "beach",
+    "vibes": [
+      "beach",
+      "resort",
+      "water park",
+      "weekend"
+    ],
+    "description": "A 17 km beach on Johor’s east coast with resorts, the Adventure Waterpark and a fishing village that turns out fresh seafood by the road.",
+    "address": "Desaru Coast, 81930 Bandar Penawar, Johor",
+    "latitude": 1.545,
+    "longitude": 104.25,
+    "rating": 4.3,
+    "reviewCount": 8830,
+    "reviews": [
+      {
+        "author": "Azlan K.",
+        "rating": 4,
+        "text": "Sunrise over the South China Sea from the beach is the reason to stay a night.",
+        "date": "2026-07-13"
+      },
+      {
+        "author": "Tanya B.",
+        "rating": 4,
+        "text": "Family friendly, calm sea. Ferry from Singapore makes it easy.",
+        "date": "2026-03-30"
+      }
+    ],
+    "openingHours": "Open 24 hours",
+    "priceLevel": 2,
+    "image": "/places/jh-desaru-coast.svg"
+  },
+  {
+    "id": "jh-jalan-dhoby",
+    "name": "Jalan Dhoby",
+    "city": "Johor Bahru",
+    "region": "Johor",
+    "category": "cafe",
+    "vibes": [
+      "old town",
+      "cafes",
+      "heritage",
+      "evening"
+    ],
+    "description": "The heart of JB’s revived old town: 1920s shophouses turned into specialty cafés, bars and a lively weekend night market.",
+    "address": "Jalan Dhoby, 80000 Johor Bahru, Johor",
+    "latitude": 1.459,
+    "longitude": 103.764,
+    "rating": 4.3,
+    "reviewCount": 9420,
+    "reviews": [
+      {
+        "author": "Jia Wen",
+        "rating": 5,
+        "text": "Lovely for a slow afternoon. Flowers in the Window café and the rooftop bars.",
+        "date": "2026-08-16"
+      },
+      {
+        "author": "Nate H.",
+        "rating": 4,
+        "text": "Nice mix of old and new. Roti canai at the corner kopitiam first.",
+        "date": "2026-05-06"
+      }
+    ],
+    "openingHours": "10:00 – 23:00",
+    "priceLevel": 1,
+    "image": "/places/jh-jalan-dhoby.svg"
+  },
+  {
+    "id": "jh-sultan-abu-bakar-mosque",
+    "name": "Sultan Abu Bakar State Mosque",
+    "city": "Johor Bahru",
+    "region": "Johor",
+    "category": "culture",
+    "vibes": [
+      "mosque",
+      "victorian",
+      "view",
+      "heritage"
+    ],
+    "description": "An 1890s mosque blending Victorian and Moorish architecture on a hill above the Straits of Johor, with Singapore visible across the water.",
+    "address": "Jalan Gertak Merah, 80000 Johor Bahru, Johor",
+    "latitude": 1.46,
+    "longitude": 103.742,
+    "rating": 4.6,
+    "reviewCount": 6720,
+    "reviews": [
+      {
+        "author": "Ismail Y.",
+        "rating": 5,
+        "text": "Serene grounds and a lovely view over the Straits. Dress modestly.",
+        "date": "2026-06-25"
+      },
+      {
+        "author": "Laura K.",
+        "rating": 4,
+        "text": "Beautiful architecture; a short Grab from the old town.",
+        "date": "2026-04-12"
+      }
+    ],
+    "openingHours": "9:00 – 17:00",
+    "priceLevel": 1,
+    "image": "/places/jh-sultan-abu-bakar-mosque.svg"
+  },
+  {
+    "id": "jh-kota-tinggi-waterfalls",
+    "name": "Kota Tinggi Waterfalls",
+    "city": "Kota Tinggi",
+    "region": "Johor",
+    "category": "nature",
+    "vibes": [
+      "waterfall",
+      "swim",
+      "family",
+      "picnic"
+    ],
+    "description": "A tiered waterfall an hour from JB with cool pools for swimming, picnic spots and forest trails.",
+    "address": "Jalan Lombong, 81900 Kota Tinggi, Johor",
+    "latitude": 1.834,
+    "longitude": 103.836,
+    "rating": 4.2,
+    "reviewCount": 5310,
+    "reviews": [
+      {
+        "author": "Rafiq M.",
+        "rating": 4,
+        "text": "Refreshing after the city. Weekdays are quiet, weekends are full of families.",
+        "date": "2026-07-05"
+      },
+      {
+        "author": "Sophie R.",
+        "rating": 4,
+        "text": "Shallow pools for kids, deeper ones upstream. Bring water shoes.",
+        "date": "2026-02-27"
+      }
+    ],
+    "openingHours": "8:00 – 18:00",
+    "priceLevel": 1,
+    "image": "/places/jh-kota-tinggi-waterfalls.svg"
+  },
+  {
+    "id": "ph-genting-highlands",
+    "name": "Genting Highlands",
+    "city": "Genting Highlands",
+    "region": "Pahang",
+    "category": "landmark",
+    "vibes": [
+      "theme park",
+      "cool air",
+      "cable car",
+      "nightlife"
+    ],
+    "description": "A cool-air resort city at 1,800 m: Skyworlds theme park, casinos, the Awana SkyWay cable car and Chin Swee temple in the clouds.",
+    "address": "Genting Highlands, 69000 Pahang",
+    "latitude": 3.423,
+    "longitude": 101.793,
+    "rating": 4.3,
+    "reviewCount": 45210,
+    "reviews": [
+      {
+        "author": "Kelvin T.",
+        "rating": 4,
+        "text": "Take the cable car up for the views. Skyworlds is fun; expect queues on holidays.",
+        "date": "2026-08-09"
+      },
+      {
+        "author": "Emma L.",
+        "rating": 4,
+        "text": "Cold enough for a jacket. Chin Swee temple is the peaceful part.",
+        "date": "2026-05-21"
+      }
+    ],
+    "openingHours": "Open 24 hours",
+    "priceLevel": 2,
+    "popular": true,
+    "image": "/places/ph-genting-highlands.svg"
+  },
+  {
+    "id": "ph-tioman-island",
+    "name": "Tioman Island",
+    "city": "Tioman",
+    "region": "Pahang",
+    "category": "beach",
+    "vibes": [
+      "island",
+      "diving",
+      "jungle",
+      "snorkel"
+    ],
+    "description": "A duty-free jungle island in the South China Sea with coral reefs, waterfalls and beach villages linked by boat rather than road.",
+    "address": "Pulau Tioman, 26800 Rompin, Pahang",
+    "latitude": 2.79,
+    "longitude": 104.17,
+    "rating": 4.6,
+    "reviewCount": 12370,
+    "reviews": [
+      {
+        "author": "Wan A.",
+        "rating": 5,
+        "text": "Snorkelling off Salang and diving at Tiger Reef were superb. Go March to October.",
+        "date": "2026-06-30"
+      },
+      {
+        "author": "Hannah V.",
+        "rating": 5,
+        "text": "Slow island life. Juara beach on the east side is the quietest.",
+        "date": "2026-04-24"
+      }
+    ],
+    "openingHours": "Open 24 hours",
+    "priceLevel": 2,
+    "image": "/places/ph-tioman-island.svg"
+  },
+  {
+    "id": "ph-taman-negara-canopy",
+    "name": "Taman Negara Canopy Walkway",
+    "city": "Kuala Tahan",
+    "region": "Pahang",
+    "category": "nature",
+    "vibes": [
+      "rainforest",
+      "canopy walk",
+      "wildlife",
+      "adventure"
+    ],
+    "description": "A 530 m suspended walkway 40 m up in one of the world’s oldest rainforests, reached by longboat up the Tembeling River.",
+    "address": "Kuala Tahan, 27000 Jerantut, Pahang",
+    "latitude": 4.383,
+    "longitude": 102.405,
+    "rating": 4.5,
+    "reviewCount": 9260,
+    "reviews": [
+      {
+        "author": "Roslan M.",
+        "rating": 5,
+        "text": "Go at 9am before the heat. Night walk with a guide for tarantulas and glowing fungi.",
+        "date": "2026-07-17"
+      },
+      {
+        "author": "Claire J.",
+        "rating": 4,
+        "text": "The canopy walk is short but thrilling. Stay two nights to do the river and Lata Berkoh.",
+        "date": "2026-03-13"
+      }
+    ],
+    "openingHours": "9:30 – 15:30",
+    "priceLevel": 1,
+    "image": "/places/ph-taman-negara-canopy.svg"
+  },
+  {
+    "id": "ph-teluk-cempedak",
+    "name": "Teluk Cempedak",
+    "city": "Kuantan",
+    "region": "Pahang",
+    "category": "beach",
+    "vibes": [
+      "beach",
+      "boardwalk",
+      "seafood",
+      "sunrise"
+    ],
+    "description": "Kuantan’s town beach: a curve of sand with a forest boardwalk to hidden coves, satay stalls and the best sunrise on the east coast.",
+    "address": "Teluk Cempedak, 25050 Kuantan, Pahang",
+    "latitude": 3.814,
+    "longitude": 103.372,
+    "rating": 4.4,
+    "reviewCount": 13890,
+    "reviews": [
+      {
+        "author": "Nadiah K.",
+        "rating": 5,
+        "text": "Walk the boardwalk to Pelindung beach in the morning and eat keropok lekor after.",
+        "date": "2026-08-23"
+      },
+      {
+        "author": "Ivan R.",
+        "rating": 4,
+        "text": "Lively in the evenings. Strong waves, so swim with care.",
+        "date": "2026-05-15"
+      }
+    ],
+    "openingHours": "Open 24 hours",
+    "priceLevel": 1,
+    "image": "/places/ph-teluk-cempedak.svg"
+  },
+  {
+    "id": "tg-perhentian-islands",
+    "name": "Perhentian Islands",
+    "city": "Besut",
+    "region": "Terengganu",
+    "category": "beach",
+    "vibes": [
+      "island",
+      "snorkel",
+      "turtles",
+      "backpacker"
+    ],
+    "description": "Two islands of white sand and clear water: Kecil for backpacker beach huts and Besar for quieter resorts, with turtles and reef sharks off both.",
+    "address": "Pulau Perhentian, 22300 Besut, Terengganu",
+    "latitude": 5.905,
+    "longitude": 102.74,
+    "rating": 4.7,
+    "reviewCount": 15430,
+    "reviews": [
+      {
+        "author": "Firdaus H.",
+        "rating": 5,
+        "text": "Snorkelled with turtles off Turtle Beach within an hour of arriving. Cash only on the island.",
+        "date": "2026-07-27"
+      },
+      {
+        "author": "Lena S.",
+        "rating": 5,
+        "text": "Long Beach for sunsets, Coral Bay for calm water. Closed in monsoon season.",
+        "date": "2026-04-28"
+      }
+    ],
+    "openingHours": "Open Mar – Oct",
+    "priceLevel": 2,
+    "popular": true,
+    "image": "/places/tg-perhentian-islands.svg"
+  },
+  {
+    "id": "tg-redang-island",
+    "name": "Redang Island",
+    "city": "Kuala Nerus",
+    "region": "Terengganu",
+    "category": "beach",
+    "vibes": [
+      "island",
+      "resort",
+      "diving",
+      "white sand"
+    ],
+    "description": "A marine-park island of powder-white beaches and resorts, with some of the clearest water and healthiest reefs in peninsular Malaysia.",
+    "address": "Pulau Redang, 21090 Kuala Nerus, Terengganu",
+    "latitude": 5.78,
+    "longitude": 103.01,
+    "rating": 4.6,
+    "reviewCount": 9880,
+    "reviews": [
+      {
+        "author": "Mei Ling",
+        "rating": 5,
+        "text": "The water at Pasir Panjang is unreal. Resorts include boat transfers and snorkelling trips.",
+        "date": "2026-06-12"
+      },
+      {
+        "author": "Adam F.",
+        "rating": 4,
+        "text": "Pricier than the Perhentians but more comfortable. Fly to Redang airstrip if you can.",
+        "date": "2026-08-30"
+      }
+    ],
+    "openingHours": "Open Mar – Oct",
+    "priceLevel": 3,
+    "image": "/places/tg-redang-island.svg"
+  },
+  {
+    "id": "tg-crystal-mosque",
+    "name": "Crystal Mosque",
+    "city": "Kuala Terengganu",
+    "region": "Terengganu",
+    "category": "culture",
+    "vibes": [
+      "mosque",
+      "glass",
+      "night",
+      "river"
+    ],
+    "description": "A mosque of steel and glass on Wan Man Island that glows like a lantern over the Terengganu River at night.",
+    "address": "Pulau Wan Man, 21000 Kuala Terengganu, Terengganu",
+    "latitude": 5.356,
+    "longitude": 103.114,
+    "rating": 4.5,
+    "reviewCount": 8460,
+    "reviews": [
+      {
+        "author": "Zainab R.",
+        "rating": 5,
+        "text": "Come at dusk to see it lit up. The Islamic Heritage Park around it is pleasant.",
+        "date": "2026-07-09"
+      },
+      {
+        "author": "Oscar T.",
+        "rating": 4,
+        "text": "Unusual architecture. Quick visit, combine with Chinatown across the river.",
+        "date": "2026-03-24"
+      }
+    ],
+    "openingHours": "9:00 – 18:00",
+    "priceLevel": 1,
+    "image": "/places/tg-crystal-mosque.svg"
+  },
+  {
+    "id": "tg-kt-chinatown",
+    "name": "Kuala Terengganu Chinatown",
+    "city": "Kuala Terengganu",
+    "region": "Terengganu",
+    "category": "culture",
+    "vibes": [
+      "heritage",
+      "murals",
+      "shophouses",
+      "keropok"
+    ],
+    "description": "Kampung Cina: a narrow street of 1800s shophouses, temples, murals and Turtle Alley, with the Pasar Payang market and keropok lekor stalls nearby.",
+    "address": "Jalan Kampung Cina, 20100 Kuala Terengganu, Terengganu",
+    "latitude": 5.332,
+    "longitude": 103.139,
+    "rating": 4.3,
+    "reviewCount": 5230,
+    "reviews": [
+      {
+        "author": "Ah Seng",
+        "rating": 4,
+        "text": "Pretty painted lanes and good coffee shops. Try the keropok lekor by the jetty.",
+        "date": "2026-08-05"
+      },
+      {
+        "author": "Nora P.",
+        "rating": 4,
+        "text": "Small and walkable. Turtle Alley tells the story of the local turtles.",
+        "date": "2026-05-29"
+      }
+    ],
+    "openingHours": "Open 24 hours",
+    "priceLevel": 1,
+    "image": "/places/tg-kt-chinatown.svg"
+  },
+  {
+    "id": "kn-siti-khadijah-market",
+    "name": "Siti Khadijah Market",
+    "city": "Kota Bharu",
+    "region": "Kelantan",
+    "category": "food",
+    "vibes": [
+      "market",
+      "nasi kerabu",
+      "local",
+      "colourful"
+    ],
+    "description": "Kota Bharu’s central market, run mostly by women, famous for its colourful produce pyramids and nasi kerabu stalls on the upper floors.",
+    "address": "Jalan Parit Dalam, 15000 Kota Bharu, Kelantan",
+    "latitude": 6.127,
+    "longitude": 102.239,
+    "rating": 4.4,
+    "reviewCount": 7120,
+    "reviews": [
+      {
+        "author": "Khairul A.",
+        "rating": 5,
+        "text": "The blue nasi kerabu and ayam percik upstairs are the best in the state.",
+        "date": "2026-06-19"
+      },
+      {
+        "author": "Sara J.",
+        "rating": 4,
+        "text": "Come early for the photogenic produce displays. Friendly stall holders.",
+        "date": "2026-04-15"
+      }
+    ],
+    "openingHours": "6:00 – 18:00",
+    "priceLevel": 1,
+    "image": "/places/kn-siti-khadijah-market.svg"
+  },
+  {
+    "id": "kn-wat-photivihan",
+    "name": "Wat Photivihan",
+    "city": "Tumpat",
+    "region": "Kelantan",
+    "category": "culture",
+    "vibes": [
+      "temple",
+      "reclining buddha",
+      "thai",
+      "calm"
+    ],
+    "description": "A Thai Buddhist temple in rural Tumpat housing a 40 m reclining Buddha, one of the largest in Southeast Asia.",
+    "address": "Kampung Jambu, 16210 Tumpat, Kelantan",
+    "latitude": 6.21,
+    "longitude": 102.16,
+    "rating": 4.5,
+    "reviewCount": 4380,
+    "reviews": [
+      {
+        "author": "Chan K.",
+        "rating": 5,
+        "text": "Peaceful and off the beaten path. The surrounding villages are worth a wander.",
+        "date": "2026-07-24"
+      },
+      {
+        "author": "Bella M.",
+        "rating": 4,
+        "text": "Impressive statue; combine with the other Tumpat temples on a half-day loop.",
+        "date": "2026-03-08"
+      }
+    ],
+    "openingHours": "8:00 – 17:00",
+    "priceLevel": 1,
+    "image": "/places/kn-wat-photivihan.svg"
+  },
+  {
+    "id": "kn-pantai-cahaya-bulan",
+    "name": "Pantai Cahaya Bulan",
+    "city": "Kota Bharu",
+    "region": "Kelantan",
+    "category": "beach",
+    "vibes": [
+      "beach",
+      "kites",
+      "batik",
+      "evening"
+    ],
+    "description": "Kota Bharu’s town beach, lined with casuarinas and stalls selling wau kites, batik and grilled seafood; best in the late afternoon.",
+    "address": "Pantai Cahaya Bulan, 15350 Kota Bharu, Kelantan",
+    "latitude": 6.187,
+    "longitude": 102.29,
+    "rating": 4,
+    "reviewCount": 3960,
+    "reviews": [
+      {
+        "author": "Aiman Z.",
+        "rating": 4,
+        "text": "Watch the wau bulan kites and eat satay by the sea. Not for swimming.",
+        "date": "2026-08-12"
+      },
+      {
+        "author": "Jenna L.",
+        "rating": 4,
+        "text": "Local atmosphere, cheap food, friendly people.",
+        "date": "2026-05-04"
+      }
+    ],
+    "openingHours": "Open 24 hours",
+    "priceLevel": 1,
+    "image": "/places/kn-pantai-cahaya-bulan.svg"
+  },
+  {
+    "id": "sw-kuching-waterfront",
+    "name": "Kuching Waterfront",
+    "city": "Kuching",
+    "region": "Sarawak",
+    "category": "landmark",
+    "vibes": [
+      "riverside",
+      "evening",
+      "laksa",
+      "cat city"
+    ],
+    "description": "A kilometre of riverside promenade facing the Astana and the golden state assembly, with sampan crossings, laksa stalls and the Darul Hana bridge lit at night.",
+    "address": "Jalan Main Bazaar, 93000 Kuching, Sarawak",
+    "latitude": 1.559,
+    "longitude": 110.345,
+    "rating": 4.6,
+    "reviewCount": 16210,
+    "reviews": [
+      {
+        "author": "Diana W.",
+        "rating": 5,
+        "text": "Sarawak laksa for breakfast, sampan across the river at sunset, kolo mee for supper.",
+        "date": "2026-07-21"
+      },
+      {
+        "author": "Ethan L.",
+        "rating": 5,
+        "text": "Kuching is the most relaxed city in Malaysia. The waterfront is its living room.",
+        "date": "2026-04-19"
+      }
+    ],
+    "openingHours": "Open 24 hours",
+    "priceLevel": 1,
+    "popular": true,
+    "image": "/places/sw-kuching-waterfront.svg"
+  },
+  {
+    "id": "sw-bako-national-park",
+    "name": "Bako National Park",
+    "city": "Kuching",
+    "region": "Sarawak",
+    "category": "nature",
+    "vibes": [
+      "proboscis monkeys",
+      "hike",
+      "boat",
+      "sea stacks"
+    ],
+    "description": "Sarawak’s oldest park, reached by boat: proboscis monkeys, bearded pigs, mangrove boardwalks and sandstone sea stacks along the coast trails.",
+    "address": "Kampung Bako, 93010 Kuching, Sarawak",
+    "latitude": 1.716,
+    "longitude": 110.465,
+    "rating": 4.6,
+    "reviewCount": 8940,
+    "reviews": [
+      {
+        "author": "Jason O.",
+        "rating": 5,
+        "text": "Saw proboscis monkeys within ten minutes of the jetty. Stay overnight for the night walk.",
+        "date": "2026-06-08"
+      },
+      {
+        "author": "Maria G.",
+        "rating": 5,
+        "text": "The Telok Pandan Kecil trail to the sea stack beach is the one to do.",
+        "date": "2026-08-18"
+      }
+    ],
+    "openingHours": "8:00 – 17:00",
+    "priceLevel": 1,
+    "image": "/places/sw-bako-national-park.svg"
+  },
+  {
+    "id": "sw-semenggoh",
+    "name": "Semenggoh Wildlife Centre",
+    "city": "Kuching",
+    "region": "Sarawak",
+    "category": "nature",
+    "vibes": [
+      "orangutans",
+      "rainforest",
+      "morning",
+      "wildlife"
+    ],
+    "description": "A forest reserve outside Kuching where semi-wild orangutans come to the feeding platform in the morning and afternoon, when the fruit in the forest is scarce.",
+    "address": "Jalan Puncak Borneo, 93250 Kuching, Sarawak",
+    "latitude": 1.4,
+    "longitude": 110.315,
+    "rating": 4.6,
+    "reviewCount": 9430,
+    "reviews": [
+      {
+        "author": "Amanda L.",
+        "rating": 5,
+        "text": "Ritchie the big male came down right in front of us. Arrive by 8:30 for the 9am feed.",
+        "date": "2026-07-06"
+      },
+      {
+        "author": "Karl S.",
+        "rating": 4,
+        "text": "No guarantee of sightings in fruiting season, but the forest walk is lovely regardless.",
+        "date": "2026-03-26"
+      }
+    ],
+    "openingHours": "8:00 – 10:00, 14:00 – 16:00",
+    "priceLevel": 1,
+    "image": "/places/sw-semenggoh.svg"
+  },
+  {
+    "id": "sw-cultural-village",
+    "name": "Sarawak Cultural Village",
+    "city": "Santubong",
+    "region": "Sarawak",
+    "category": "culture",
+    "vibes": [
+      "longhouses",
+      "dance",
+      "heritage",
+      "family"
+    ],
+    "description": "A living museum of Sarawak’s peoples at the foot of Mount Santubong: longhouses, craft demonstrations and a twice-daily dance show.",
+    "address": "Pantai Damai, 93752 Santubong, Sarawak",
+    "latitude": 1.747,
+    "longitude": 110.317,
+    "rating": 4.4,
+    "reviewCount": 7810,
+    "reviews": [
+      {
+        "author": "Siti R.",
+        "rating": 5,
+        "text": "The dance show is worth timing your visit around. Each house has a host to talk to.",
+        "date": "2026-08-26"
+      },
+      {
+        "author": "Paul D.",
+        "rating": 4,
+        "text": "Well done and informative. Combine with Damai beach for the afternoon.",
+        "date": "2026-05-11"
+      }
+    ],
+    "openingHours": "9:00 – 17:00",
+    "priceLevel": 2,
+    "image": "/places/sw-cultural-village.svg"
+  },
+  {
+    "id": "sw-mulu-caves",
+    "name": "Gunung Mulu National Park",
+    "city": "Mulu",
+    "region": "Sarawak",
+    "category": "nature",
+    "vibes": [
+      "caves",
+      "unesco",
+      "bats",
+      "adventure"
+    ],
+    "description": "A UNESCO park of vast limestone caves: Deer Cave’s evening bat exodus, the Clearwater river cave and the Pinnacles trek for the tough.",
+    "address": "Mulu, 98008 Miri, Sarawak",
+    "latitude": 4.043,
+    "longitude": 114.813,
+    "rating": 4.8,
+    "reviewCount": 5280,
+    "reviews": [
+      {
+        "author": "Leon K.",
+        "rating": 5,
+        "text": "Deer Cave at dusk with millions of bats spiralling out is a life memory. Fly in from Miri.",
+        "date": "2026-06-16"
+      },
+      {
+        "author": "Ingrid P.",
+        "rating": 5,
+        "text": "The show caves are easy; the Pinnacles are brutal and brilliant. Book park accommodation early.",
+        "date": "2026-08-03"
+      }
+    ],
+    "openingHours": "Guided tours daily",
+    "priceLevel": 3,
+    "image": "/places/sw-mulu-caves.svg"
+  },
+  {
+    "id": "sb-semporna-mabul",
+    "name": "Mabul Island, Semporna",
+    "city": "Semporna",
+    "region": "Sabah",
+    "category": "beach",
+    "vibes": [
+      "diving",
+      "macro",
+      "stilt village",
+      "sipadan"
+    ],
+    "description": "A tiny island of stilt villages and dive resorts, the base for world-class macro diving and the permit-only trips to Sipadan.",
+    "address": "Pulau Mabul, 91300 Semporna, Sabah",
+    "latitude": 4.246,
+    "longitude": 118.63,
+    "rating": 4.6,
+    "reviewCount": 6110,
+    "reviews": [
+      {
+        "author": "Nick T.",
+        "rating": 5,
+        "text": "Sipadan needs a permit booked with your resort; Mabul itself has incredible muck diving.",
+        "date": "2026-07-14"
+      },
+      {
+        "author": "Yuki M.",
+        "rating": 5,
+        "text": "The water colour on the boat from Semporna is unreal. Stay at a water bungalow.",
+        "date": "2026-04-22"
+      }
+    ],
+    "openingHours": "Open 24 hours",
+    "priceLevel": 3,
+    "image": "/places/sb-semporna-mabul.svg"
+  },
+  {
+    "id": "sb-danum-valley",
+    "name": "Danum Valley",
+    "city": "Lahad Datu",
+    "region": "Sabah",
+    "category": "nature",
+    "vibes": [
+      "rainforest",
+      "wild orangutans",
+      "canopy",
+      "remote"
+    ],
+    "description": "A 438 km² tract of pristine lowland rainforest: wild orangutans, pygmy elephants, a canopy walk and some of the best birding in Borneo.",
+    "address": "Danum Valley Conservation Area, 91100 Lahad Datu, Sabah",
+    "latitude": 4.964,
+    "longitude": 117.797,
+    "rating": 4.8,
+    "reviewCount": 2450,
+    "reviews": [
+      {
+        "author": "Helen B.",
+        "rating": 5,
+        "text": "Saw wild orangutans, a clouded leopard track and hornbills daily. Expensive, but the real thing.",
+        "date": "2026-08-20"
+      },
+      {
+        "author": "Ravi K.",
+        "rating": 5,
+        "text": "The Borneo Rainforest Lodge is superb; the field centre is the budget option.",
+        "date": "2026-05-26"
+      }
+    ],
+    "openingHours": "By reservation",
+    "priceLevel": 3,
+    "image": "/places/sb-danum-valley.svg"
+  },
+  {
+    "id": "sb-tip-of-borneo",
+    "name": "Tip of Borneo",
+    "city": "Kudat",
+    "region": "Sabah",
+    "category": "landmark",
+    "vibes": [
+      "sunset",
+      "cliffs",
+      "remote",
+      "sea"
+    ],
+    "description": "Tanjung Simpang Mengayau, the northernmost point of Borneo, where the South China Sea meets the Sulu Sea below a windswept headland.",
+    "address": "Tanjung Simpang Mengayau, 89050 Kudat, Sabah",
+    "latitude": 7.035,
+    "longitude": 116.743,
+    "rating": 4.5,
+    "reviewCount": 4890,
+    "reviews": [
+      {
+        "author": "Jessie C.",
+        "rating": 5,
+        "text": "Three hours from KK, worth it for the sunset and the empty beaches on the way.",
+        "date": "2026-07-31"
+      },
+      {
+        "author": "Damian W.",
+        "rating": 4,
+        "text": "Stay a night in Kudat and see the Rungus longhouses too.",
+        "date": "2026-03-15"
+      }
+    ],
+    "openingHours": "Open 24 hours",
+    "priceLevel": 1,
+    "image": "/places/sb-tip-of-borneo.svg"
+  }
+]

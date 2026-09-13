@@ -1,0 +1,151 @@
+@import "tailwindcss" source(none);
+@custom-variant dark (&:where(.dark, .dark *));
+@source "./**/*.{ts,tsx}";
+
+/* Palette: Coolors "misty pastel blue" (#EDF2FB … #ABC4FF) extended with two deeper periwinkles and a navy ink for contrast. */
+@theme {
+  --color-mist-50: #f5f8fe;
+  --color-mist-100: #edf2fb;
+  --color-mist-200: #e2eafc;
+  --color-mist-300: #d7e3fc;
+  --color-mist-400: #ccdbfd;
+  --color-mist-500: #c1d3fe;
+  --color-mist-600: #b6ccfe;
+  --color-mist-700: #abc4ff;
+  --color-mist-800: #7f9bf2;
+  --color-mist-900: #4f6bd8;
+  --color-mist-950: #1b2559;
+
+  --animate-fade-in: fade-in 0.5s ease-out both;
+  --animate-rise-in: rise-in 0.45s ease-out both;
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes rise-in {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* Semantic tokens switch with the .dark class so components avoid dark: duplication. */
+:root {
+  --surface: #edf2fb;
+  --surface-raised: #ffffff;
+  --surface-sunken: #e2eafc;
+  --ink: #1b2559;
+  --ink-muted: #5b6591;
+  --ink-faint: #8c95bd;
+  --line: #d7e3fc;
+  --line-strong: #b6ccfe;
+  --primary: #4f6bd8;
+  --primary-hover: #3d57c2;
+  --on-primary: #f5f8fe;
+  --accent: #7f9bf2;
+  --accent-hover: #6584e6;
+  --on-accent: #0e1430;
+  --positive: #5a8f6e;
+  --info: #7f9bf2;
+  --danger: #d9536f;
+  --board-dot: #b6ccfe;
+
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  background-color: var(--surface);
+}
+
+.dark {
+  --surface: #131a3a;
+  --surface-raised: #1b2450;
+  --surface-sunken: #0e1430;
+  --ink: #edf2fb;
+  --ink-muted: #b6c2ee;
+  --ink-faint: #7f8bc0;
+  --line: #2b3874;
+  --line-strong: #3c4c92;
+  --primary: #abc4ff;
+  --primary-hover: #c1d3fe;
+  --on-primary: #0e1430;
+  --accent: #7f9bf2;
+  --accent-hover: #abc4ff;
+  --on-accent: #0e1430;
+  --positive: #8fc7a5;
+  --info: #abc4ff;
+  --danger: #f08aa0;
+  --board-dot: #2b3874;
+}
+
+@theme inline {
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-on-primary: var(--on-primary);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-on-accent: var(--on-accent);
+  --color-positive: var(--positive);
+  --color-info: var(--info);
+  --color-danger: var(--danger);
+  --color-board-dot: var(--board-dot);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--surface);
+  color: var(--ink);
+}
+
+/* React Flow reads these variables from its own stylesheet, so the canvas chrome follows the theme in both modes. */
+.react-flow {
+  --xy-background-color: var(--surface);
+  --xy-background-pattern-color: var(--board-dot);
+  --xy-edge-stroke: var(--primary);
+  --xy-edge-stroke-selected: var(--accent);
+  --xy-edge-stroke-width: 2.25;
+  --xy-connectionline-stroke: var(--accent);
+  --xy-connectionline-stroke-width: 2.25;
+  --xy-controls-button-background-color: var(--surface-raised);
+  --xy-controls-button-background-color-hover: var(--surface-sunken);
+  --xy-controls-button-color: var(--ink);
+  --xy-controls-button-color-hover: var(--ink);
+  --xy-controls-button-border-color: var(--line);
+  --xy-controls-box-shadow: 0 10px 30px -18px rgb(27 37 89 / 0.4);
+  --xy-minimap-background-color: var(--surface-raised);
+  --xy-minimap-node-background-color: var(--primary);
+  --xy-attribution-background-color: transparent;
+  --xy-handle-background-color: var(--primary);
+  --xy-handle-border-color: var(--surface-raised);
+  --xy-selection-background-color: color-mix(in srgb, var(--primary) 12%, transparent);
+  --xy-selection-border: 1px dashed var(--primary);
+  --xy-node-boxshadow-selected: none;
+}
+
+.react-flow .react-flow__controls {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.react-flow .react-flow__minimap {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.react-flow .react-flow__attribution a {
+  color: var(--ink-faint);
+}
+
+.react-flow .react-flow__connectionline path {
+  stroke-dasharray: 6 4;
+}
