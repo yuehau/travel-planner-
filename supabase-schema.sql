@@ -57,10 +57,12 @@ create table if not exists public.budget_items (
   trip_id uuid not null references public.trips(id) on delete cascade,
   category text not null,
   amount numeric not null check (amount >= 0),
-  currency text not null default 'USD',
+  currency text not null default 'MYR',
   is_paid boolean not null default false,
   created_at timestamptz not null default timezone('utc'::text, now())
 );
+
+alter table public.budget_items alter column currency set default 'MYR';
 
 create table if not exists public.packing_items (
   id uuid primary key default gen_random_uuid(),
@@ -105,12 +107,14 @@ create table if not exists public.trip_members (
 create table if not exists public.user_settings (
   user_id uuid primary key references public.profiles(id) on delete cascade,
   theme text not null default 'system' check (theme in ('light', 'dark', 'system')),
-  currency text not null default 'USD',
+  currency text not null default 'MYR',
   distance_unit text not null default 'km' check (distance_unit in ('km', 'mi')),
   time_format text not null default '12h' check (time_format in ('12h', '24h')),
   dashboard_widgets text[] not null default array['places', 'todos', 'budget'],
   updated_at timestamptz not null default timezone('utc'::text, now())
 );
+
+alter table public.user_settings alter column currency set default 'MYR';
 
 create table if not exists public.trip_collections (
   id uuid primary key default gen_random_uuid(),
@@ -296,13 +300,15 @@ create table if not exists public.itinerary_nodes (
   start_time time,
   end_time time,
   estimated_cost numeric not null default 0 check (estimated_cost >= 0),
-  currency text not null default 'USD',
+  currency text not null default 'MYR',
   notes text,
   break_reason text,
   ai_generated boolean not null default false,
   created_at timestamptz not null default timezone('utc'::text, now()),
   updated_at timestamptz not null default timezone('utc'::text, now())
 );
+
+alter table public.itinerary_nodes alter column currency set default 'MYR';
 
 create table if not exists public.replan_events (
   id uuid primary key default gen_random_uuid(),

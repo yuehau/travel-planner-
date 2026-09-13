@@ -229,7 +229,7 @@ const getVisitedAt = (status: TripCollectionStatus, visitedAt?: string) => {
 const defaultSettings = (userId: string): UserSettings => ({
   user_id: userId,
   theme: 'system',
-  currency: 'USD',
+  currency: 'MYR',
   distance_unit: 'km',
   time_format: '12h',
   dashboard_widgets: ['places', 'todos', 'budget'],
@@ -369,7 +369,7 @@ export const createSupabaseTravelDataClient = (userId: string): TravelDataClient
           start_time: normalizeOptional(input.start_time),
           end_time: normalizeOptional(input.end_time),
           estimated_cost: input.estimated_cost ?? 0,
-          currency: input.currency ?? 'USD',
+          currency: input.currency ?? 'MYR',
           notes: normalizeOptional(input.notes),
           ai_generated: input.ai_generated ?? false,
         })
@@ -475,7 +475,7 @@ export const createSupabaseTravelDataClient = (userId: string): TravelDataClient
           trip_id: tripId,
           category: requireText(input.category, 'Category'),
           amount: input.amount,
-          currency: input.currency ?? 'USD',
+          currency: input.currency ?? 'MYR',
           is_paid: input.is_paid ?? false,
         })
         .select('*')

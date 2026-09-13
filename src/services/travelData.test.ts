@@ -41,7 +41,7 @@ describe('demo travel data client', () => {
       ]),
     );
     await expect(client.getUserSettings()).resolves.toMatchObject({
-      currency: 'USD',
+      currency: 'MYR',
       distance_unit: 'km',
     });
   });

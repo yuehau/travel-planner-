@@ -84,12 +84,22 @@ const SettingsView = ({ travelData }: SettingsViewProps) => {
       <form onSubmit={handleSubmit} className="grid gap-4 rounded-2xl border border-zinc-200 bg-zinc-50 p-5 dark:border-zinc-800 dark:bg-zinc-900">
         <label className="grid gap-1 text-sm font-medium">
           Preferred currency
-          <input
+          <select
             value={settings.currency}
             disabled={isSaving || travelData.isReadOnly}
-            onChange={(event) => setSettings((current) => current ? { ...current, currency: event.target.value.toUpperCase().slice(0, 3) } : current)}
+            onChange={(event) => setSettings((current) => current ? { ...current, currency: event.target.value } : current)}
             className="rounded-xl border border-zinc-200 bg-white px-4 py-2 outline-none ring-zinc-900 focus:ring-2 dark:border-zinc-800 dark:bg-[#0a0a0a] dark:ring-zinc-100"
-          />
+          >
+            <option value="MYR">MYR - Malaysian Ringgit</option>
+            <option value="USD">USD - US Dollar</option>
+            <option value="SGD">SGD - Singapore Dollar</option>
+            <option value="THB">THB - Thai Baht</option>
+            <option value="IDR">IDR - Indonesian Rupiah</option>
+            <option value="EUR">EUR - Euro</option>
+            <option value="GBP">GBP - British Pound</option>
+            <option value="AUD">AUD - Australian Dollar</option>
+            <option value="JPY">JPY - Japanese Yen</option>
+          </select>
         </label>
 
         <label className="grid gap-1 text-sm font-medium">
