@@ -1,0 +1,438 @@
+{
+  "pages": [
+    {
+      "id": "desktop",
+      "name": "Desktop · 1440"
+    },
+    {
+      "id": "mobile",
+      "name": "Mobile · 390"
+    },
+    {
+      "id": "system",
+      "name": "System & motion"
+    }
+  ],
+  "artboards": [
+    {
+      "file": "Landing.dc.html",
+      "title": "Landing",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 2060,
+      "page": "desktop"
+    },
+    {
+      "file": "SignIn.dc.html",
+      "title": "Sign in",
+      "x": 1560,
+      "y": 0,
+      "w": 1440,
+      "h": 900,
+      "page": "desktop"
+    },
+    {
+      "file": "SignUp.dc.html",
+      "title": "Sign up",
+      "x": 3120,
+      "y": 0,
+      "w": 1440,
+      "h": 900,
+      "page": "desktop"
+    },
+    {
+      "file": "Dashboard.dc.html",
+      "title": "Dashboard",
+      "x": 0,
+      "y": 2280,
+      "w": 1440,
+      "h": 1340,
+      "page": "desktop"
+    },
+    {
+      "file": "NewTrip.dc.html",
+      "title": "Dashboard · New Trip",
+      "x": 1560,
+      "y": 2280,
+      "w": 1440,
+      "h": 900,
+      "page": "desktop"
+    },
+    {
+      "file": "Collections.dc.html",
+      "title": "Collections",
+      "x": 3120,
+      "y": 2280,
+      "w": 1440,
+      "h": 960,
+      "page": "desktop"
+    },
+    {
+      "file": "Profile.dc.html",
+      "title": "Profile",
+      "x": 4680,
+      "y": 2280,
+      "w": 1440,
+      "h": 1120,
+      "page": "desktop"
+    },
+    {
+      "file": "Main.dc.html",
+      "title": "Trip Board · edit",
+      "x": 0,
+      "y": 3840,
+      "w": 1440,
+      "h": 900,
+      "page": "desktop"
+    },
+    {
+      "file": "BoardView.dc.html",
+      "title": "Trip Board · view + summary",
+      "x": 1560,
+      "y": 3840,
+      "w": 1440,
+      "h": 900,
+      "page": "desktop"
+    },
+    {
+      "file": "BoardDark.dc.html",
+      "title": "Trip Board · dark · Day 2",
+      "x": 3120,
+      "y": 3840,
+      "w": 1440,
+      "h": 900,
+      "page": "desktop"
+    },
+    {
+      "file": "PlaceIntel.dc.html",
+      "title": "Place intel",
+      "x": 4680,
+      "y": 3840,
+      "w": 1440,
+      "h": 900,
+      "page": "desktop"
+    },
+    {
+      "file": "EditCard.dc.html",
+      "title": "Edit card",
+      "x": 6240,
+      "y": 3840,
+      "w": 1440,
+      "h": 900,
+      "page": "desktop"
+    },
+    {
+      "file": "ShareLink.dc.html",
+      "title": "Share · link",
+      "x": 0,
+      "y": 4960,
+      "w": 1440,
+      "h": 900,
+      "page": "desktop"
+    },
+    {
+      "file": "ShareNews.dc.html",
+      "title": "Share · news",
+      "x": 1560,
+      "y": 4960,
+      "w": 1440,
+      "h": 900,
+      "page": "desktop"
+    },
+    {
+      "file": "SharedBoard.dc.html",
+      "title": "Shared board",
+      "x": 3120,
+      "y": 4960,
+      "w": 1440,
+      "h": 900,
+      "page": "desktop"
+    },
+    {
+      "file": "SharedMissing.dc.html",
+      "title": "Shared · unavailable",
+      "x": 4680,
+      "y": 4960,
+      "w": 1440,
+      "h": 760,
+      "page": "desktop"
+    },
+    {
+      "file": "News.dc.html",
+      "title": "News",
+      "x": 0,
+      "y": 6080,
+      "w": 1440,
+      "h": 1960,
+      "page": "desktop"
+    },
+    {
+      "file": "NewsPost.dc.html",
+      "title": "News post",
+      "x": 1560,
+      "y": 6080,
+      "w": 1440,
+      "h": 1640,
+      "page": "desktop"
+    },
+    {
+      "file": "MLanding.dc.html",
+      "title": "Landing · mobile",
+      "x": 0,
+      "y": 0,
+      "w": 390,
+      "h": 2080,
+      "page": "mobile"
+    },
+    {
+      "file": "MSignIn.dc.html",
+      "title": "Sign in · mobile",
+      "x": 470,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "page": "mobile"
+    },
+    {
+      "file": "MSignUp.dc.html",
+      "title": "Sign up · error · mobile",
+      "x": 940,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "page": "mobile"
+    },
+    {
+      "file": "MDashboard.dc.html",
+      "title": "Dashboard · mobile",
+      "x": 0,
+      "y": 2300,
+      "w": 390,
+      "h": 1900,
+      "page": "mobile"
+    },
+    {
+      "file": "MNewTrip.dc.html",
+      "title": "New Trip sheet · mobile",
+      "x": 470,
+      "y": 2300,
+      "w": 390,
+      "h": 844,
+      "page": "mobile"
+    },
+    {
+      "file": "MCollections.dc.html",
+      "title": "Collections · mobile",
+      "x": 940,
+      "y": 2300,
+      "w": 390,
+      "h": 1080,
+      "page": "mobile"
+    },
+    {
+      "file": "MProfile.dc.html",
+      "title": "Profile · mobile",
+      "x": 1410,
+      "y": 2300,
+      "w": 390,
+      "h": 1320,
+      "page": "mobile"
+    },
+    {
+      "file": "MBoardEdit.dc.html",
+      "title": "Board edit · mobile",
+      "x": 0,
+      "y": 4420,
+      "w": 390,
+      "h": 844,
+      "page": "mobile"
+    },
+    {
+      "file": "MBoardView.dc.html",
+      "title": "Board view · mobile",
+      "x": 470,
+      "y": 4420,
+      "w": 390,
+      "h": 844,
+      "page": "mobile"
+    },
+    {
+      "file": "MPlaceIntel.dc.html",
+      "title": "Place intel · mobile",
+      "x": 940,
+      "y": 4420,
+      "w": 390,
+      "h": 844,
+      "page": "mobile"
+    },
+    {
+      "file": "MEditCard.dc.html",
+      "title": "Edit card · mobile",
+      "x": 1410,
+      "y": 4420,
+      "w": 390,
+      "h": 844,
+      "page": "mobile"
+    },
+    {
+      "file": "MShare.dc.html",
+      "title": "Share · mobile",
+      "x": 1880,
+      "y": 4420,
+      "w": 390,
+      "h": 844,
+      "page": "mobile"
+    },
+    {
+      "file": "MShared.dc.html",
+      "title": "Shared board · mobile",
+      "x": 2350,
+      "y": 4420,
+      "w": 390,
+      "h": 844,
+      "page": "mobile"
+    },
+    {
+      "file": "MNews.dc.html",
+      "title": "News · mobile",
+      "x": 0,
+      "y": 5484,
+      "w": 390,
+      "h": 2020,
+      "page": "mobile"
+    },
+    {
+      "file": "MNewsPost.dc.html",
+      "title": "News post · mobile",
+      "x": 470,
+      "y": 5484,
+      "w": 390,
+      "h": 1700,
+      "page": "mobile"
+    },
+    {
+      "file": "Foundations.dc.html",
+      "title": "Foundations",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 2760,
+      "page": "system"
+    },
+    {
+      "file": "Components.dc.html",
+      "title": "Components",
+      "x": 1560,
+      "y": 0,
+      "w": 1440,
+      "h": 2860,
+      "page": "system"
+    },
+    {
+      "file": "States.dc.html",
+      "title": "Empty · loading · error",
+      "x": 3120,
+      "y": 0,
+      "w": 1440,
+      "h": 1060,
+      "page": "system"
+    },
+    {
+      "file": "Motion.dc.html",
+      "title": "SVG morphs",
+      "x": 4680,
+      "y": 0,
+      "w": 1440,
+      "h": 2280,
+      "page": "system",
+      "is_interactive": true
+    }
+  ],
+  "annotations": [
+    {
+      "id": "desktop-row-1",
+      "x": -440,
+      "y": 0,
+      "w": 340,
+      "text": "01 · Entry\nLanding with the one-shot pin morph and squiggle, sign in and sign up with visible labels.",
+      "page": "desktop"
+    },
+    {
+      "id": "desktop-row-2",
+      "x": -440,
+      "y": 2280,
+      "w": 340,
+      "text": "02 · Home\nDashboard with popular places, both trip statuses on every card, and the coral New Trip FAB. Collections and Profile share the nav.",
+      "page": "desktop"
+    },
+    {
+      "id": "desktop-row-3",
+      "x": -440,
+      "y": 3840,
+      "w": 340,
+      "text": "03 · Trip Board\nThe core screen. Edit mode with a selected card and an open transport menu, view mode with the route summary, dark mode filtered to Day 2, and the two dialogs.",
+      "page": "desktop"
+    },
+    {
+      "id": "desktop-row-4",
+      "x": -440,
+      "y": 4960,
+      "w": 340,
+      "text": "04 · Sharing\nShare as a link or as a News story; the public read-only board and its unavailable state.",
+      "page": "desktop"
+    },
+    {
+      "id": "desktop-row-5",
+      "x": -440,
+      "y": 6080,
+      "w": 340,
+      "text": "05 · News\nEditorial stories plus a traveller’s shared trip plan; the article view.",
+      "page": "desktop"
+    },
+    {
+      "id": "mobile-row-1",
+      "x": -440,
+      "y": 0,
+      "w": 340,
+      "text": "01 · Entry\nFull-width actions, 16 px gutters, no fake status bar.",
+      "page": "mobile"
+    },
+    {
+      "id": "mobile-row-2",
+      "x": -440,
+      "y": 2300,
+      "w": 340,
+      "text": "02 · Home\nA bottom tab bar replaces the top segmented nav; your boards come before popular places; forms open as bottom sheets.",
+      "page": "mobile"
+    },
+    {
+      "id": "mobile-row-3",
+      "x": -440,
+      "y": 4420,
+      "w": 340,
+      "text": "03 · Trip Board\nPanels become bottom sheets over a full-bleed canvas: places while editing, the route summary while viewing.",
+      "page": "mobile"
+    },
+    {
+      "id": "mobile-row-4",
+      "x": -440,
+      "y": 5484,
+      "w": 340,
+      "text": "04 · News",
+      "page": "mobile"
+    },
+    {
+      "id": "system-row-1",
+      "x": -440,
+      "y": 0,
+      "w": 340,
+      "text": "Design system v2\nFoundations, components, states and the live SVG morph sheet (hover and click the stages).",
+      "page": "system"
+    }
+  ],
+  "launch": {
+    "view": "canvas",
+    "page": "desktop"
+  }
+}
