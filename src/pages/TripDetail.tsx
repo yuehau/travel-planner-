@@ -151,7 +151,7 @@ const TripDetail: React.FC = () => {
         {activeTab === 'budget' && <BudgetView tripId={tripId} travelData={travelData} />}
         {activeTab === 'checklist' && <ChecklistView tripId={tripId} travelData={travelData} />}
         {activeTab === 'todos' && <TodoView tripId={tripId} travelData={travelData} />}
-        {activeTab === 'info' && <InfoView tripId={tripId} travelData={travelData} />}
+        {activeTab === 'info' && <InfoView tripId={tripId} travelData={travelData} trip={trip} />}
         {activeTab === 'sharing' && <SharingView tripId={tripId} travelData={travelData} />}
         {activeTab === 'settings' && <SettingsView travelData={travelData} />}
       </main>

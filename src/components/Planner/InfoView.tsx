@@ -5,12 +5,14 @@ import MapPin from 'lucide-react/dist/esm/icons/map-pin.mjs';
 import Phone from 'lucide-react/dist/esm/icons/phone.mjs';
 import Plus from 'lucide-react/dist/esm/icons/plus.mjs';
 import type { SVGProps } from 'react';
-import type { TripInfo } from '../../types/database';
+import type { Trip, TripInfo } from '../../types/database';
 import type { TravelDataClient } from '../../services/travelData';
+import WeatherAndTravelInfo from './WeatherAndTravelInfo';
 
 type InfoViewProps = {
   tripId: string;
   travelData: TravelDataClient;
+  trip: Trip;
 };
 
 type IconComponent = React.ComponentType<SVGProps<SVGSVGElement> & { size?: string | number }>;
@@ -25,7 +27,7 @@ const getCategoryIcon = (category: string): IconComponent => {
   return FileText;
 };
 
-const InfoView: React.FC<InfoViewProps> = ({ tripId, travelData }) => {
+const InfoView: React.FC<InfoViewProps> = ({ tripId, travelData, trip }) => {
   const [items, setItems] = useState<TripInfo[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isAdding, setIsAdding] = useState(false);
@@ -87,6 +89,8 @@ const InfoView: React.FC<InfoViewProps> = ({ tripId, travelData }) => {
 
   return (
     <div className="max-w-3xl mx-auto py-8 px-4">
+      <WeatherAndTravelInfo tripId={tripId} travelData={travelData} trip={trip} />
+
       <div className="flex justify-between items-center mb-8">
         <h2 className="text-2xl font-bold tracking-tighter">Trip Essentials</h2>
         <button
