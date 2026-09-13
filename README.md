@@ -1,61 +1,51 @@
 # TravelPlanner
 
-A streamlined, intuitive travel planning application designed to help users organize their trips without the clutter. Built with a focus on high-value functionality and a familiar user experience.
+A visual trip planner for Malaysia. Every trip is a **board**: drag places from a searchable catalog onto an n8n-style canvas, connect them into a route, and pick how you travel between stops (walk, train, bus or car). Tap any place for a map, ratings and reviews. A **News** page shares short stories about new cafés, beaches and markets that you can like.
 
 ## Objective
-The goal of this project is to provide a minimalist tool that solves the "Three Pillars of Planning": **Where/When**, **What**, and **How Much**. By following Jakob's Law, the application leverages common design patterns so that users can start planning their journeys immediately without a steep learning curve.
+Replace spreadsheet-style trip planning with a calm, visual flow. The board shows the whole plan at a glance; the catalog keeps place data one drag away; the palette (`#28536B` · `#C2948A` · `#7EA8BE` · `#F6F0ED` · `#BBB193`) keeps it vibrant and chill.
+
+## Flow
+Landing → Sign in / Explore demo → Dashboard → New Trip → **Trip Board**
 
 ## Key Features
-- **Intuitive Dashboard**: Manage all your trips in one place.
-- **Collections Page**: Save places you have visited or want to turn into future trips.
-- **Day-by-Day Itinerary**: Plan your activities with a simple, vertical timeline.
-- **Map & Places**: Search OpenStreetMap places, save markers, and attach saved places to itinerary items.
-- **Expense Tracking**: Keep your travel budget in check with a minimalist ledger.
-- **Smart Packing Lists**: Ensure nothing is left behind with categorized checklists.
-- **To-Dos & Sharing**: Manage trip tasks and invite collaborators.
-- **Quick-Access Info**: Store addresses, links, local notes, emergency contacts, and other trip essentials.
-- **Zero-Friction Trial**: Try the app instantly via a read-only demo account.
-- **Modern UI**: Full support for Light and Dark modes.
-- **Planning-Only Product Scope**: The app helps users plan and organize trips; it does not provide booking or reservation flows.
-
-## Current Progress
-- Built the React/Vite/Tailwind application shell with authenticated routing.
-- Integrated Supabase configuration for Auth and PostgreSQL data access.
-- Added Google sign-in from the app side. Supabase still needs Google provider setup in the dashboard before OAuth will work end-to-end.
-- Added class-based light/dark mode with persistent user preference.
-- Added dashboard trip search, stats, next-focus summary, trip cards, and a fixed bottom-right `New Trip` action.
-- Moved saved destination collections into a dedicated `/collections` page with top navigation beside `My Trips`.
-- Added planning tabs for itinerary, places, budget, packing, to-dos, essentials, sharing, and settings.
-- Removed the visible booking/reservation workflow so the platform stays focused on trip planning.
-- Added demo-mode data and read-only protection for trial exploration.
-- Added tests for theme storage, Supabase client config, demo data behavior, trip status logic, and the planning-only tab contract.
+- **Trip Board** (`/trip/:id`): React Flow canvas with place cards, route edges, a transport picker with rough leg estimates, keyboard delete, minimap and zoom controls. Positions and routes persist.
+- **Places sidebar**: search by name, city or vibe; filter by region and category; drag onto the board or add with one tap.
+- **Place intel modal**: illustration, description, opening hours, price level, sample reviews, an embedded Leaflet map and an "Open in Google Maps" link.
+- **Malaysia catalog**: 42 places across Kuala Lumpur, Penang, Langkawi, Malacca, Cameron Highlands, Ipoh and Sabah, each with a generated SVG illustration.
+- **Three seeded boards** with different vibes: *KL City Lights*, *Penang Heritage & Street Food*, *Langkawi Island Escape*.
+- **Dashboard**: "Popular right now in Malaysia" banner, trip stats and region-illustrated trip cards.
+- **News** (`/news`, `/news/:slug`): editorial posts with per-user likes.
+- **Collections**: saved destinations (visited / want to go) that can seed a new board.
+- **PDF export** of a board's route (local mode).
+- Light and dark mode on the same palette; the dark board has the n8n dot-grid look.
+- **Demo mode**: the same three boards, editable, saved in the browser without an account.
 
 ## Tech Stack
-- **Frontend**: React, TypeScript, Tailwind CSS, Vite
-- **Backend**: Supabase (Auth, Database, Storage)
-- **Deployment**: Vercel/Netlify
+- **Frontend**: React 19, TypeScript, Vite 8, Tailwind CSS 4, React Router 7, `@xyflow/react` (React Flow) for the board, Leaflet for place maps.
+- **Backend (local prototype)**: Express 5 + better-sqlite3, Argon2 password hashing, httpOnly cookie sessions, zod validation, PDFKit export.
+- **Remote (parked)**: Supabase schema kept in `supabase-schema.sql`; the remote client supports trips/collections only.
 
 ## Getting Started
-1. Install dependencies with `npm install`.
-2. Copy `.env.example` to `.env`.
-3. Set `VITE_SUPABASE_URL=https://sevubkrirbaitcikpcjk.supabase.co`.
-4. Set `VITE_SUPABASE_ANON_KEY` to the Supabase publishable or anon key.
-5. Set `VITE_APP_URL=http://localhost:5173` for local development.
-6. Run `npm run dev`.
+1. `npm install`
+2. Copy `.env.example` to `.env` (keep `VITE_DATA_MODE=local`).
+3. `npm run dev` — starts the local API on `http://127.0.0.1:5175` and Vite on `http://localhost:5173`.
+4. Sign in with `demo@travelplanner.local` / `TravelPlanner123!`, create an account, or click **Explore the demo**.
 
-## Google Sign-In Setup
-The app code starts Google OAuth through Supabase. The Supabase dashboard must also be configured:
+Local data lives in `.local/travel-planner.sqlite` (gitignored). The server stores a schema version in the SQLite file; when the schema changes it drops and recreates the prototype database and reseeds the demo account.
 
-- Enable the Google provider under Authentication > Providers.
-- Add the Google OAuth Client ID and Client Secret.
-- Add this authorized redirect URI in Google Cloud: `https://sevubkrirbaitcikpcjk.supabase.co/auth/v1/callback`.
-- Add local and production app URLs to Supabase Authentication > URL Configuration. For local Vite development, include `http://localhost:5173/**`.
+## Content and illustrations
+- `shared/malaysia-catalog.json` — the place catalog (name, region, category, vibes, coordinates, rating, sample reviews).
+- `shared/seed-trips.json` — the three seeded boards (place positions and routes), used by both the local API and demo mode.
+- `shared/news-posts.json` — News stories.
+- `npm run art` regenerates `public/places/*.svg`, `public/regions/*.svg` and `public/news/*.svg` from those files. Output is committed.
 
 ## Development Commands
-- `npm run dev`
+- `npm run dev` / `npm run dev:server` / `npm run dev:client`
 - `npm run build`
 - `npm run lint`
 - `npm test`
+- `npm run art`
 
 ## License
 MIT

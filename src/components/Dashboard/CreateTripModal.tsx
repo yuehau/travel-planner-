@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import X from 'lucide-react/dist/esm/icons/x.mjs';
 import type { TripCreateInput } from '../../services/travelData';
+import { catalogRegions, regionCoverImage } from '../../data/catalog';
 
 interface CreateTripModalProps {
   isOpen: boolean;
@@ -8,9 +9,16 @@ interface CreateTripModalProps {
   onCreate: (trip: TripCreateInput) => Promise<void>;
   isSubmitting?: boolean;
   error?: string | null;
-  isReadOnly?: boolean;
+  initialRegion?: string;
   initialDestination?: string;
+  initialTrip?: TripCreateInput;
+  title?: string;
+  submitLabel?: string;
+  submittingLabel?: string;
 }
+
+const inputClass = 'w-full rounded-xl border border-line bg-surface px-4 py-2.5 text-ink outline-none transition-all placeholder:text-ink-faint focus:border-primary focus:ring-2 focus:ring-primary/30';
+const labelClass = 'mb-1 block text-xs font-semibold uppercase tracking-wider text-ink-muted';
 
 const CreateTripModal: React.FC<CreateTripModalProps> = ({
   isOpen,
@@ -18,14 +26,19 @@ const CreateTripModal: React.FC<CreateTripModalProps> = ({
   onCreate,
   isSubmitting = false,
   error = null,
-  isReadOnly = false,
+  initialRegion = '',
   initialDestination = '',
+  initialTrip,
+  title = 'New Trip',
+  submitLabel = 'Create Trip',
+  submittingLabel = 'Creating...',
 }) => {
   const [formData, setFormData] = useState({
-    destination: initialDestination,
-    startDate: '',
-    endDate: '',
-    description: '',
+    destination: initialTrip?.destination ?? initialDestination,
+    region: initialTrip?.region ?? initialRegion ?? '',
+    startDate: initialTrip?.start_date ?? '',
+    endDate: initialTrip?.end_date ?? '',
+    description: initialTrip?.description ?? '',
   });
 
   if (!isOpen) return null;
@@ -35,6 +48,8 @@ const CreateTripModal: React.FC<CreateTripModalProps> = ({
 
     await onCreate({
       destination: formData.destination,
+      region: formData.region || null,
+      cover_image: formData.region ? regionCoverImage(formData.region) : null,
       start_date: formData.startDate,
       end_date: formData.endDate,
       description: formData.description,
@@ -42,61 +57,74 @@ const CreateTripModal: React.FC<CreateTripModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm transition-opacity">
-      <div className="w-full max-w-md bg-white dark:bg-zinc-900 rounded-3xl shadow-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden animate-in fade-in zoom-in duration-200">
-        <div className="px-6 py-4 border-b border-zinc-100 dark:border-zinc-800 flex justify-between items-center">
-          <h2 className="text-xl font-semibold">New Adventure</h2>
-          <button onClick={onClose} className="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-mist-950/50 p-4 backdrop-blur-sm animate-fade-in">
+      <div className="w-full max-w-md overflow-hidden rounded-3xl border border-line bg-surface-raised shadow-2xl shadow-mist-950/30 animate-rise-in">
+        <div className="flex items-center justify-between border-b border-line px-6 py-4">
+          <h2 className="text-xl font-semibold tracking-tight">{title}</h2>
+          <button type="button" onClick={onClose} className="rounded-full p-2 text-ink-muted transition-colors hover:bg-surface-sunken hover:text-ink" aria-label="Close">
             <X size={20} />
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4 p-6">
           {error && (
-            <div className="rounded-lg border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-700">
+            <div className="rounded-xl border border-mist-500 bg-mist-100 px-4 py-3 text-sm text-danger dark:bg-mist-950/40 dark:text-mist-200">
               {error}
             </div>
           )}
 
-          {isReadOnly && (
-            <div className="rounded-lg border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900">
-              Demo mode is read-only. Sign in to create and save trips.
-            </div>
-          )}
-
           <div>
-            <label className="block text-xs font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1">Destination</label>
+            <label className={labelClass} htmlFor="trip-name">Trip name</label>
             <input
+              id="trip-name"
               required
               type="text"
-              placeholder="e.g. Tokyo, Japan"
-              disabled={isSubmitting || isReadOnly}
-              className="w-full px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-transparent focus:ring-2 ring-zinc-900 dark:ring-zinc-100 outline-none transition-all"
+              placeholder="e.g. Penang long weekend"
+              disabled={isSubmitting}
+              className={inputClass}
               value={formData.destination}
               onChange={(e) => setFormData({ ...formData, destination: e.target.value })}
             />
           </div>
 
+          <div>
+            <label className={labelClass} htmlFor="trip-region">Region</label>
+            <select
+              id="trip-region"
+              disabled={isSubmitting}
+              className={inputClass}
+              value={formData.region}
+              onChange={(e) => setFormData({ ...formData, region: e.target.value })}
+            >
+              <option value="">Anywhere in Malaysia</option>
+              {catalogRegions.map((region) => (
+                <option key={region} value={region}>{region}</option>
+              ))}
+            </select>
+          </div>
+
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1">Start Date</label>
+              <label className={labelClass} htmlFor="trip-start">Start date</label>
               <input
+                id="trip-start"
                 required
                 type="date"
-                disabled={isSubmitting || isReadOnly}
-                className="w-full px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-transparent focus:ring-2 ring-zinc-900 dark:ring-zinc-100 outline-none transition-all"
+                disabled={isSubmitting}
+                className={inputClass}
                 value={formData.startDate}
                 onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
               />
             </div>
             <div>
-              <label className="block text-xs font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1">End Date</label>
+              <label className={labelClass} htmlFor="trip-end">End date</label>
               <input
+                id="trip-end"
                 required
                 type="date"
-                disabled={isSubmitting || isReadOnly}
+                disabled={isSubmitting}
                 min={formData.startDate}
-                className="w-full px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-transparent focus:ring-2 ring-zinc-900 dark:ring-zinc-100 outline-none transition-all"
+                className={inputClass}
                 value={formData.endDate}
                 onChange={(e) => setFormData({ ...formData, endDate: e.target.value })}
               />
@@ -104,12 +132,13 @@ const CreateTripModal: React.FC<CreateTripModalProps> = ({
           </div>
 
           <div>
-            <label className="block text-xs font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1">Description (Optional)</label>
+            <label className={labelClass} htmlFor="trip-description">Description (optional)</label>
             <textarea
+              id="trip-description"
               rows={3}
               placeholder="What's the vibe of this trip?"
-              disabled={isSubmitting || isReadOnly}
-              className="w-full px-4 py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-transparent focus:ring-2 ring-zinc-900 dark:ring-zinc-100 outline-none transition-all resize-none"
+              disabled={isSubmitting}
+              className={`${inputClass} resize-none`}
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
             />
@@ -117,10 +146,10 @@ const CreateTripModal: React.FC<CreateTripModalProps> = ({
 
           <button
             type="submit"
-            disabled={isSubmitting || isReadOnly}
-            className="w-full py-3 rounded-xl bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 font-semibold hover:opacity-90 transition-opacity mt-4 disabled:cursor-not-allowed disabled:opacity-50"
+            disabled={isSubmitting}
+            className="mt-2 w-full rounded-xl bg-primary py-3 font-semibold text-on-primary transition hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-50"
           >
-            {isSubmitting ? 'Creating...' : 'Create Trip'}
+            {isSubmitting ? submittingLabel : submitLabel}
           </button>
         </form>
       </div>

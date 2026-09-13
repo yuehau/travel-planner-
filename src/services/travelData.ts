@@ -1,77 +1,65 @@
-import { getSupabaseClient } from '../lib/supabase';
 import type {
-  BudgetItem,
-  ItineraryItem,
-  PackingItem,
+  NewsPost,
   Place,
+  PlaceLink,
+  TransportMode,
   Trip,
   TripCollection,
   TripCollectionStatus,
-  TripInfo,
-  TripMember,
-  TripTodo,
-  TripTodoPriority,
-  UserSettings,
+  TripPlanStatus,
 } from '../types/database';
 
 export type TripCreateInput = {
   destination: string;
+  region?: string | null;
+  cover_image?: string | null;
   start_date: string;
   end_date: string;
   description?: string;
 };
 
-export type ItineraryCreateInput = {
-  day_number: number;
-  activity: string;
-  place_id?: string;
-  location?: string;
-  start_time?: string;
-  end_time?: string;
-  notes?: string;
-};
+export type TripUpdateInput = Partial<TripCreateInput> & { status?: TripPlanStatus };
 
 export type PlaceCreateInput = {
   name: string;
-  address?: string;
+  catalog_id?: string | null;
+  address?: string | null;
   latitude?: number | null;
   longitude?: number | null;
   source?: string;
-  notes?: string;
-  photo_url?: string;
+  notes?: string | null;
+  photo_url?: string | null;
   rating?: number | null;
+  label?: string | null;
+  day_number?: number | null;
+  start_time?: string | null;
+  position_x?: number;
+  position_y?: number;
 };
 
-export type BudgetCreateInput = {
-  category: string;
-  amount: number;
-  currency?: string;
-  is_paid?: boolean;
+export type PlaceUpdateInput = Partial<PlaceCreateInput>;
+
+export type ShareResult = {
+  share_token: string;
+  url: string;
 };
 
-export type PackingCreateInput = {
-  category?: string;
-  item: string;
-  is_packed?: boolean;
-};
-
-export type TripInfoCreateInput = {
-  category: string;
-  label: string;
-  value: string;
-  url?: string;
-};
-
-export type TripTodoCreateInput = {
+export type NewsPostCreateInput = {
+  trip_id: string;
   title: string;
-  due_date?: string;
-  priority?: TripTodoPriority;
-  is_completed?: boolean;
+  body: string;
 };
 
-export type TripMemberCreateInput = {
-  invited_email: string;
-  role?: 'member';
+export type NewsPostUpdateInput = Partial<Pick<NewsPostCreateInput, 'title' | 'body'>>;
+
+export type PlaceLinkCreateInput = {
+  source_place_id: string;
+  target_place_id: string;
+  transport_mode?: TransportMode;
+};
+
+export type PlaceLinkUpdateInput = {
+  transport_mode?: TransportMode;
 };
 
 export type TripCollectionCreateInput = {
@@ -81,40 +69,44 @@ export type TripCollectionCreateInput = {
   visited_at?: string;
 };
 
-export type UserSettingsUpdateInput = Partial<Pick<UserSettings, 'theme' | 'currency' | 'distance_unit' | 'time_format' | 'dashboard_widgets'>>;
+export type TripCollectionUpdateInput = Partial<TripCollectionCreateInput>;
+
+export type NewsLikeResult = {
+  like_count: number;
+  liked: boolean;
+};
 
 export type TravelDataClient = {
-  readonly isReadOnly: boolean;
   listTrips: () => Promise<Trip[]>;
   createTrip: (input: TripCreateInput) => Promise<Trip>;
+  updateTrip: (id: string, input: TripUpdateInput) => Promise<Trip>;
+  deleteTrip: (id: string) => Promise<void>;
   getTrip: (tripId: string) => Promise<Trip | null>;
-  listItineraryItems: (tripId: string) => Promise<ItineraryItem[]>;
-  createItineraryItem: (tripId: string, input: ItineraryCreateInput) => Promise<ItineraryItem>;
+  shareTrip: (id: string) => Promise<ShareResult>;
+  unshareTrip: (id: string) => Promise<Trip>;
   listPlaces: (tripId: string) => Promise<Place[]>;
   createPlace: (tripId: string, input: PlaceCreateInput) => Promise<Place>;
-  listBudgetItems: (tripId: string) => Promise<BudgetItem[]>;
-  createBudgetItem: (tripId: string, input: BudgetCreateInput) => Promise<BudgetItem>;
-  updateBudgetItemPaid: (id: string, isPaid: boolean) => Promise<BudgetItem>;
-  listPackingItems: (tripId: string) => Promise<PackingItem[]>;
-  createPackingItem: (tripId: string, input: PackingCreateInput) => Promise<PackingItem>;
-  updatePackingItemPacked: (id: string, isPacked: boolean) => Promise<PackingItem>;
-  listTripInfos: (tripId: string) => Promise<TripInfo[]>;
-  createTripInfo: (tripId: string, input: TripInfoCreateInput) => Promise<TripInfo>;
-  listTodos: (tripId: string) => Promise<TripTodo[]>;
-  createTodo: (tripId: string, input: TripTodoCreateInput) => Promise<TripTodo>;
-  updateTodoCompleted: (id: string, isCompleted: boolean) => Promise<TripTodo>;
-  listTripMembers: (tripId: string) => Promise<TripMember[]>;
-  inviteTripMember: (tripId: string, input: TripMemberCreateInput) => Promise<TripMember>;
+  updatePlace: (id: string, input: PlaceUpdateInput) => Promise<Place>;
+  deletePlace: (id: string) => Promise<void>;
+  listPlaceLinks: (tripId: string) => Promise<PlaceLink[]>;
+  createPlaceLink: (tripId: string, input: PlaceLinkCreateInput) => Promise<PlaceLink>;
+  updatePlaceLink: (id: string, input: PlaceLinkUpdateInput) => Promise<PlaceLink>;
+  deletePlaceLink: (id: string) => Promise<void>;
   listTripCollections: () => Promise<TripCollection[]>;
   createTripCollection: (input: TripCollectionCreateInput) => Promise<TripCollection>;
+  updateTripCollection: (id: string, input: TripCollectionUpdateInput) => Promise<TripCollection>;
   updateTripCollectionStatus: (id: string, status: TripCollectionStatus) => Promise<TripCollection>;
   deleteTripCollection: (id: string) => Promise<void>;
-  getUserSettings: () => Promise<UserSettings>;
-  updateUserSettings: (input: UserSettingsUpdateInput) => Promise<UserSettings>;
+  listNewsPosts: () => Promise<NewsPost[]>;
+  getNewsPost: (slug: string) => Promise<NewsPost | null>;
+  toggleNewsLike: (slug: string) => Promise<NewsLikeResult>;
+  createNewsPost: (input: NewsPostCreateInput) => Promise<NewsPost>;
+  updateNewsPost: (slug: string, input: NewsPostUpdateInput) => Promise<NewsPost>;
+  deleteNewsPost: (slug: string) => Promise<void>;
 };
 
 export class TravelDataError extends Error {
-  code: 'read_only' | 'not_found' | 'data_error' | 'validation_error';
+  code: 'not_found' | 'data_error' | 'validation_error' | 'conflict';
 
   constructor(message: string, code: TravelDataError['code']) {
     super(message);
@@ -123,16 +115,16 @@ export class TravelDataError extends Error {
   }
 }
 
-const requireWritableDemo = () => {
-  throw new TravelDataError('Demo mode is read-only. Sign in to save changes.', 'read_only');
-};
-
-const normalizeOptional = (value?: string) => {
+export const normalizeOptional = (value?: string | null) => {
   const trimmed = value?.trim();
   return trimmed ? trimmed : null;
 };
 
-const requireText = (value: string | undefined, label: string) => {
+export const removeUndefined = <T extends Record<string, unknown>>(value: T) => {
+  return Object.fromEntries(Object.entries(value).filter(([, entry]) => entry !== undefined)) as Partial<T>;
+};
+
+export const requireText = (value: string | undefined | null, label: string) => {
   const trimmed = value?.trim();
 
   if (!trimmed) {
@@ -142,19 +134,13 @@ const requireText = (value: string | undefined, label: string) => {
   return trimmed;
 };
 
-const validateTripDates = (startDate: string, endDate: string) => {
+export const validateTripDates = (startDate: string, endDate: string) => {
   if (new Date(`${endDate}T00:00:00`) < new Date(`${startDate}T00:00:00`)) {
     throw new TravelDataError('End date must be after the start date.', 'validation_error');
   }
 };
 
-const validateAmount = (amount: number) => {
-  if (!Number.isFinite(amount) || amount < 0) {
-    throw new TravelDataError('Amount must be a positive number.', 'validation_error');
-  }
-};
-
-const validateRating = (rating: number | null | undefined) => {
+export const validateRating = (rating: number | null | undefined) => {
   if (rating === null || rating === undefined) return null;
   if (!Number.isFinite(rating) || rating < 0 || rating > 5) {
     throw new TravelDataError('Rating must be between 0 and 5.', 'validation_error');
@@ -163,637 +149,31 @@ const validateRating = (rating: number | null | undefined) => {
   return rating;
 };
 
-const validateEmail = (email: string | undefined) => {
-  const trimmed = requireText(email, 'Email').toLowerCase();
-
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
-    throw new TravelDataError('Enter a valid email address.', 'validation_error');
+export const validateDayNumber = (value: number | null | undefined) => {
+  if (value === null || value === undefined) return null;
+  if (!Number.isInteger(value) || value < 1 || value > 60) {
+    throw new TravelDataError('Day must be a whole number between 1 and 60.', 'validation_error');
   }
-
-  return trimmed;
+  return value;
 };
 
-const getVisitedAt = (status: TripCollectionStatus, visitedAt?: string) => {
+export const shareUrlFor = (token: string) => `${typeof window === 'undefined' ? '' : window.location.origin}/shared/${token}`;
+
+export const validatePosition = (value: number | undefined, fallback = 0) => {
+  if (value === undefined) return fallback;
+  if (!Number.isFinite(value)) {
+    throw new TravelDataError('Board position must be a number.', 'validation_error');
+  }
+
+  return value;
+};
+
+export const getVisitedAt = (status: TripCollectionStatus, visitedAt?: string) => {
   if (status === 'want_to_go') return null;
   return normalizeOptional(visitedAt) ?? new Date().toISOString();
 };
 
-const defaultSettings = (userId: string): UserSettings => ({
-  user_id: userId,
-  theme: 'system',
-  currency: 'USD',
-  distance_unit: 'km',
-  time_format: '12h',
-  dashboard_widgets: ['places', 'todos', 'budget'],
-  updated_at: new Date(0).toISOString(),
-});
-
-const handleSingle = <T>(data: T | null, error: { message: string } | null, fallbackMessage: string) => {
-  if (error) {
-    throw new TravelDataError(error.message || fallbackMessage, 'data_error');
-  }
-
-  if (!data) {
-    throw new TravelDataError(fallbackMessage, 'not_found');
-  }
-
-  return data;
-};
-
-export const createSupabaseTravelDataClient = (userId: string): TravelDataClient => {
-  const supabase = getSupabaseClient();
-
-  const requireTrip = async (tripId: string) => {
-    const { data, error } = await supabase
-      .from('trips')
-      .select('*')
-      .eq('id', tripId)
-      .eq('user_id', userId)
-      .maybeSingle();
-
-    if (error) throw new TravelDataError(error.message, 'data_error');
-    if (!data) throw new TravelDataError('Trip was not found or is not available to this account.', 'not_found');
-
-    return data;
-  };
-
-  return {
-    isReadOnly: false,
-    async listTrips() {
-      const { data, error } = await supabase
-        .from('trips')
-        .select('*')
-        .eq('user_id', userId)
-        .order('start_date', { ascending: true });
-
-      if (error) throw new TravelDataError(error.message, 'data_error');
-      return data ?? [];
-    },
-    async createTrip(input) {
-      const destination = requireText(input.destination, 'Destination');
-      validateTripDates(input.start_date, input.end_date);
-
-      const { data, error } = await supabase
-        .from('trips')
-        .insert({
-          user_id: userId,
-          destination,
-          start_date: input.start_date,
-          end_date: input.end_date,
-          description: normalizeOptional(input.description),
-        })
-        .select('*')
-        .single();
-
-      return handleSingle(data, error, 'Could not create trip.');
-    },
-    async getTrip(tripId) {
-      const { data, error } = await supabase
-        .from('trips')
-        .select('*')
-        .eq('id', tripId)
-        .eq('user_id', userId)
-        .maybeSingle();
-
-      if (error) throw new TravelDataError(error.message, 'data_error');
-      return data;
-    },
-    async listItineraryItems(tripId) {
-      await requireTrip(tripId);
-
-      const { data, error } = await supabase
-        .from('itinerary_items')
-        .select('*')
-        .eq('trip_id', tripId)
-        .order('day_number', { ascending: true })
-        .order('sort_order', { ascending: true });
-
-      if (error) throw new TravelDataError(error.message, 'data_error');
-      return data ?? [];
-    },
-    async createItineraryItem(tripId, input) {
-      await requireTrip(tripId);
-
-      const { data, error } = await supabase
-        .from('itinerary_items')
-        .insert({
-          trip_id: tripId,
-          place_id: normalizeOptional(input.place_id),
-          day_number: input.day_number,
-          activity: requireText(input.activity, 'Activity'),
-          location: normalizeOptional(input.location),
-          start_time: normalizeOptional(input.start_time),
-          end_time: normalizeOptional(input.end_time),
-          notes: normalizeOptional(input.notes),
-          sort_order: Date.now(),
-        })
-        .select('*')
-        .single();
-
-      return handleSingle(data, error, 'Could not create itinerary item.');
-    },
-    async listPlaces(tripId) {
-      await requireTrip(tripId);
-
-      const { data, error } = await supabase
-        .from('places')
-        .select('*')
-        .eq('trip_id', tripId)
-        .order('created_at', { ascending: true });
-
-      if (error) throw new TravelDataError(error.message, 'data_error');
-      return data ?? [];
-    },
-    async createPlace(tripId, input) {
-      await requireTrip(tripId);
-
-      const { data, error } = await supabase
-        .from('places')
-        .insert({
-          trip_id: tripId,
-          name: requireText(input.name, 'Place name'),
-          address: normalizeOptional(input.address),
-          latitude: input.latitude ?? null,
-          longitude: input.longitude ?? null,
-          source: input.source ?? 'manual',
-          notes: normalizeOptional(input.notes),
-          photo_url: normalizeOptional(input.photo_url),
-          rating: validateRating(input.rating),
-        })
-        .select('*')
-        .single();
-
-      return handleSingle(data, error, 'Could not save place.');
-    },
-    async listBudgetItems(tripId) {
-      await requireTrip(tripId);
-
-      const { data, error } = await supabase
-        .from('budget_items')
-        .select('*')
-        .eq('trip_id', tripId)
-        .order('created_at', { ascending: true });
-
-      if (error) throw new TravelDataError(error.message, 'data_error');
-      return data ?? [];
-    },
-    async createBudgetItem(tripId, input) {
-      await requireTrip(tripId);
-      validateAmount(input.amount);
-
-      const { data, error } = await supabase
-        .from('budget_items')
-        .insert({
-          trip_id: tripId,
-          category: requireText(input.category, 'Category'),
-          amount: input.amount,
-          currency: input.currency ?? 'USD',
-          is_paid: input.is_paid ?? false,
-        })
-        .select('*')
-        .single();
-
-      return handleSingle(data, error, 'Could not create budget item.');
-    },
-    async updateBudgetItemPaid(id, isPaid) {
-      const { data, error } = await supabase
-        .from('budget_items')
-        .update({ is_paid: isPaid })
-        .eq('id', id)
-        .select('*')
-        .single();
-
-      return handleSingle(data, error, 'Could not update budget item.');
-    },
-    async listPackingItems(tripId) {
-      await requireTrip(tripId);
-
-      const { data, error } = await supabase
-        .from('packing_items')
-        .select('*')
-        .eq('trip_id', tripId)
-        .order('created_at', { ascending: true });
-
-      if (error) throw new TravelDataError(error.message, 'data_error');
-      return data ?? [];
-    },
-    async createPackingItem(tripId, input) {
-      await requireTrip(tripId);
-
-      const { data, error } = await supabase
-        .from('packing_items')
-        .insert({
-          trip_id: tripId,
-          category: requireText(input.category ?? 'General', 'Category'),
-          item: requireText(input.item, 'Item'),
-          is_packed: input.is_packed ?? false,
-        })
-        .select('*')
-        .single();
-
-      return handleSingle(data, error, 'Could not create packing item.');
-    },
-    async updatePackingItemPacked(id, isPacked) {
-      const { data, error } = await supabase
-        .from('packing_items')
-        .update({ is_packed: isPacked })
-        .eq('id', id)
-        .select('*')
-        .single();
-
-      return handleSingle(data, error, 'Could not update packing item.');
-    },
-    async listTripInfos(tripId) {
-      await requireTrip(tripId);
-
-      const { data, error } = await supabase
-        .from('trip_infos')
-        .select('*')
-        .eq('trip_id', tripId)
-        .order('category', { ascending: true })
-        .order('created_at', { ascending: true });
-
-      if (error) throw new TravelDataError(error.message, 'data_error');
-      return data ?? [];
-    },
-    async createTripInfo(tripId, input) {
-      await requireTrip(tripId);
-
-      const { data, error } = await supabase
-        .from('trip_infos')
-        .insert({
-          trip_id: tripId,
-          category: requireText(input.category, 'Category'),
-          label: requireText(input.label, 'Label'),
-          value: requireText(input.value, 'Value'),
-          url: normalizeOptional(input.url),
-        })
-        .select('*')
-        .single();
-
-      return handleSingle(data, error, 'Could not create trip info.');
-    },
-    async listTodos(tripId) {
-      await requireTrip(tripId);
-
-      const { data, error } = await supabase
-        .from('trip_todos')
-        .select('*')
-        .eq('trip_id', tripId)
-        .order('is_completed', { ascending: true })
-        .order('due_date', { ascending: true, nullsFirst: false })
-        .order('created_at', { ascending: true });
-
-      if (error) throw new TravelDataError(error.message, 'data_error');
-      return data ?? [];
-    },
-    async createTodo(tripId, input) {
-      await requireTrip(tripId);
-
-      const { data, error } = await supabase
-        .from('trip_todos')
-        .insert({
-          trip_id: tripId,
-          title: requireText(input.title, 'Task title'),
-          due_date: normalizeOptional(input.due_date),
-          priority: input.priority ?? 'medium',
-          is_completed: input.is_completed ?? false,
-        })
-        .select('*')
-        .single();
-
-      return handleSingle(data, error, 'Could not create task.');
-    },
-    async updateTodoCompleted(id, isCompleted) {
-      const { data, error } = await supabase
-        .from('trip_todos')
-        .update({ is_completed: isCompleted })
-        .eq('id', id)
-        .select('*')
-        .single();
-
-      return handleSingle(data, error, 'Could not update task.');
-    },
-    async listTripMembers(tripId) {
-      await requireTrip(tripId);
-
-      const { data, error } = await supabase
-        .from('trip_members')
-        .select('*')
-        .eq('trip_id', tripId)
-        .order('created_at', { ascending: true });
-
-      if (error) throw new TravelDataError(error.message, 'data_error');
-      return data ?? [];
-    },
-    async inviteTripMember(tripId, input) {
-      await requireTrip(tripId);
-
-      const { data, error } = await supabase
-        .from('trip_members')
-        .insert({
-          trip_id: tripId,
-          invited_email: validateEmail(input.invited_email),
-          role: input.role ?? 'member',
-          status: 'pending',
-        })
-        .select('*')
-        .single();
-
-      return handleSingle(data, error, 'Could not invite member.');
-    },
-    async listTripCollections() {
-      const { data, error } = await supabase
-        .from('trip_collections')
-        .select('*')
-        .eq('user_id', userId)
-        .order('created_at', { ascending: false });
-
-      if (error) throw new TravelDataError(error.message, 'data_error');
-      return data ?? [];
-    },
-    async createTripCollection(input) {
-      const status = input.status ?? 'want_to_go';
-      const { data, error } = await supabase
-        .from('trip_collections')
-        .insert({
-          user_id: userId,
-          destination: requireText(input.destination, 'Destination'),
-          status,
-          notes: normalizeOptional(input.notes),
-          visited_at: getVisitedAt(status, input.visited_at),
-        })
-        .select('*')
-        .single();
-
-      return handleSingle(data, error, 'Could not save destination.');
-    },
-    async updateTripCollectionStatus(id, status) {
-      const { data, error } = await supabase
-        .from('trip_collections')
-        .update({
-          status,
-          visited_at: getVisitedAt(status),
-        })
-        .eq('id', id)
-        .eq('user_id', userId)
-        .select('*')
-        .single();
-
-      return handleSingle(data, error, 'Could not update saved destination.');
-    },
-    async deleteTripCollection(id) {
-      const { error } = await supabase
-        .from('trip_collections')
-        .delete()
-        .eq('id', id)
-        .eq('user_id', userId);
-
-      if (error) throw new TravelDataError(error.message, 'data_error');
-    },
-    async getUserSettings() {
-      const { data, error } = await supabase
-        .from('user_settings')
-        .select('*')
-        .eq('user_id', userId)
-        .maybeSingle();
-
-      if (error) throw new TravelDataError(error.message, 'data_error');
-      return data ?? defaultSettings(userId);
-    },
-    async updateUserSettings(input) {
-      const { data, error } = await supabase
-        .from('user_settings')
-        .upsert({
-          user_id: userId,
-          ...input,
-          updated_at: new Date().toISOString(),
-        })
-        .select('*')
-        .single();
-
-      return handleSingle(data, error, 'Could not update settings.');
-    },
-  };
-};
-
-const demoTrips: Trip[] = [
-  {
-    id: 'demo-tokyo',
-    user_id: 'demo-user-id',
-    destination: 'Tokyo, Japan',
-    home_base: 'Shinjuku',
-    start_date: '2026-10-12',
-    end_date: '2026-10-20',
-    description: 'A deep dive into the contrast of futuristic neon and ancient traditions.',
-    created_at: '2026-01-01T00:00:00Z',
-  },
-  {
-    id: 'demo-paris',
-    user_id: 'demo-user-id',
-    destination: 'Paris, France',
-    home_base: 'Le Marais',
-    start_date: '2026-05-01',
-    end_date: '2026-05-10',
-    description: 'Museums, slow mornings, and long walks along the Seine.',
-    created_at: '2026-01-02T00:00:00Z',
-  },
-];
-
-const demoItineraryItems: ItineraryItem[] = [
-  {
-    id: 'demo-itinerary-1',
-    trip_id: 'demo-tokyo',
-    place_id: 'demo-place-1',
-    day_number: 1,
-    activity: 'Breakfast at Tsukiji Outer Market',
-    location: 'Tsukiji',
-    start_time: '09:00',
-    end_time: null,
-    notes: 'Try the fresh tuna sushi.',
-    sort_order: 1,
-    created_at: '2026-01-01T00:00:00Z',
-  },
-  {
-    id: 'demo-itinerary-2',
-    trip_id: 'demo-tokyo',
-    place_id: 'demo-place-2',
-    day_number: 1,
-    activity: 'TeamLab Borderless',
-    location: 'Azabudai Hills',
-    start_time: '11:00',
-    end_time: null,
-    notes: 'Book tickets in advance.',
-    sort_order: 2,
-    created_at: '2026-01-01T00:00:00Z',
-  },
-];
-
-const demoPlaces: Place[] = [
-  {
-    id: 'demo-place-1',
-    trip_id: 'demo-tokyo',
-    name: 'Tsukiji Outer Market',
-    address: '4 Chome-16-2 Tsukiji, Chuo City, Tokyo',
-    latitude: 35.6655,
-    longitude: 139.7707,
-    source: 'openstreetmap',
-    notes: 'Best in the morning.',
-    photo_url: null,
-    rating: 4.8,
-    created_at: '2026-01-01T00:00:00Z',
-  },
-  {
-    id: 'demo-place-2',
-    trip_id: 'demo-tokyo',
-    name: 'teamLab Borderless',
-    address: 'Azabudai Hills, Tokyo',
-    latitude: 35.6601,
-    longitude: 139.7407,
-    source: 'manual',
-    notes: 'Pre-book tickets.',
-    photo_url: null,
-    rating: 4.7,
-    created_at: '2026-01-01T00:01:00Z',
-  },
-];
-
-const demoBudgetItems: BudgetItem[] = [
-  { id: 'demo-budget-1', trip_id: 'demo-tokyo', category: 'Flights', amount: 1200, currency: 'USD', is_paid: true, created_at: '2026-01-01T00:00:00Z' },
-  { id: 'demo-budget-2', trip_id: 'demo-tokyo', category: 'Hotel', amount: 800, currency: 'USD', is_paid: true, created_at: '2026-01-01T00:01:00Z' },
-  { id: 'demo-budget-3', trip_id: 'demo-tokyo', category: 'Food', amount: 500, currency: 'USD', is_paid: false, created_at: '2026-01-01T00:02:00Z' },
-];
-
-const demoPackingItems: PackingItem[] = [
-  { id: 'demo-packing-1', trip_id: 'demo-tokyo', category: 'Essentials', item: 'Passport', is_packed: true, created_at: '2026-01-01T00:00:00Z' },
-  { id: 'demo-packing-2', trip_id: 'demo-tokyo', category: 'Electronics', item: 'Universal adapter', is_packed: false, created_at: '2026-01-01T00:01:00Z' },
-  { id: 'demo-packing-3', trip_id: 'demo-tokyo', category: 'Clothing', item: 'Walking shoes', is_packed: true, created_at: '2026-01-01T00:02:00Z' },
-];
-
-const demoTripInfos: TripInfo[] = [
-  { id: 'demo-info-1', trip_id: 'demo-tokyo', category: 'Confirmation', label: 'Flight BN123', value: 'A8K2L9P', url: null, created_at: '2026-01-01T00:00:00Z' },
-  { id: 'demo-info-2', trip_id: 'demo-tokyo', category: 'Emergency', label: 'Local police', value: '+81 110', url: null, created_at: '2026-01-01T00:01:00Z' },
-  { id: 'demo-info-3', trip_id: 'demo-tokyo', category: 'Address', label: 'Hotel', value: 'The Ritz-Carlton, Tokyo', url: null, created_at: '2026-01-01T00:02:00Z' },
-];
-
-const demoTodos: TripTodo[] = [
-  { id: 'demo-todo-1', trip_id: 'demo-tokyo', title: 'Book TeamLab tickets', due_date: '2026-09-20', priority: 'high', is_completed: false, created_at: '2026-01-01T00:00:00Z' },
-  { id: 'demo-todo-2', trip_id: 'demo-tokyo', title: 'Download offline maps', due_date: '2026-10-01', priority: 'medium', is_completed: true, created_at: '2026-01-01T00:01:00Z' },
-];
-
-const demoMembers: TripMember[] = [
-  { id: 'demo-member-1', trip_id: 'demo-tokyo', user_id: 'demo-user-id', invited_email: 'demo@example.com', role: 'owner', status: 'accepted', created_at: '2026-01-01T00:00:00Z' },
-  { id: 'demo-member-2', trip_id: 'demo-tokyo', user_id: null, invited_email: 'friend@example.com', role: 'member', status: 'pending', created_at: '2026-01-01T00:01:00Z' },
-];
-
-const demoCollections: TripCollection[] = [
-  {
-    id: 'demo-collection-1',
-    user_id: 'demo-user-id',
-    destination: 'Kyoto, Japan',
-    status: 'want_to_go',
-    notes: 'Temples, coffee shops, and a slower second week after Tokyo.',
-    visited_at: null,
-    created_at: '2026-01-03T00:00:00Z',
-  },
-  {
-    id: 'demo-collection-2',
-    user_id: 'demo-user-id',
-    destination: 'Seoul, South Korea',
-    status: 'want_to_go',
-    notes: 'Food markets and design stores.',
-    visited_at: null,
-    created_at: '2026-01-04T00:00:00Z',
-  },
-  {
-    id: 'demo-collection-3',
-    user_id: 'demo-user-id',
-    destination: 'Paris, France',
-    status: 'visited',
-    notes: 'Good reference trip for museum-heavy days.',
-    visited_at: '2026-05-10T00:00:00Z',
-    created_at: '2026-01-05T00:00:00Z',
-  },
-];
-
-export const createDemoTravelDataClient = (): TravelDataClient => ({
-  isReadOnly: true,
-  async listTrips() {
-    return demoTrips;
-  },
-  async createTrip() {
-    return requireWritableDemo();
-  },
-  async getTrip(tripId) {
-    return demoTrips.find((trip) => trip.id === tripId) ?? null;
-  },
-  async listItineraryItems(tripId) {
-    return demoItineraryItems.filter((item) => item.trip_id === tripId);
-  },
-  async createItineraryItem() {
-    return requireWritableDemo();
-  },
-  async listPlaces(tripId) {
-    return demoPlaces.filter((item) => item.trip_id === tripId);
-  },
-  async createPlace() {
-    return requireWritableDemo();
-  },
-  async listBudgetItems(tripId) {
-    return demoBudgetItems.filter((item) => item.trip_id === tripId);
-  },
-  async createBudgetItem() {
-    return requireWritableDemo();
-  },
-  async updateBudgetItemPaid() {
-    return requireWritableDemo();
-  },
-  async listPackingItems(tripId) {
-    return demoPackingItems.filter((item) => item.trip_id === tripId);
-  },
-  async createPackingItem() {
-    return requireWritableDemo();
-  },
-  async updatePackingItemPacked() {
-    return requireWritableDemo();
-  },
-  async listTripInfos(tripId) {
-    return demoTripInfos.filter((item) => item.trip_id === tripId);
-  },
-  async createTripInfo() {
-    return requireWritableDemo();
-  },
-  async listTodos(tripId) {
-    return demoTodos.filter((item) => item.trip_id === tripId);
-  },
-  async createTodo() {
-    return requireWritableDemo();
-  },
-  async updateTodoCompleted() {
-    return requireWritableDemo();
-  },
-  async listTripMembers(tripId) {
-    return demoMembers.filter((item) => item.trip_id === tripId);
-  },
-  async inviteTripMember() {
-    return requireWritableDemo();
-  },
-  async listTripCollections() {
-    return demoCollections;
-  },
-  async createTripCollection() {
-    return requireWritableDemo();
-  },
-  async updateTripCollectionStatus() {
-    return requireWritableDemo();
-  },
-  async deleteTripCollection() {
-    return requireWritableDemo();
-  },
-  async getUserSettings() {
-    return defaultSettings('demo-user-id');
-  },
-  async updateUserSettings() {
-    return requireWritableDemo();
-  },
-});
+export const notAvailableInRemoteMode = (feature: string) => new TravelDataError(
+  `${feature} is not available in remote (Supabase) mode yet. Use local or demo mode.`,
+  'data_error',
+);

@@ -1,0 +1,104 @@
+[
+  {
+    "id": "news-1",
+    "slug": "bangsar-slow-bar-opens",
+    "title": "A slow-bar coffee counter just opened behind Telawi",
+    "excerpt": "Twelve seats, no laptops, and a rotating list of Sabah-grown beans. Bangsar's newest café wants you to sit still for twenty minutes.",
+    "body": [
+      "Tucked into a former tailor's shop on Lorong Kurau, the new counter keeps things deliberately small: twelve stools around a single brew bar, a two-page menu, and a house rule that laptops stay in the bag.",
+      "The beans are the story. The owners source most of the list from smallholders around Ranau and Tenom in Sabah, roasting on-site every Tuesday. Expect a bright washed Ranau on pour-over and a heavier natural for the espresso drinks.",
+      "Pastries come from a home baker in Bukit Damansara and sell out by 11am on weekends. Go on a weekday afternoon, order the seasonal tasting flight, and let the barista talk you through it."
+    ],
+    "city": "Kuala Lumpur",
+    "category": "cafe",
+    "author": "TravelPlanner Editorial",
+    "publishedAt": "2026-09-08",
+    "coverImage": "/news/bangsar-slow-bar-opens.svg",
+    "baseLikes": 128
+  },
+  {
+    "id": "news-2",
+    "slug": "george-town-shophouse-cafe",
+    "title": "George Town's oldest printing press is now a heritage café",
+    "excerpt": "The letterpress machines stayed. The coffee, kaya buns and courtyard garden are new.",
+    "body": [
+      "For nearly a century the Lebuh Pantai shophouse printed wedding cards and shop signs. The family kept the two cast-iron presses when they converted the ground floor this summer, and they now anchor a long, high-ceilinged café that opens onto a rear courtyard.",
+      "The menu leans Penang: kaya buns baked in-house, nutmeg juice, and a kopi made with a traditional sock filter alongside the espresso machine. Afternoon tea sets fill the courtyard tables by 3pm.",
+      "It sits two streets from the Chew Jetty, which makes it a natural mid-walk stop on any street-art loop."
+    ],
+    "city": "George Town",
+    "category": "cafe",
+    "author": "TravelPlanner Editorial",
+    "publishedAt": "2026-09-02",
+    "coverImage": "/news/george-town-shophouse-cafe.svg",
+    "baseLikes": 214
+  },
+  {
+    "id": "news-3",
+    "slug": "ipoh-rooftop-bar-old-town",
+    "title": "Ipoh Old Town gets its first rooftop bar",
+    "excerpt": "Six floors above Concubine Lane, a new terrace looks straight at the limestone hills. Cocktails use local white coffee and pomelo.",
+    "body": [
+      "Ipoh has never been short of kopitiams, but until now its evenings ended early. A new rooftop on Jalan Sultan Yussuf changes that with an open terrace facing the karst hills that turn pink at sunset.",
+      "The drinks list is unashamedly local. The signature stirs Ipoh white coffee into a bourbon old fashioned, and a pomelo highball uses fruit from Tambun orchards twenty minutes away.",
+      "Small plates come from the kitchen downstairs: salted chicken, bean-sprout salad and a very good taugeh-topped flatbread. Book for sunset; walk-ins are fine after 9pm."
+    ],
+    "city": "Ipoh",
+    "category": "restaurant",
+    "author": "TravelPlanner Editorial",
+    "publishedAt": "2026-08-26",
+    "coverImage": "/news/ipoh-rooftop-bar-old-town.svg",
+    "baseLikes": 96
+  },
+  {
+    "id": "news-4",
+    "slug": "langkawi-beach-club-reopens",
+    "title": "The Tengah beach club is back after a two-year rebuild",
+    "excerpt": "Bigger deck, a saltwater pool, and a promise to stop the loud music at ten. Sunset sessions start this month.",
+    "body": [
+      "The beach club at the quiet end of Pantai Tengah closed in 2024 after storm damage and has spent two years rebuilding on stilts, further back from the tide line and with a new saltwater pool facing the islands.",
+      "The relaunch keeps the sunset session that made the place popular, but the owners have agreed with neighbouring resorts to end amplified music at 10pm. Expect a quieter, more grown-up crowd.",
+      "Day passes include a sunbed and a credit for the kitchen, which now does a lighter menu of grilled fish, ulam salads and coconut everything."
+    ],
+    "city": "Langkawi",
+    "category": "attraction",
+    "author": "TravelPlanner Editorial",
+    "publishedAt": "2026-08-18",
+    "coverImage": "/news/langkawi-beach-club-reopens.svg",
+    "baseLikes": 173
+  },
+  {
+    "id": "news-5",
+    "slug": "cameron-tea-house-boh-valley",
+    "title": "A new tea house opens in the valley below BOH",
+    "excerpt": "Cold-brew tea, scones with local strawberry jam, and a glass wall facing the terraces.",
+    "body": [
+      "Most visitors stop at the plantation café on the ridge. A new tea house lower in the valley gives a different angle: you are looking up at the terraces instead of down, and the crowds thin out considerably.",
+      "The menu is built around cold-brewed Cameronian teas, a rare thing in the highlands, alongside the expected scones and strawberry jam made from farms a few kilometres away.",
+      "There is a short trail from the car park through the tea rows to the front door. Wear shoes you do not mind getting muddy after rain."
+    ],
+    "city": "Cameron Highlands",
+    "category": "cafe",
+    "author": "TravelPlanner Editorial",
+    "publishedAt": "2026-08-11",
+    "coverImage": "/news/cameron-tea-house-boh-valley.svg",
+    "baseLikes": 87
+  },
+  {
+    "id": "news-6",
+    "slug": "melaka-riverside-night-market",
+    "title": "Melaka's riverside night market moves to every Saturday",
+    "excerpt": "Sixty stalls along the river walk from Kampung Morten, with Nyonya kuih, satay celup and live keroncong.",
+    "body": [
+      "What began as a monthly festival market in April now runs every Saturday evening along the restored river walk between Kampung Morten and the Jonker Street bridge.",
+      "Stalls are chosen for local food rather than souvenirs: satay celup, Nyonya kuih, cendol, and a popular Portuguese-Eurasian debal curry stand run by a Ujong Pasir family.",
+      "Pair it with the night river cruise, which now stops at a temporary jetty beside the market between 7pm and 11pm."
+    ],
+    "city": "Malacca",
+    "category": "event",
+    "author": "TravelPlanner Editorial",
+    "publishedAt": "2026-08-04",
+    "coverImage": "/news/melaka-riverside-night-market.svg",
+    "baseLikes": 152
+  }
+]

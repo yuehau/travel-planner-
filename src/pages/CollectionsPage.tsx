@@ -1,15 +1,18 @@
 import { useState } from 'react';
 import Plus from 'lucide-react/dist/esm/icons/plus.mjs';
+import { useNavigate } from 'react-router-dom';
 import AppNav from '../components/AppNav';
 import CreateTripModal from '../components/Dashboard/CreateTripModal';
 import TripCollections from '../components/Dashboard/TripCollections';
+import { catalogRegions } from '../data/catalog';
 import { useTravelDataClient } from '../hooks/useTravelDataClient';
 import type { TripCreateInput } from '../services/travelData';
-import { useNavigate } from 'react-router-dom';
+import { usePageTransition } from '../hooks/usePageTransition';
 
 const CollectionsPage = () => {
   const travelData = useTravelDataClient();
   const navigate = useNavigate();
+  const { startPageTransition } = usePageTransition();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isCreating, setIsCreating] = useState(false);
   const [createError, setCreateError] = useState<string | null>(null);
@@ -42,6 +45,7 @@ const CollectionsPage = () => {
     try {
       const createdTrip = await travelData.createTrip(trip);
       setIsModalOpen(false);
+      startPageTransition();
       navigate(`/trip/${createdTrip.id}`);
     } catch (createTripError) {
       setCreateError(createTripError instanceof Error ? createTripError.message : 'Could not create trip.');
@@ -50,15 +54,18 @@ const CollectionsPage = () => {
     }
   };
 
+  // A saved destination that names a catalog region pre-selects it on the new trip.
+  const matchedRegion = catalogRegions.find((region) => region.toLowerCase() === initialTripDestination.trim().toLowerCase()) ?? '';
+
   return (
-    <div className="min-h-screen bg-white text-zinc-900 transition-colors duration-300 dark:bg-[#0a0a0a] dark:text-zinc-100">
+    <div className="min-h-screen bg-surface text-ink transition-colors duration-300">
       <AppNav />
 
-      <main className="mx-auto max-w-7xl px-6 py-12 pb-32">
+      <main className="mx-auto max-w-7xl px-6 py-8 pb-32">
         <div className="mb-10 max-w-2xl">
-          <h1 className="mb-2 text-4xl font-bold tracking-tighter">Collections</h1>
-          <p className="text-zinc-500 dark:text-zinc-400">
-            Save places you have visited or want to turn into future trips.
+          <h1 className="mb-2 text-4xl font-bold tracking-tight">Collections</h1>
+          <p className="text-ink-muted">
+            Save places you have visited or want to turn into future boards.
           </p>
         </div>
 
@@ -68,7 +75,7 @@ const CollectionsPage = () => {
       <button
         type="button"
         onClick={() => openCreateTripModal()}
-        className="fixed bottom-6 right-6 z-40 inline-flex items-center gap-2 rounded-full bg-zinc-900 px-6 py-4 font-semibold text-white shadow-2xl shadow-zinc-900/20 transition-all hover:-translate-y-0.5 hover:opacity-90 dark:bg-zinc-100 dark:text-zinc-900 dark:shadow-zinc-100/10 sm:bottom-8 sm:right-8"
+        className="fixed bottom-6 right-6 z-40 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-4 font-semibold text-on-accent shadow-2xl shadow-mist-950/30 transition-all hover:-translate-y-0.5 hover:bg-accent-hover sm:bottom-8 sm:right-8"
       >
         <Plus size={20} />
         <span>New Trip</span>
@@ -81,8 +88,8 @@ const CollectionsPage = () => {
           onCreate={handleCreateTrip}
           isSubmitting={isCreating}
           error={createError}
-          isReadOnly={travelData?.isReadOnly}
           initialDestination={initialTripDestination}
+          initialRegion={matchedRegion}
         />
       )}
     </div>

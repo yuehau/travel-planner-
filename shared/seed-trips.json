@@ -1,0 +1,378 @@
+[
+  {
+    "id": "seed-kl-city-lights",
+    "destination": "KL City Lights",
+    "region": "Kuala Lumpur",
+    "start_date": "2026-11-06",
+    "end_date": "2026-11-09",
+    "description": "Three days of skyline, street food and rooftop sunsets in the capital.",
+    "places": [
+      {
+        "id": "seed-kl-batu-caves",
+        "catalog_id": "kl-batu-caves",
+        "position": [
+          0,
+          140
+        ],
+        "notes": "Early start before the heat.",
+        "day": 1,
+        "time": "08:00"
+      },
+      {
+        "id": "seed-kl-merdeka-square",
+        "catalog_id": "kl-merdeka-square",
+        "position": [
+          340,
+          40
+        ],
+        "notes": null,
+        "day": 1,
+        "time": "11:00"
+      },
+      {
+        "id": "seed-kl-petaling-street",
+        "catalog_id": "kl-petaling-street",
+        "position": [
+          680,
+          140
+        ],
+        "notes": "Lunch: hokkien mee at Kim Lian Kee.",
+        "day": 1,
+        "time": "12:30"
+      },
+      {
+        "id": "seed-kl-petronas-towers",
+        "catalog_id": "kl-petronas-towers",
+        "position": [
+          1020,
+          40
+        ],
+        "notes": "Skybridge slot booked for 15:30.",
+        "day": 2,
+        "time": "15:30"
+      },
+      {
+        "id": "seed-kl-klcc-park",
+        "catalog_id": "kl-klcc-park",
+        "position": [
+          1360,
+          -80
+        ],
+        "notes": "Fountain show at 20:00.",
+        "day": 2,
+        "time": "19:30"
+      },
+      {
+        "id": "seed-kl-jalan-alor",
+        "catalog_id": "kl-jalan-alor",
+        "position": [
+          1360,
+          180
+        ],
+        "notes": "Dinner.",
+        "day": 2,
+        "time": "20:30"
+      },
+      {
+        "id": "seed-kl-heli-lounge-bar",
+        "catalog_id": "kl-heli-lounge-bar",
+        "position": [
+          1700,
+          180
+        ],
+        "notes": "Nightcap with the view.",
+        "day": 2,
+        "time": "22:00"
+      }
+    ],
+    "links": [
+      {
+        "id": "seed-kl-link-1",
+        "source": "seed-kl-batu-caves",
+        "target": "seed-kl-merdeka-square",
+        "transport_mode": "train"
+      },
+      {
+        "id": "seed-kl-link-2",
+        "source": "seed-kl-merdeka-square",
+        "target": "seed-kl-petaling-street",
+        "transport_mode": "walk"
+      },
+      {
+        "id": "seed-kl-link-3",
+        "source": "seed-kl-petaling-street",
+        "target": "seed-kl-petronas-towers",
+        "transport_mode": "train"
+      },
+      {
+        "id": "seed-kl-link-4",
+        "source": "seed-kl-petronas-towers",
+        "target": "seed-kl-klcc-park",
+        "transport_mode": "walk"
+      },
+      {
+        "id": "seed-kl-link-5",
+        "source": "seed-kl-petronas-towers",
+        "target": "seed-kl-jalan-alor",
+        "transport_mode": "car"
+      },
+      {
+        "id": "seed-kl-link-6",
+        "source": "seed-kl-jalan-alor",
+        "target": "seed-kl-heli-lounge-bar",
+        "transport_mode": "walk"
+      }
+    ]
+  },
+  {
+    "id": "seed-penang-heritage",
+    "destination": "Penang Heritage & Street Food",
+    "region": "Penang",
+    "start_date": "2026-10-09",
+    "end_date": "2026-10-12",
+    "description": "Murals, clan houses and hawker stalls around George Town, then up the hill for sunset.",
+    "places": [
+      {
+        "id": "seed-pg-blue-mansion",
+        "catalog_id": "pg-blue-mansion",
+        "position": [
+          0,
+          60
+        ],
+        "notes": "11:00 guided tour.",
+        "day": 1,
+        "time": "11:00"
+      },
+      {
+        "id": "seed-pg-street-art",
+        "catalog_id": "pg-george-town-street-art",
+        "position": [
+          340,
+          160
+        ],
+        "notes": "Rent bicycles at Armenian Street.",
+        "day": 1,
+        "time": "13:00"
+      },
+      {
+        "id": "seed-pg-china-house",
+        "catalog_id": "pg-china-house",
+        "position": [
+          680,
+          -20
+        ],
+        "notes": "Cake break.",
+        "day": 1,
+        "time": "15:30"
+      },
+      {
+        "id": "seed-pg-khoo-kongsi",
+        "catalog_id": "pg-khoo-kongsi",
+        "position": [
+          680,
+          200
+        ],
+        "notes": null,
+        "day": 2,
+        "time": "10:00"
+      },
+      {
+        "id": "seed-pg-clan-jetties",
+        "catalog_id": "pg-clan-jetties",
+        "position": [
+          1020,
+          200
+        ],
+        "notes": "Golden hour on the jetty.",
+        "day": 2,
+        "time": "17:30"
+      },
+      {
+        "id": "seed-pg-kek-lok-si",
+        "catalog_id": "pg-kek-lok-si",
+        "position": [
+          1360,
+          60
+        ],
+        "notes": null,
+        "day": 3,
+        "time": "09:30"
+      },
+      {
+        "id": "seed-pg-penang-hill",
+        "catalog_id": "pg-penang-hill",
+        "position": [
+          1700,
+          160
+        ],
+        "notes": "Fast-lane funicular ticket.",
+        "day": 3,
+        "time": "16:00"
+      },
+      {
+        "id": "seed-pg-gurney-drive",
+        "catalog_id": "pg-gurney-drive",
+        "position": [
+          2040,
+          60
+        ],
+        "notes": "Assam laksa, char kway teow, lok lok.",
+        "day": 3,
+        "time": "19:30"
+      }
+    ],
+    "links": [
+      {
+        "id": "seed-pg-link-1",
+        "source": "seed-pg-blue-mansion",
+        "target": "seed-pg-street-art",
+        "transport_mode": "walk"
+      },
+      {
+        "id": "seed-pg-link-2",
+        "source": "seed-pg-street-art",
+        "target": "seed-pg-china-house",
+        "transport_mode": "walk"
+      },
+      {
+        "id": "seed-pg-link-3",
+        "source": "seed-pg-street-art",
+        "target": "seed-pg-khoo-kongsi",
+        "transport_mode": "walk"
+      },
+      {
+        "id": "seed-pg-link-4",
+        "source": "seed-pg-khoo-kongsi",
+        "target": "seed-pg-clan-jetties",
+        "transport_mode": "walk"
+      },
+      {
+        "id": "seed-pg-link-5",
+        "source": "seed-pg-clan-jetties",
+        "target": "seed-pg-kek-lok-si",
+        "transport_mode": "car"
+      },
+      {
+        "id": "seed-pg-link-6",
+        "source": "seed-pg-kek-lok-si",
+        "target": "seed-pg-penang-hill",
+        "transport_mode": "bus"
+      },
+      {
+        "id": "seed-pg-link-7",
+        "source": "seed-pg-penang-hill",
+        "target": "seed-pg-gurney-drive",
+        "transport_mode": "car"
+      }
+    ],
+    "status": "complete"
+  },
+  {
+    "id": "seed-langkawi-escape",
+    "destination": "Langkawi Island Escape",
+    "region": "Langkawi",
+    "start_date": "2027-01-16",
+    "end_date": "2027-01-20",
+    "description": "Mangroves, empty beaches and a sky bridge. Nothing before 9am.",
+    "places": [
+      {
+        "id": "seed-lk-eagle-square",
+        "catalog_id": "lk-eagle-square",
+        "position": [
+          0,
+          100
+        ],
+        "notes": "Straight off the ferry.",
+        "day": 1,
+        "time": "15:00"
+      },
+      {
+        "id": "seed-lk-kilim-geoforest",
+        "catalog_id": "lk-kilim-geoforest",
+        "position": [
+          340,
+          0
+        ],
+        "notes": "Half-day mangrove boat, no eagle feeding.",
+        "day": 2,
+        "time": "09:00"
+      },
+      {
+        "id": "seed-lk-tanjung-rhu",
+        "catalog_id": "lk-tanjung-rhu",
+        "position": [
+          680,
+          100
+        ],
+        "notes": "Bring snacks, nothing sold on the beach.",
+        "day": 2,
+        "time": "14:00"
+      },
+      {
+        "id": "seed-lk-sky-bridge",
+        "catalog_id": "lk-sky-bridge",
+        "position": [
+          1020,
+          0
+        ],
+        "notes": "Check the weather board first.",
+        "day": 3,
+        "time": "10:00"
+      },
+      {
+        "id": "seed-lk-telaga-tujuh",
+        "catalog_id": "lk-telaga-tujuh",
+        "position": [
+          1360,
+          100
+        ],
+        "notes": "Swim in the top pools.",
+        "day": 3,
+        "time": "13:00"
+      },
+      {
+        "id": "seed-lk-cenang-beach",
+        "catalog_id": "lk-cenang-beach",
+        "position": [
+          1700,
+          0
+        ],
+        "notes": "Sunset, coconut, fire show.",
+        "day": 4,
+        "time": "17:30"
+      }
+    ],
+    "links": [
+      {
+        "id": "seed-lk-link-1",
+        "source": "seed-lk-eagle-square",
+        "target": "seed-lk-kilim-geoforest",
+        "transport_mode": "car"
+      },
+      {
+        "id": "seed-lk-link-2",
+        "source": "seed-lk-kilim-geoforest",
+        "target": "seed-lk-tanjung-rhu",
+        "transport_mode": "car"
+      },
+      {
+        "id": "seed-lk-link-3",
+        "source": "seed-lk-tanjung-rhu",
+        "target": "seed-lk-sky-bridge",
+        "transport_mode": "car"
+      },
+      {
+        "id": "seed-lk-link-4",
+        "source": "seed-lk-sky-bridge",
+        "target": "seed-lk-telaga-tujuh",
+        "transport_mode": "walk"
+      },
+      {
+        "id": "seed-lk-link-5",
+        "source": "seed-lk-telaga-tujuh",
+        "target": "seed-lk-cenang-beach",
+        "transport_mode": "car"
+      }
+    ]
+  }
+]

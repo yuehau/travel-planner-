@@ -1,57 +1,69 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Calendar from 'lucide-react/dist/esm/icons/calendar.mjs';
+import CircleCheck from 'lucide-react/dist/esm/icons/circle-check.mjs';
 import MapPin from 'lucide-react/dist/esm/icons/map-pin.mjs';
 import type { TripStatus } from '../../utils/tripStatus';
+import { regionCoverImage } from '../../data/catalog';
+import LoadingLink from '../LoadingLink';
 
 interface TripCardProps {
   id: string;
   destination: string;
+  region: string | null;
+  coverImage: string | null;
   startDate: string;
   endDate: string;
-  image?: string;
   status: TripStatus;
+  isComplete?: boolean;
 }
 
-const TripCard: React.FC<TripCardProps> = ({ id, destination, startDate, endDate, image, status }) => {
+const statusClass: Record<TripStatus, string> = {
+  upcoming: 'bg-surface-raised/90 text-ink',
+  active: 'bg-positive text-mist-950',
+  past: 'bg-mist-950/50 text-mist-50',
+};
+
+const TripCard: React.FC<TripCardProps> = ({ id, destination, region, coverImage, startDate, endDate, status, isComplete = false }) => {
+  const image = coverImage ?? regionCoverImage(region);
+
   return (
-    <Link
+    <LoadingLink
       to={`/trip/${id}`}
-      className="group relative block overflow-hidden rounded-2xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all duration-300"
+      className="group relative block overflow-hidden rounded-3xl border border-line bg-surface-raised shadow-sm shadow-mist-950/5 transition-all duration-300 hover:-translate-y-1 hover:border-mist-700 hover:shadow-xl hover:shadow-mist-950/10"
     >
-      {/* Card Image/Placeholder */}
-      <div className="aspect-[4/3] overflow-hidden bg-zinc-200 dark:bg-zinc-800 relative">
-        {image ? (
-          <img src={image} alt={destination} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center text-zinc-400 dark:text-zinc-600">
-            <MapPin size={40} strokeWidth={1} />
-          </div>
-        )}
-        <div className="absolute top-3 right-3">
-          <span className={`px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${
-            status === 'upcoming'
-              ? 'bg-white/90 text-zinc-900 backdrop-blur-sm'
-              : status === 'active'
-                ? 'bg-green-500/90 text-white backdrop-blur-sm'
-              : 'bg-zinc-500/50 text-white backdrop-blur-sm'
-          }`}>
+      <div className="relative aspect-[16/10] overflow-hidden bg-surface-sunken">
+        <img src={image} alt="" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <div className="absolute right-3 top-3 flex gap-1.5">
+          {isComplete && (
+            <span className="inline-flex items-center gap-1 rounded-full bg-primary px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-on-primary backdrop-blur-sm">
+              <CircleCheck size={11} />
+              Complete
+            </span>
+          )}
+          <span className={`rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest backdrop-blur-sm ${statusClass[status]}`}>
             {status}
           </span>
         </div>
       </div>
 
-      {/* Card Content */}
       <div className="p-5">
-        <h3 className="text-lg font-semibold mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+        <h3 className="mb-2 text-lg font-semibold tracking-tight transition-colors group-hover:text-primary">
           {destination}
         </h3>
-        <div className="flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400 font-light">
-          <Calendar size={14} />
-          <span>{startDate} — {endDate}</span>
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-ink-muted">
+          {region && (
+            <span className="flex items-center gap-1.5">
+              <MapPin size={14} />
+              {region}
+            </span>
+          )}
+          <span className="flex items-center gap-1.5">
+            <Calendar size={14} />
+            {startDate} — {endDate}
+          </span>
         </div>
       </div>
-    </Link>
+    </LoadingLink>
   );
 };
 

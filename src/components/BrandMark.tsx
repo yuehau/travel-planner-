@@ -6,8 +6,8 @@ type BrandMarkProps = {
 };
 
 const sizeClass = {
-  sm: 'h-7 w-7 rounded-md',
-  md: 'h-8 w-8 rounded-lg',
+  sm: 'h-7 w-7 rounded-lg',
+  md: 'h-9 w-9 rounded-xl',
 };
 
 const iconSize = {
@@ -17,8 +17,8 @@ const iconSize = {
 
 const BrandMark = ({ size = 'md', interactive = false }: BrandMarkProps) => (
   <span
-    className={`${sizeClass[size]} flex shrink-0 items-center justify-center bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 ${
-      interactive ? 'transition-transform group-hover:rotate-6' : ''
+    className={`${sizeClass[size]} flex shrink-0 items-center justify-center bg-gradient-to-br from-mist-900 to-mist-800 text-mist-50 shadow-md shadow-mist-950/20 ${
+      interactive ? 'transition-transform group-hover:-rotate-12' : ''
     }`}
     aria-hidden="true"
   >
